@@ -117,6 +117,15 @@ nav a:hover{color:var(--fg);background:var(--panel)}
 .score{text-align:center;min-width:150px}
 .score .num{font:800 64px/1 var(--display);letter-spacing:-2px}
 .score .stars{display:flex;justify-content:center;gap:4px;margin:10px 0 6px;color:var(--line)}
+.score .stars.on{color:#fbbf24}
+.quotes{display:grid;gap:16px;margin-top:20px}
+.quote{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:0}
+.quote .qstars{display:flex;gap:3px;color:#fbbf24;margin-bottom:10px}
+.quote .qstars svg{width:18px;height:18px}
+.quote blockquote{margin:0 0 12px;font-size:18px;line-height:1.55}
+.quote figcaption{color:var(--muted);font-size:14px}
+.quote figcaption b{color:var(--fg);font-weight:700}
+.quote figcaption a{margin-left:6px}
 .score .stars svg{width:22px;height:22px}
 .score .count{color:var(--muted);font-size:15px}
 .rev-copy h3{font-size:24px;font-weight:600;margin-bottom:8px}
@@ -356,15 +365,15 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     <div class="wrap">
       <p class="eyebrow">Reviews</p>
       <h2>What customers say</h2>
-      <p class="lede">Lami Tech Repair is brand new, so there aren't any reviews yet. I'd rather show you a real zero than fake ones.</p>
+      <p class="lede">Real reviews from real customers, copied straight from Google.</p>
       <div class="rev-top">
-        <div class="score" aria-label="0 out of 5 stars from 0 reviews">
-          <div class="num">0.0</div>
-          <div class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
-          <div class="count">0 reviews</div>
+        <div class="score" aria-label="5 out of 5 stars from 1 Google review">
+          <div class="num">5.0</div>
+          <div class="stars on" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+          <div class="count">1 review on Google</div>
         </div>
         <div class="rev-copy">
-          <h3>Be one of my first reviews</h3>
+          <h3>Be one of my next reviews</h3>
           <p>My first 5 repair customers get 20% off. After your repair, leave an honest review on Google, Facebook or Yelp, good or bad, so the next person knows what to expect.</p>
           <div class="rev-links">
             <a class="btn primary" href="https://g.page/r/Ce7PV6UOvdixEBM/review" target="_blank" rel="noopener">Review on Google</a>
@@ -373,7 +382,14 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
           </div>
         </div>
       </div>
-      <p class="rev-note">Reviews will show up here as they come in, copied word for word from Google, Facebook and Yelp.</p>
+      <div class="quotes">
+        <figure class="quote">
+          <div class="qstars" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+          <blockquote>"Very helpful! My controller was fixed in a very timely manner! Sajjad was incredibly welcoming and..."</blockquote>
+          <figcaption><b>Steven Michael H.</b> &middot; Google review &middot; November 2026 <a href="https://www.google.com/search?q=Lami+Tech+Repair+Peabody+MA+reviews" target="_blank" rel="noopener">Read the full review on Google</a></figcaption>
+        </figure>
+      </div>
+      <p class="rev-note">Reviews are copied word for word from Google, Facebook and Yelp as they come in.</p>
     </div>
   </section>
 
