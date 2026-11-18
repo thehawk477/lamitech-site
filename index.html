@@ -108,6 +108,68 @@ nav a{color:var(--muted);text-decoration:none;font:500 15px var(--body);padding:
 nav a:hover{color:var(--fg);background:var(--panel)}
 .nav-call{background:var(--accent);color:var(--accent-ink);text-decoration:none;font:700 14px var(--body);padding:9px 14px;border-radius:8px;white-space:nowrap}
 
+
+/* site search */
+.search-band{border-bottom:1px solid var(--line);background:rgba(11,20,34,.6)}
+.search-band .wrap{padding-block:12px}
+.search{position:relative;max-width:640px}
+.search label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.search-row{display:flex;gap:8px}
+.search input{flex:1;min-width:0;font:500 16px var(--body);color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.search input::placeholder{color:var(--muted)}
+.search input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.search button{font:700 15px var(--body);color:var(--accent-ink);background:var(--accent);border:0;border-radius:10px;padding:0 18px;min-height:44px;cursor:pointer}
+.sugg{list-style:none;margin:8px 0 0;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;position:absolute;left:0;right:0;z-index:15;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+.sugg a{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;min-height:24px}
+.sugg a:hover,.sugg a:focus-visible{background:rgba(34,211,238,.12)}
+.sugg small{color:var(--muted)}
+.search-msg{margin:8px 0 0;color:var(--muted);font-size:14px;min-height:1px}
+/* device picker */
+.groups{display:grid;gap:36px}
+.group h3{font:700 22px var(--display);margin:0 0 4px}
+.group > p{margin:0 0 16px;color:var(--muted)}
+.dev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.dev-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;background:rgba(20,35,59,.8);border:1px solid var(--line);border-radius:14px;padding:16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;min-height:24px}
+.dev-card:hover{transform:translateY(-3px);border-color:rgba(34,211,238,.6);box-shadow:0 16px 36px -20px rgba(34,211,238,.4)}
+.dev-card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.dev-pic{height:96px;display:grid;place-items:center;border-radius:10px;background:radial-gradient(circle at 50% 60%,rgba(34,211,238,.16),transparent 70%)}
+.dev-pic svg{height:78px;width:auto;max-width:100%}
+.dev-card b{font:700 16px var(--body);color:var(--fg)}
+.dev-card span{color:var(--muted);font-size:14px}
+.phones{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(20,35,59,.6)}
+.phones .bgphones{position:absolute;inset:0;display:flex;justify-content:space-around;align-items:center;opacity:.13;pointer-events:none}
+.phones .bgphones svg{height:85%;width:auto}
+.phones > *{position:relative}
+.soon-badge{display:inline-block;font:800 13px var(--body);letter-spacing:.14em;color:var(--accent-ink);background:var(--accent);padding:6px 12px;border-radius:999px;margin-bottom:10px}
+.phone-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.phone-chips span{font:600 14px var(--body);padding:8px 14px;border-radius:999px;border:1px dashed var(--line);color:var(--muted);background:rgba(11,20,34,.7)}
+/* dialogs */
+dialog{border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--fg);padding:0;width:min(560px,calc(100vw - 32px));max-height:calc(100dvh - 32px)}
+dialog::backdrop{background:rgba(3,8,16,.72);backdrop-filter:blur(3px)}
+.dlg{padding:22px;overflow:auto;max-height:calc(100dvh - 34px)}
+.dlg-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}
+.dlg-head h2{font-size:24px;margin:0}
+.x{all:unset;cursor:pointer;width:40px;height:40px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);color:var(--fg);font:700 20px/1 var(--body);flex:none}
+.x:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+fieldset{border:0;margin:14px 0 0;padding:0}
+legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(11,20,34,.6);cursor:pointer;min-height:24px}
+.opt:hover{border-color:rgba(34,211,238,.5)}
+.opt input{width:20px;height:20px;accent-color:var(--accent);flex:none;margin:0}
+.opt:has(input:checked){border-color:var(--accent);background:rgba(34,211,238,.10)}
+.other-box{margin-top:10px}
+.other-box label{display:block;font:600 14px var(--body);margin-bottom:6px}
+.other-box textarea,.result textarea{width:100%;min-height:90px;font:500 16px var(--body);color:var(--fg);background:rgba(11,20,34,.8);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+.other-box textarea:focus-visible,.result textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.err{color:#fca5a5;font:600 14px var(--body);margin:10px 0 0;min-height:1px}
+.err:empty{margin:0}
+.dlg-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.dlg-actions .btn{font-size:15px;padding:11px 16px}
+.hint{color:var(--muted);font-size:14px;margin:12px 0 0}
+.result[hidden]{display:none!important}
+.alert-ico{font:800 28px/1 var(--display);color:#fbbf24;margin-bottom:6px}
+
 /* skip link and motion toggle */
 .skip{position:absolute;left:12px;top:-60px;z-index:50;background:var(--accent);color:var(--accent-ink);font:700 15px var(--body);padding:10px 14px;border-radius:8px;text-decoration:none}
 .skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
@@ -294,6 +356,14 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     </symbol>
     <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"/></symbol>
     <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9l-5.3 2.7 1-5.8L3.5 9.7l5.9-.9z"/></symbol>
+    <symbol id="ill-tower" viewBox="0 0 60 100"><path d="M8 6c8-4 14-4 14 2v84c0 6-6 6-14 2-4-2-4-86 0-88z" fill="#e7eef6"/><path d="M52 6c-8-4-14-4-14 2v84c0 6 6 6 14 2 4-2 4-86 0-88z" fill="#e7eef6"/><rect x="22" y="4" width="16" height="92" rx="5" fill="#0f1b2e"/><rect x="27" y="40" width="6" height="2" rx="1" fill="#22d3ee"/></symbol>
+    <symbol id="ill-tower-slim" viewBox="0 0 60 100"><path d="M10 14c7-3 12-3 12 2v68c0 5-5 5-12 2-3-2-3-70 0-72z" fill="#e7eef6"/><path d="M50 14c-7-3-12-3-12 2v68c0 5 5 5 12 2 3-2 3-70 0-72z" fill="#e7eef6"/><rect x="22" y="12" width="16" height="76" rx="5" fill="#0f1b2e"/><rect x="27" y="46" width="6" height="2" rx="1" fill="#22d3ee"/></symbol>
+    <symbol id="ill-tower-pro" viewBox="0 0 60 100"><path d="M8 6c8-4 14-4 14 2v84c0 6-6 6-14 2-4-2-4-86 0-88z" fill="#e7eef6"/><path d="M52 6c-8-4-14-4-14 2v84c0 6 6 6 14 2 4-2 4-86 0-88z" fill="#e7eef6"/><rect x="22" y="4" width="16" height="92" rx="5" fill="#0f1b2e"/><path d="M24 30h12M24 50h12M24 70h12" stroke="#22d3ee" stroke-width="2"/></symbol>
+    <symbol id="ill-box" viewBox="0 0 70 100"><rect x="10" y="6" width="50" height="90" rx="6" fill="#1c2a40" stroke="#8aa0b8" stroke-width="2"/><ellipse cx="35" cy="12" rx="18" ry="4" fill="#0b1422"/><circle cx="35" cy="12" r="10" fill="none" stroke="#22d3ee" stroke-width="1.5" opacity=".7"/><rect x="16" y="80" width="10" height="2" rx="1" fill="#e7eef6"/></symbol>
+    <symbol id="ill-box-flat" viewBox="0 0 100 70"><rect x="6" y="10" width="88" height="50" rx="6" fill="#e7eef6"/><circle cx="66" cy="35" r="18" fill="#0f1b2e"/><circle cx="66" cy="35" r="12" fill="none" stroke="#22d3ee" stroke-width="1.5" opacity=".7"/><rect x="14" y="44" width="10" height="2" rx="1" fill="#0f1b2e"/></symbol>
+    <symbol id="ill-pad" viewBox="0 0 120 80"><path d="M38 14h44c14 0 24 14 27 32 3 17-3 26-12 26-8 0-12-7-16-15H39c-4 8-8 15-16 15-9 0-15-9-12-26 3-18 13-32 27-32z" fill="#e7eef6"/><path d="M28 34h14M35 27v14" stroke="#0f1b2e" stroke-width="5" stroke-linecap="round"/><circle cx="84" cy="28" r="3.6" fill="#0f1b2e"/><circle cx="92" cy="36" r="3.6" fill="#0f1b2e"/><circle cx="76" cy="36" r="3.6" fill="#0f1b2e"/><circle cx="84" cy="44" r="3.6" fill="#0f1b2e"/><circle cx="48" cy="50" r="6" fill="#1c2a40"/><circle cx="72" cy="50" r="6" fill="#1c2a40"/></symbol>
+    <symbol id="ill-pad-dark" viewBox="0 0 120 80"><path d="M38 14h44c14 0 24 14 27 32 3 17-3 26-12 26-8 0-12-7-16-15H39c-4 8-8 15-16 15-9 0-15-9-12-26 3-18 13-32 27-32z" fill="#2a3a52" stroke="#8aa0b8" stroke-width="2"/><circle cx="36" cy="32" r="6" fill="#0b1422"/><circle cx="74" cy="48" r="6" fill="#0b1422"/><path d="M46 48h10M51 43v10" stroke="#e7eef6" stroke-width="3.5" stroke-linecap="round"/><circle cx="86" cy="26" r="3.2" fill="#22d3ee"/><circle cx="93" cy="33" r="3.2" fill="#e7eef6"/><circle cx="79" cy="33" r="3.2" fill="#e7eef6"/><circle cx="86" cy="40" r="3.2" fill="#e7eef6"/></symbol>
+    <symbol id="ill-phone" viewBox="0 0 50 100"><rect x="4" y="2" width="42" height="96" rx="9" fill="#1c2a40" stroke="#e7eef6" stroke-width="2.5"/><rect x="18" y="7" width="14" height="4" rx="2" fill="#e7eef6"/><rect x="9" y="16" width="32" height="70" rx="3" fill="#22d3ee" opacity=".35"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5a6.5 6.5 0 0 0-6.5 6.5c0 4.8 6.5 12.5 6.5 12.5s6.5-7.7 6.5-12.5A6.5 6.5 0 0 0 12 2.5zm0 9a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></symbol>
   </defs>
 </svg>
@@ -304,6 +374,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     <a class="brand" href="#top" aria-label="Lami Tech Repair, back to top"><svg aria-hidden="true"><use href="#logo"/></svg><span>Lami Tech <b>Repair</b></span></a>
     <nav aria-label="Sections">
       <ul>
+        <li><a href="#fix">Get a quote</a></li>
         <li><a href="#repairs">Repairs</a></li>
         <li><a href="#prices">Prices</a></li>
         <li><a href="#reviews">Reviews</a></li>
@@ -316,6 +387,20 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     <a class="nav-call" href="tel:+18572441258">(857) 244-1258</a>
   </div>
 </header>
+
+<div class="search-band" role="search">
+  <div class="wrap">
+    <form class="search" id="siteSearch" autocomplete="off">
+      <label for="q">Search repairs, devices and info</label>
+      <div class="search-row">
+        <input id="q" name="q" type="search" placeholder="Try &quot;PS5 cleaning&quot;, &quot;stick drift&quot; or &quot;iPhone repair&quot;" aria-describedby="searchMsg" aria-controls="sugg">
+        <button type="submit">Search</button>
+      </div>
+      <ul class="sugg" id="sugg" hidden></ul>
+      <p class="search-msg" id="searchMsg" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
 
 <main id="top">
   <div class="hero">
@@ -352,6 +437,45 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     </div>
   </div>
 
+  <section class="band" id="fix">
+    <div class="wrap">
+      <p class="eyebrow">Get a quote</p>
+      <h2>What needs fixing?</h2>
+      <p class="lede">Tap your device, pick what's wrong, and you'll get a ready-to-send text. I reply with a price before anything gets opened.</p>
+      <div class="groups">
+        <div class="group" id="consoles">
+          <h3>Consoles</h3>
+          <p>Cleaning, overheating, loud or dead fans and more.</p>
+          <div class="dev-grid">
+          <button class="dev-card" type="button" data-device="ps5" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower"/></svg></span><b>PS5</b><span>Disc or digital</span></button>
+          <button class="dev-card" type="button" data-device="ps5-slim" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower-slim"/></svg></span><b>PS5 Slim</b><span>Disc or digital</span></button>
+          <button class="dev-card" type="button" data-device="ps5-pro" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower-pro"/></svg></span><b>PS5 Pro</b><span></span></button>
+          <button class="dev-card" type="button" data-device="xbox-x" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-box"/></svg></span><b>Xbox Series X</b><span></span></button>
+          <button class="dev-card" type="button" data-device="xbox-s" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-box-flat"/></svg></span><b>Xbox Series S</b><span></span></button>
+          </div>
+        </div>
+        <div class="group" id="controllers">
+          <h3>Controllers</h3>
+          <p>Stick drift, broken bumpers and buttons, batteries and charging.</p>
+          <div class="dev-grid">
+          <button class="dev-card" type="button" data-device="dualsense" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-pad"/></svg></span><b>PS5 DualSense</b><span>Standard or Edge</span></button>
+          <button class="dev-card" type="button" data-device="xbox-pad" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-pad-dark"/></svg></span><b>Xbox controller</b><span>Series X|S or One</span></button>
+          </div>
+        </div>
+        <div class="group" id="phones">
+          <div class="phones">
+            <div class="bgphones" aria-hidden="true"><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg></div>
+            <span class="soon-badge">COMING SOON</span>
+            <h3>Phone repair</h3>
+            <p>iPhone and Android repairs aren't available yet. Text me if you want me to let you know when they start.</p>
+            <div class="phone-chips"><span>iPhone</span><span>Samsung Galaxy</span><span>Google Pixel</span><span>Other Android</span></div>
+            <a class="btn ghost" href="sms:+18572441258?&amp;body=Hi%2C%20let%20me%20know%20when%20phone%20repair%20is%20available.">Text me when it starts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="repairs">
     <div class="wrap">
       <p class="eyebrow">Repairs</p>
@@ -379,9 +503,6 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
           <p>Barely lasts a session, or the touchpad is starting to lift. New battery installed and tested.</p>
           <div class="price">$45<small>battery included</small></div>
         </article>
-      </div>
-      <div class="devices" role="group" aria-label="Devices I work on">
-        <span>PS5</span><span>PS5 Slim</span><span>PS5 Pro</span><span>DualSense</span><span>Xbox Series X</span><span>Xbox Series S</span><span>Xbox controllers</span>
       </div>
     </div>
   </section>
@@ -567,6 +688,56 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   </div>
 </footer>
 
+
+<dialog id="issueDlg" aria-labelledby="issueTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="issueTitle">What's wrong with it?</h2>
+      <button class="x" type="button" data-close aria-label="Close">&times;</button>
+    </div>
+    <form id="issueForm" novalidate>
+      <fieldset>
+        <legend id="issueLegend">Pick the problem that fits best.</legend>
+        <div class="opts" id="issueOpts"></div>
+        <div class="other-box" id="otherBox" hidden>
+          <label for="otherText">Tell me what happened</label>
+          <textarea id="otherText" maxlength="500" aria-describedby="issueErr"></textarea>
+        </div>
+      </fieldset>
+      <p class="err" id="issueErr" role="alert"></p>
+      <div class="dlg-actions"><button class="btn primary" type="submit">Get my price</button></div>
+    </form>
+    <div class="result" id="issueResult" hidden>
+      <p><b>Your message is ready.</b> Send it by text and attach a photo or short video of the problem. I'll reply with a price.</p>
+      <label for="msgText" style="font:600 14px var(--body);display:block;margin:10px 0 6px">Message</label>
+      <textarea id="msgText" readonly></textarea>
+      <div class="dlg-actions">
+        <a class="btn primary" id="smsLink" href="#">Open text message</a>
+        <button class="btn ghost" type="button" id="copyMsg">Copy message</button>
+        <a class="btn ghost" id="mailLink" href="#">Email instead</a>
+      </div>
+      <p class="hint">Texts go to (857) 244-1258. If the text button doesn't open your messages app, copy the message and send it yourself.</p>
+      <div class="dlg-actions"><button class="btn ghost" type="button" id="backBtn">Change the problem</button></div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="waterDlg" role="alertdialog" aria-labelledby="waterTitle" aria-describedby="waterText">
+  <div class="dlg">
+    <div class="alert-ico" aria-hidden="true">!</div>
+    <h2 id="waterTitle" style="font-size:24px;margin:0 0 8px">Sorry, I can't fix water damage</h2>
+    <div id="waterText">
+      <p>When water or any liquid gets inside a console or controller, it starts corroding the circuit board right away. The damage keeps spreading even after the device dries out, so a repair that seems to work often fails again days or weeks later.</p>
+      <p>I don't want to charge you for a fix I can't stand behind, so I don't take water-damaged devices for repair.</p>
+      <p class="hint">If it just got wet: unplug it, don't turn it on, and let it dry completely before trying it again.</p>
+    </div>
+    <div class="dlg-actions">
+      <button class="btn primary" type="button" id="waterBack">Pick a different problem</button>
+      <button class="btn ghost" type="button" data-close>Close</button>
+    </div>
+  </div>
+</dialog>
+
 <div class="callbar" aria-label="Quick contact">
   <a class="call" href="tel:+18572441258">Call</a>
   <a class="text" href="sms:+18572441258">Text</a>
@@ -671,6 +842,156 @@ document.addEventListener('click',function(e){
   if('IntersectionObserver' in window){ new IntersectionObserver(function(en){visible=en[0].isIntersecting; if(visible&&!raf&&!reduce) loop();}).observe(hero); }
   var tm; window.addEventListener('resize',function(){clearTimeout(tm); tm=setTimeout(size,150);});
   size(); if(!reduce) loop();
+})();
+</script>
+<script>
+/* Device picker, problem choices, water damage notice and site search */
+(function(){
+  var PHONE='+18572441258', EMAIL='lamitechrepair@gmail.com';
+  var CONSOLE_ISSUES=['Needs a cleaning (dusty or overheating)','Fan is really loud','Fan stopped working','Shuts off by itself','Won\'t turn on','No picture on the TV (HDMI)','Disc drive problem','Water damage','Other'];
+  var PAD_ISSUES=['Stick drift','Bumper or trigger not working','Button sticking or not working','Battery dies fast','Won\'t charge','Won\'t connect or pair','Water damage','Other'];
+  var DEVICES={
+    'ps5':{name:'PS5',issues:CONSOLE_ISSUES},'ps5-slim':{name:'PS5 Slim',issues:CONSOLE_ISSUES},'ps5-pro':{name:'PS5 Pro',issues:CONSOLE_ISSUES},
+    'xbox-x':{name:'Xbox Series X',issues:CONSOLE_ISSUES},'xbox-s':{name:'Xbox Series S',issues:CONSOLE_ISSUES},
+    'dualsense':{name:'PS5 DualSense controller',issues:PAD_ISSUES},'xbox-pad':{name:'Xbox controller',issues:PAD_ISSUES}
+  };
+  var dlg=document.getElementById('issueDlg'), water=document.getElementById('waterDlg');
+  if(!dlg||typeof dlg.showModal!=='function') return;
+  var form=document.getElementById('issueForm'), opts=document.getElementById('issueOpts'), title=document.getElementById('issueTitle'),
+      legend=document.getElementById('issueLegend'), otherBox=document.getElementById('otherBox'), otherText=document.getElementById('otherText'),
+      err=document.getElementById('issueErr'), result=document.getElementById('issueResult'), msgText=document.getElementById('msgText'),
+      sms=document.getElementById('smsLink'), mail=document.getElementById('mailLink'), current=null, opener=null;
+  function track(ev,p){ if(typeof gtag==='function') gtag('event',ev,p||{}); }
+  function openDevice(key,from){
+    var d=DEVICES[key]; if(!d) return; current=d; opener=from||document.activeElement;
+    title.textContent='What\'s wrong with your '+d.name+'?';
+    legend.textContent='Pick the problem that fits best.';
+    opts.innerHTML='';
+    d.issues.forEach(function(t,i){
+      var id='iss'+i, lab=document.createElement('label'); lab.className='opt'; lab.setAttribute('for',id);
+      var r=document.createElement('input'); r.type='radio'; r.name='issue'; r.id=id; r.value=t;
+      lab.appendChild(r); lab.appendChild(document.createTextNode(t)); opts.appendChild(lab);
+    });
+    otherBox.hidden=true; otherText.value=''; err.textContent=''; result.hidden=true; form.hidden=false;
+    dlg.showModal(); var first=opts.querySelector('input'); if(first) first.focus();
+    track('quote_open',{device:d.name});
+  }
+  opts.addEventListener('change',function(e){
+    if(e.target.name!=='issue') return; err.textContent='';
+    otherBox.hidden=e.target.value!=='Other';
+    if(e.target.value==='Water damage'){ water.showModal(); document.getElementById('waterBack').focus(); track('quote_water',{device:current&&current.name}); }
+  });
+  function waterClosed(){
+    var w=opts.querySelector('input[value="Water damage"]'); if(w) w.checked=false;
+    var f=opts.querySelector('input'); if(f&&dlg.open) f.focus();
+  }
+  document.getElementById('waterBack').addEventListener('click',function(){ water.close(); });
+  water.addEventListener('close',waterClosed);
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var pick=opts.querySelector('input:checked');
+    if(!pick){ err.textContent='Pick one of the problems above, or choose Other and describe it.'; var f=opts.querySelector('input'); if(f) f.focus(); return; }
+    var detail=pick.value;
+    if(pick.value==='Other'){
+      var t=otherText.value.trim();
+      if(t.length<3){ err.textContent='Tell me a little about what happened so I can give you a price.'; otherText.focus(); return; }
+      detail='Other: '+t;
+    }
+    var msg='Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+detail+'. I\'ll send a photo or video.';
+    msgText.value=msg;
+    sms.href='sms:'+PHONE+'?&body='+encodeURIComponent(msg);
+    mail.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Repair quote: '+current.name)+'&body='+encodeURIComponent(msg);
+    form.hidden=true; result.hidden=false; msgText.focus();
+    track('quote_ready',{device:current.name,issue:pick.value});
+  });
+  document.getElementById('backBtn').addEventListener('click',function(){ result.hidden=true; form.hidden=false; var c=opts.querySelector('input:checked')||opts.querySelector('input'); if(c) c.focus(); });
+  document.getElementById('copyMsg').addEventListener('click',function(){
+    var b=this, old=b.textContent;
+    function done(ok){ b.textContent=ok?'Copied':'Select the message above'; if(!ok){msgText.select();} setTimeout(function(){b.textContent=old},1800); }
+    try{ navigator.clipboard.writeText(msgText.value).then(function(){done(true)},function(){done(false)}); }catch(x){ done(false); }
+  });
+  [dlg,water].forEach(function(d){
+    d.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click',function(){ d.close(); }); });
+    d.addEventListener('click',function(e){ if(e.target===d) d.close(); });
+  });
+  dlg.addEventListener('close',function(){ if(opener&&opener.focus) opener.focus(); });
+  document.querySelectorAll('.dev-card').forEach(function(b){ b.addEventListener('click',function(){ openDevice(b.dataset.device,b); }); });
+
+  /* ---------- search ---------- */
+  var TOWNS=['peabody','salem','danvers','beverly','lynn','lynnfield','saugus','marblehead','swampscott','nahant','middleton','topsfield','wenham','hamilton','ipswich','essex','manchester','gloucester','rockport','newburyport','wakefield','reading','north reading'];
+  var IDX=[
+    {label:'Phone repair',note:'Coming soon',go:'#phones',k:['phone repair','phone','phones','iphone','i phone','android','samsung','galaxy','pixel','google pixel','cell','cellphone','cell phone','mobile','smartphone','screen repair','cracked screen','broken screen','tablet','ipad','motorola','oneplus']},
+    {label:'PS5 repair and cleaning',note:'Console',dev:'ps5',k:['ps5','playstation','playstation 5','play station','ps 5','sony','ps5 repair','ps5 disc','ps5 digital']},
+    {label:'PS5 Slim',note:'Console',dev:'ps5-slim',k:['ps5 slim','slim','playstation slim']},
+    {label:'PS5 Pro',note:'Console',dev:'ps5-pro',k:['ps5 pro','pro','playstation pro']},
+    {label:'Xbox Series X',note:'Console',dev:'xbox-x',k:['xbox series x','series x','xbox x','xsx','xbox','xbox repair','microsoft']},
+    {label:'Xbox Series S',note:'Console',dev:'xbox-s',k:['xbox series s','series s','xbox s','xss']},
+    {label:'PS5 DualSense controller',note:'Controller',dev:'dualsense',k:['dualsense','dual sense','ps5 controller','playstation controller','ps controller','edge','dualsense edge']},
+    {label:'Xbox controller',note:'Controller',dev:'xbox-pad',k:['xbox controller','xbox one controller','elite controller','xbox pad']},
+    {label:'All controller repairs',note:'Controllers',go:'#controllers',k:['controller','controllers','controler','gamepad','joystick','joy stick','stick drift','drift','drifting','analog','thumbstick','bumper','trigger','rb','lb','button','buttons','battery','charging','wont charge']},
+    {label:'Console repairs and cleaning',note:'Consoles',go:'#consoles',k:['console','consoles','console repair','game console','gaming','clean','cleaning','dust','dusty','overheat','overheating','hot','loud','noise','noisy','fan','thermal paste','repaste','hdmi','no picture','disc drive','wont turn on','shuts off']},
+    {label:'Water damage',note:'Can\'t be repaired',water:true,k:['water','water damage','liquid','spill','spilled','wet','soda','juice','dropped in water','flood']},
+    {label:'Prices',note:'Price list',go:'#prices',k:['price','prices','pricing','cost','costs','how much','quote','estimate','cheap','rate','rates']},
+    {label:'Reviews',note:'What customers say',go:'#reviews',k:['review','reviews','rating','ratings','stars','testimonials','google reviews','yelp']},
+    {label:'Sell me your broken console',note:'Cash or Zelle',go:'#buying',k:['sell','selling','buy','buying','cash','trade','trade in','broken console','sell controller','sell ps5','sell xbox','for parts']},
+    {label:'Service area',note:'North Shore towns',go:'#area',k:['area','service area','towns','where','location','near me','north shore','meet','meetup'].concat(TOWNS)},
+    {label:'Questions and guarantee',note:'FAQ',go:'#faq',k:['faq','question','questions','guarantee','warranty','how long','time','payment','pay','zelle','venmo','refund']},
+    {label:'Contact',note:'Call, text or email',go:'#contact',k:['contact','call','text','email','phone number','number','reach','message','hours','open']},
+    {label:'About Sajjad',note:'About',go:'#about',k:['about','owner','who','sajjad','arabic','english']},
+    {label:'Accessibility',note:'Page',go:'/accessibility.html',k:['accessibility','accessible','screen reader','disability','ada']},
+    {label:'Privacy policy',note:'Page',go:'/privacy.html',k:['privacy','data','cookies','policy']}
+  ];
+  var FILL=/\b(my|the|a|an|i|im|need|want|to|for|please|get|got|is|it|some|can|you|do)\b/g, STOP={repair:1,repairs:1,fix:1,fixing:1,fixed:1,screen:1,broken:1,service:1,help:1};
+  function norm(t){ return (' '+t.toLowerCase().replace(FILL,' ').replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').replace(/\bps\s5\b/g,'ps5').replace(/\bx\s?box\b/g,'xbox').replace(/\bi\s?phone\b/g,'iphone').replace(/\bplay\s?station\b/g,'playstation').replace(/\s+/g,' ')+' '); }
+  function lev(a,b){ if(Math.abs(a.length-b.length)>1) return 2; var d=[],i,j; for(i=0;i<=a.length;i++){d[i]=[i];} for(j=0;j<=b.length;j++){d[0][j]=j;}
+    for(i=1;i<=a.length;i++){for(j=1;j<=b.length;j++){d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}} return d[a.length][b.length]; }
+  function score(q,e){
+    var nq=norm(q), toks=nq.trim().split(' ').filter(function(x){return x.length>1;}), s=0;
+    e.k.forEach(function(k){
+      var nk=norm(k), last=toks[toks.length-1]||'';
+      if(nq.indexOf(nk)>-1){ s+=nk.trim().length*3; return; }
+      if(last.length>=3 && !STOP[last] && nk.indexOf(' '+last)>-1) s+=last.length;
+      nk.trim().split(' ').forEach(function(w){ if(STOP[w]||w.length<3) return; toks.forEach(function(t){ if(t===w) s+=w.length; else if(t.length>=4&&w.length>=4&&lev(t,w)===1) s+=w.length; }); });
+    });
+    return s;
+  }
+  function results(q){ return IDX.map(function(e){return {e:e,s:score(q,e)};}).filter(function(r){return r.s>0;}).sort(function(a,b){return b.s-a.s;}).slice(0,5).map(function(r){return r.e;}); }
+  var input=document.getElementById('q'), list=document.getElementById('sugg'), msg=document.getElementById('searchMsg'), sform=document.getElementById('siteSearch');
+  function goTo(e){
+    list.hidden=true;
+    track('site_search',{search_term:input.value,result:e.label});
+    if(e.water){ water.showModal(); document.getElementById('waterBack').textContent='OK'; document.getElementById('waterBack').focus(); return; }
+    if(e.dev){ var card=document.querySelector('.dev-card[data-device="'+e.dev+'"]'); if(card){ card.scrollIntoView({block:'center'}); openDevice(e.dev,card); } return; }
+    if(e.go.charAt(0)==='/'){ location.href=e.go; return; }
+    var t=document.querySelector(e.go); if(!t) return;
+    t.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    var h=t.querySelector('h2,h3')||t; if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1'); setTimeout(function(){ h.focus({preventScroll:true}); },350);
+    msg.textContent='Showing: '+e.label+'.';
+  }
+  function render(){
+    var q=input.value.trim(); list.innerHTML='';
+    if(q.length<2){ list.hidden=true; msg.textContent=''; return; }
+    var r=results(q);
+    if(!r.length){ list.hidden=true; msg.textContent='No match for "'+q+'". Text me at (857) 244-1258 and I\'ll tell you if I can help.'; return; }
+    r.forEach(function(e){
+      var li=document.createElement('li'), a=document.createElement('a'); a.href=e.go||'#fix';
+      a.innerHTML='<span></span><small></small>'; a.firstChild.textContent=e.label; a.lastChild.textContent=e.note;
+      a.addEventListener('click',function(ev){ ev.preventDefault(); goTo(e); }); li.appendChild(a); list.appendChild(li);
+    });
+    list.hidden=false; msg.textContent=r.length+(r.length===1?' result':' results')+'. Press Enter for the top one, or Tab to pick one.';
+  }
+  input.addEventListener('input',render);
+  input.addEventListener('keydown',function(e){ if(e.key==='Escape'){ list.hidden=true; } if(e.key==='ArrowDown'&&!list.hidden){ e.preventDefault(); var a=list.querySelector('a'); if(a) a.focus(); } });
+  list.addEventListener('keydown',function(e){
+    var links=[].slice.call(list.querySelectorAll('a')), i=links.indexOf(document.activeElement);
+    if(e.key==='ArrowDown'){ e.preventDefault(); (links[i+1]||links[0]).focus(); }
+    if(e.key==='ArrowUp'){ e.preventDefault(); if(i<=0) input.focus(); else links[i-1].focus(); }
+    if(e.key==='Escape'){ list.hidden=true; input.focus(); }
+  });
+  document.addEventListener('click',function(e){ if(!sform.contains(e.target)){ list.hidden=true; } });
+  sform.addEventListener('submit',function(e){ e.preventDefault(); var q=input.value.trim(); if(!q) return; var r=results(q); if(r.length) goTo(r[0]); else render(); });
+  water.addEventListener('close',function(){ document.getElementById('waterBack').textContent='Pick a different problem'; });
+ 
 })();
 </script>
 </body>
