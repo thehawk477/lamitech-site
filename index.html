@@ -220,6 +220,7 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 .strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-block:18px}
 .strip div{font-size:14px;color:var(--muted)}
 .strip b{display:block;color:var(--fg);font:700 16px var(--body)}
+.strip .si{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block;margin-bottom:8px}
 
 /* bands */
 .band{padding-block:72px}
@@ -261,6 +262,7 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 .quote .qstars svg{width:18px;height:18px}
 .quote blockquote{margin:0 0 12px;font-size:18px;line-height:1.55}
 .quote figcaption{color:var(--muted);font-size:14px}
+.rtag{display:inline-block;margin:10px 0 0;padding:3px 10px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;color:var(--fg)}
 .quote figcaption b{color:var(--fg);font-weight:700}
 .quote figcaption a{margin-left:6px}
 .score .stars svg{width:22px;height:22px}
@@ -351,7 +353,20 @@ ol.steps p{margin:0;color:var(--muted);font-size:15px}
 .social svg{width:20px;height:20px;flex:none}
 
 footer{border-top:1px solid var(--line)}
-footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer .fcols{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.2fr);gap:32px;padding-block:48px 28px}
+footer .fname{font:800 20px var(--display);letter-spacing:-.02em;margin:0 0 8px}
+footer .fname span{color:var(--accent)}
+footer .fbrand p{color:var(--muted);font-size:15px;margin:0 0 16px;max-width:30ch}
+footer .fh{font:700 13px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+footer ul{list-style:none;margin:0;padding:0;display:block}
+footer nav a,footer li a{background:none;border:0}
+footer li a{display:inline-block;color:var(--fg);text-decoration:none;font-size:15px;padding:5px 0}
+footer li a:hover{color:var(--accent);text-decoration:underline}
+footer .fbase{border-top:1px solid var(--line);padding-block:20px 32px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px}
+footer .fbase ul{display:flex;flex-wrap:wrap;gap:4px 18px}
+footer .fbase a{color:var(--muted);font-size:13px}
+@media (max-width:860px){footer .fcols{grid-template-columns:1fr 1fr}footer .fbrand{grid-column:1/-1}}
+@media (max-width:400px){footer .fcols{grid-template-columns:1fr}}
 
 /* phone call bar */
 .callbar{display:none}
@@ -479,10 +494,10 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
 
   <div class="strip">
     <div class="wrap">
-      <div><b>Price first.</b>Know the cost upfront.</div>
-      <div><b>30-day guarantee.</b>Breaks again? It's on me.</div>
-      <div><b>Local.</b>No shipping. We meet up.</div>
-      <div><b>Opening deal.</b>20% off your first repair.</div>
+      <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5"/></svg><b>Price first.</b>Know the cost upfront.</div>
+      <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><b>No fix, no fee.</b>Can't fix it? You don't pay.</div>
+      <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><b>30-day guarantee.</b>Breaks again? It's on me.</div>
+      <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Local.</b>Peabody and the North Shore.</div>
     </div>
   </div>
 
@@ -641,11 +656,13 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
       <div class="quotes">
         <figure class="quote">
           <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+          <p class="rtag">PS5 Pro and PS5 Slim cleaning</p>
           <blockquote>"I paid for a cleaning and everything went super smooth from the transaction to the final product (ps5 pro and slim)"</blockquote>
           <figcaption><b>Jay G.</b> &middot; Google review &middot; November 2026</figcaption>
         </figure>
         <figure class="quote">
           <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+          <p class="rtag">Controller repair</p>
           <blockquote>"Very helpful! My controller was fixed in a very timely manner! Sajjad was incredibly welcoming and made me feel heard. I would recommend if you need tech help in the Peabody, North Reading, or Baghdad area. #quickfix #Sajjad #goodservice"</blockquote>
           <figcaption><b>Steven Michael H.</b> &middot; Google review &middot; November 2026 <a href="https://www.google.com/search?q=Lami+Tech+Repair+Peabody+MA+reviews" target="_blank" rel="noopener">See it on Google</a></figcaption>
         </figure>
@@ -771,9 +788,46 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>&copy; 2026 Lami Tech Repair, owned and operated by Sajjad Lami &middot; Peabody, MA &middot; (857) 244-1258 &middot; <a href="/terms.html">Terms</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/accessibility.html">Accessibility</a></span>
-    <span>PlayStation and Xbox are trademarks of their owners. Not affiliated with Sony or Microsoft.</span>
+  <div class="wrap fcols">
+    <div class="fbrand">
+      <p class="fname">Lami Tech <span>Repair</span></p>
+      <p>Console and controller repair in Peabody, MA. Owned and run by Sajjad Lami.</p>
+      <a class="btn primary" href="#fix">Get a quote</a>
+    </div>
+    <nav aria-label="Repairs">
+      <h2 class="fh">Repairs</h2>
+      <ul>
+        <li><a href="#consoles">Console cleaning</a></li>
+        <li><a href="#controllers">Controller repair</a></li>
+        <li><a href="#repairs">Stick drift</a></li>
+        <li><a href="#prices">Prices</a></li>
+        <li><a href="#soldering">Soldering (coming soon)</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Company">
+      <h2 class="fh">About</h2>
+      <ul>
+        <li><a href="#about">About me</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#buying">Sell to me</a></li>
+        <li><a href="#area">Service area</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2 class="fh">Contact</h2>
+      <ul>
+        <li><a href="tel:+18572441258">(857)&nbsp;244&#8209;1258</a></li>
+        <li><a href="mailto:lamitechrepair@gmail.com">lamitechrepair@gmail.com</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61596750237914" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.yelp.com/biz/lami-tech-repair-peabody" target="_blank" rel="noopener">Yelp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap fbase">
+    <span>&copy; 2026 Lami Tech Repair &middot; Peabody, MA</span>
+    <nav aria-label="Legal"><ul><li><a href="/terms.html">Terms</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/accessibility.html">Accessibility</a></li></ul></nav>
+    <span>PlayStation, PS5 and DualSense are trademarks of Sony Interactive Entertainment. Xbox is a trademark of Microsoft. Not affiliated with Sony or Microsoft.</span>
   </div>
 </footer>
 

@@ -18,64 +18,150 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--bg:#0b1422;--panel:#14233b;--line:#22344f;--fg:#f1f5fa;--muted:#a7b8cc;--accent:#22d3ee;--accent-ink:#04212b;color-scheme:dark}
+:root{--bg:#0b1422;--panel:#14233b;--panel2:#0f1c30;--line:#22344f;--fg:#f1f5fa;--muted:#a7b8cc;--accent:#22d3ee;--accent-ink:#04212b;color-scheme:dark}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 "Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-.skip{position:absolute;left:12px;top:-60px;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:10px 14px;border-radius:8px;text-decoration:none}
+.skip{position:absolute;left:12px;top:-60px;z-index:60;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:10px 14px;border-radius:8px;text-decoration:none}
 .skip:focus{top:12px}
 a{color:var(--accent)}
-a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
-.wrap{max-width:760px;margin:0 auto;padding:48px max(20px,env(safe-area-inset-left,0px)) 72px max(20px,env(safe-area-inset-right,0px))}
-.back{display:inline-block;margin-bottom:32px;font-weight:600;text-decoration:none;padding:6px 0}
-h1{font:800 clamp(40px,7vw,64px)/1.02 "Geist",system-ui,sans-serif;letter-spacing:-.04em;margin:0 0 10px}
-.updated{color:var(--muted);margin:0 0 32px}
-.summary{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin:0 0 40px}
-.summary h2{margin-top:0}
-.summary ul{margin:0;padding-left:20px}
-h2{font:700 24px/1.2 "Geist",system-ui,sans-serif;letter-spacing:-.02em;margin:44px 0 10px}
-h3{font:600 18px/1.3 "Geist",system-ui,sans-serif;margin:24px 0 6px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.top{position:sticky;top:0;z-index:40;background:rgba(11,20,34,.92);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.top .in{max-width:1180px;margin:0 auto;padding:12px max(20px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:20px}
+.brand{color:var(--fg);text-decoration:none;font-weight:800;letter-spacing:-.02em;font-size:18px;padding:6px 0}
+.brand span{color:var(--accent)}
+.top nav{margin-left:auto}
+.top nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px}
+.top nav a{display:inline-block;color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;padding:8px 10px;border-radius:8px}
+.top nav a:hover,.top nav a[aria-current]{color:var(--fg)}
+.call{background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;font-size:15px;padding:9px 14px;border-radius:10px;white-space:nowrap}
+@media (max-width:720px){.top nav .opt{display:none}}
+@media (max-width:420px){.top nav{display:none}.call{margin-left:auto}}
+.page{max-width:1180px;margin:0 auto;padding:44px max(20px,env(safe-area-inset-left,0px)) 72px max(20px,env(safe-area-inset-right,0px))}
+.hero{max-width:820px;margin:0 0 36px}
+.eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
+h1{font:800 clamp(40px,7vw,68px)/1.02 "Geist",system-ui,sans-serif;letter-spacing:-.045em;margin:0 0 14px}
+.updated{color:var(--muted);margin:0;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.print{background:none;border:1px solid var(--line);color:var(--fg);font:600 14px "Geist",system-ui,sans-serif;padding:7px 12px;border-radius:8px;cursor:pointer;min-height:36px}
+.print:hover{border-color:var(--accent)}
+.glance{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 48px;padding:0;list-style:none}
+.glance li{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:18px;padding:20px;margin:0;color:var(--fg)}
+.glance svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block;margin-bottom:12px}
+.glance b{display:block;font-size:17px;line-height:1.3;letter-spacing:-.01em}
+.glance span{display:block;color:var(--muted);font-size:14.5px;line-height:1.45;margin-top:4px}
+.glance-h{font:700 26px/1.2 "Geist",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 16px}
+@media (max-width:900px){.glance{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:460px){.glance{grid-template-columns:1fr}}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:56px;align-items:start}
+.toc{position:sticky;top:84px;font-size:15px}
+.toc summary{font-weight:700;cursor:pointer;padding:10px 0;color:var(--fg);list-style:none}
+.toc summary::-webkit-details-marker{display:none}
+.toc summary::after{content:"+";float:right;color:var(--muted)}
+.toc[open] summary::after{content:"\2212"}
+.toc ol{list-style:none;margin:0;padding:0 0 0 12px;border-left:1px solid var(--line)}
+.toc li{margin:0}
+.toc a{display:block;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;line-height:1.35}
+.toc a:hover{color:var(--fg)}
+.toc a.on{color:var(--accent);font-weight:600}
+@media (min-width:1000px){.toc summary{pointer-events:none}.toc summary::after{display:none}}
+@media (max-width:999px){.layout{grid-template-columns:1fr;gap:12px}.toc{position:static;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px 16px 8px}}
+article{max-width:740px}
+article>p:first-child{font-size:19px;color:var(--fg)}
+h2{font:700 26px/1.2 "Geist",system-ui,sans-serif;letter-spacing:-.02em;margin:52px 0 12px;padding-top:4px}
+article h2:first-of-type{margin-top:8px}
+h3{font:600 18px/1.3 "Geist",system-ui,sans-serif;margin:26px 0 6px}
 p,li{color:#d9e3ee}
 ul{padding-left:20px}
 li{margin-bottom:6px}
-footer{border-top:1px solid var(--line);margin-top:56px;padding-top:20px;color:var(--muted);font-size:14px}
+.eg{background:var(--panel2);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:12px 16px;margin:14px 0}
+.eg p{margin:0;color:var(--fg);font-size:16px}
+.eg b{color:var(--accent)}
+.totop{display:inline-block;margin-top:40px;font-weight:600;text-decoration:none;padding:6px 0}
+.foot{border-top:1px solid var(--line);margin-top:24px}
+.foot .in{max-width:1180px;margin:0 auto;padding:28px max(20px,env(safe-area-inset-left,0px)) 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;color:var(--muted);font-size:14px}
+.foot nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:4px 18px;margin:0;padding:0}
+.foot a{color:var(--muted);display:inline-block;padding:4px 0}
+.foot a:hover{color:var(--fg)}
+@media (forced-colors:active){.glance li,.toc,.eg{border:1px solid CanvasText}}
+@media print{.top,.toc,.print,.skip,.totop,.foot nav{display:none}body{background:#fff;color:#000}p,li,.glance span,.eg p{color:#000}.layout{display:block}.glance li,.eg{background:none;border:1px solid #999}h1,h2,h3{color:#000}a{color:#000}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
-<main class="wrap" id="main">
-  <a class="back" href="/">&larr; Lami Tech Repair</a>
-  <h1>Terms of Service</h1>
-  <p class="updated">Effective November 18, 2026</p>
-
-  <div class="summary">
-    <h2>The short version.</h2>
-    <ul>
-      <li>You get a price before any work starts.</li>
-      <li>Can't fix it? You don't pay.</li>
-      <li>Same problem within 30 days? Fixed free.</li>
-      <li>Pay by cash or Zelle when it works.</li>
-    </ul>
+<header class="top">
+  <div class="in">
+    <a class="brand" href="/">Lami Tech <span>Repair</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="opt"><a href="/#prices">Prices</a></li>
+        <li class="opt"><a href="/#reviews">Reviews</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="call" href="tel:+18572441258">Call&nbsp;or&nbsp;text</a>
   </div>
+</header>
+<main class="page" id="main">
+  <div class="hero">
+    <p class="eyebrow">Legal</p>
+    <h1>Terms of Service</h1>
+    <p class="updated"><span>Effective November 18, 2026</span><button class="print" type="button" id="printBtn">Print or save as PDF</button></p>
+  </div>
+  <h2 class="glance-h" id="glance">The short version.</h2>
+  <ul class="glance">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5"/></svg><b>Price before work.</b><span>You get a quote first. Nothing extra without your OK.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><b>No fix, no fee.</b><span>If I can't fix it, you don't pay for the repair.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><b>30-day guarantee.</b><span>Same problem comes back? Fixed again, free.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><b>Pay when it works.</b><span>Cash or Zelle, after you see it working.</span></li>
+  </ul>
+<div class="layout">
+    <details class="toc" open>
+      <summary>On this page</summary>
+      <nav aria-label="On this page">
+      <ol>
+        <li><a href="#quotes-and-prices">Quotes and prices</a></li>
+        <li><a href="#before-you-hand-over-your-device">Before you hand over your device</a></li>
+        <li><a href="#repairs-i-don-t-take">Repairs I don't take</a></li>
+        <li><a href="#if-i-can-t-fix-it">If I can't fix it</a></li>
+        <li><a href="#payment">Payment</a></li>
+        <li><a href="#30-day-guarantee">30-day guarantee</a></li>
+        <li><a href="#pickup">Pickup</a></li>
+        <li><a href="#help-for-customers-with-disabilities">Help for customers with disabilities</a></li>
+        <li><a href="#selling-a-device-to-me">Selling a device to me</a></li>
+        <li><a href="#buying-a-device-from-me">Buying a device from me</a></li>
+        <li><a href="#responsibility">Responsibility</a></li>
+        <li><a href="#this-website">This website</a></li>
+        <li><a href="#trademarks">Trademarks</a></li>
+        <li><a href="#governing-law">Governing law</a></li>
+        <li><a href="#changes">Changes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+      </nav>
+    </details>
+    <article>
 
   <p>These terms cover repairs, purchases and sales with Lami Tech Repair, a business owned and operated by Sajjad Lami in Peabody, Massachusetts ("I", "me"). By booking a repair, or buying or selling a device with me, you agree to them. Nothing here limits rights you have under Massachusetts law.</p>
   <p>Need these terms in another format, like large print or read aloud over the phone? Call, text or email me and I'll get it to you.</p>
 
-  <h2>1. Quotes and prices</h2>
+  <h2 id="quotes-and-prices">1. Quotes and prices</h2>
   <ul>
     <li>Prices on this site are flat and include parts, unless a listing says otherwise.</li>
     <li>Every quote is based on what you describe. If I open your device and find a different or bigger problem, I'll tell you the new price first. Nothing extra happens without your OK.</li>
     <li>Stick drift is one flat price per controller, whether one stick or both need replacing.</li>
     <li>Sales tax is added where the law requires it.</li>
   </ul>
+  <div class="eg"><p><b>Example:</b> I quote $45 to clean your PS5. Once it's open, I find a broken fan. I text you the new price. If you say no, I close it up and you pay nothing.</p></div>
 
-  <h2>2. Before you hand over your device</h2>
+  <h2 id="before-you-hand-over-your-device">2. Before you hand over your device</h2>
   <ul>
     <li>Back up anything you care about. I don't access your data, but repairs can sometimes reset a device.</li>
     <li>Remove discs, cases, cards and accessories you don't need repaired.</li>
     <li>Tell me about any earlier repairs, drops or liquid spills.</li>
   </ul>
 
-  <h2>3. Repairs I don't take</h2>
+  <h2 id="repairs-i-don-t-take">3. Repairs I don't take</h2>
   <ul>
     <li><b>Water or liquid damage.</b> Corrosion keeps spreading after a device dries, so repairs rarely last.</li>
     <li>Devices that are banned, locked to someone else's account, or reported stolen.</li>
@@ -83,13 +169,13 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding-top:20px;color:v
     <li>Any job I don't believe I can do reliably. I'll tell you upfront.</li>
   </ul>
 
-  <h2>4. If I can't fix it</h2>
+  <h2 id="if-i-can-t-fix-it">4. If I can't fix it</h2>
   <p>You don't pay for the repair. Your device comes back as you gave it to me. I take photos when I receive a device so we both know its condition.</p>
 
-  <h2>5. Payment</h2>
+  <h2 id="payment">5. Payment</h2>
   <p>Cash or Zelle, after the repair is done and you've seen it working. Opening offers like 20% off are limited to my first 5 repair customers, one per customer, and can't be combined with other offers. Leaving a review is never required to get the discount, and you can leave any review you want.</p>
 
-  <h2>6. 30-day guarantee</h2>
+  <h2 id="30-day-guarantee">6. 30-day guarantee</h2>
   <p>If the same problem I fixed comes back within 30 days, I'll fix it again for free.</p>
   <p>The guarantee doesn't cover:</p>
   <ul>
@@ -98,41 +184,71 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding-top:20px;color:v
     <li>Devices opened or repaired by someone else after me</li>
     <li>Parts I didn't replace, like the other stick on a controller where I replaced one</li>
   </ul>
+  <div class="eg"><p><b>Example:</b> I fix a mushy bumper and it goes mushy again three weeks later. I fix it free. If the controller gets dropped and the shell cracks, that's not covered.</p></div>
 
-  <h2>7. Pickup</h2>
+  <h2 id="pickup">7. Pickup</h2>
   <p>Please pick up your device within 30 days after I tell you it's ready. I'll keep reaching out by text and email until you do.</p>
 
-  <h2>8. Help for customers with disabilities</h2>
+  <h2 id="help-for-customers-with-disabilities">8. Help for customers with disabilities</h2>
   <p>If you have a disability and need something done differently, like communicating only by text or email, extra time, or written quotes, tell me. I'll work with you to make it happen.</p>
 
-  <h2>9. Selling a device to me</h2>
+  <h2 id="selling-a-device-to-me">9. Selling a device to me</h2>
   <ul>
     <li>You must own it and have the right to sell it.</li>
     <li>It must not be stolen, banned or locked to an account you can't remove.</li>
     <li>Describe its problems honestly. My offer is based on what you tell me and show me.</li>
   </ul>
 
-  <h2>10. Buying a device from me</h2>
+  <h2 id="buying-a-device-from-me">10. Buying a device from me</h2>
   <p>Every device I sell is tested before sale. Its condition and any guarantee are stated in the listing or in writing at pickup.</p>
 
-  <h2>11. Responsibility</h2>
+  <h2 id="responsibility">11. Responsibility</h2>
   <p>I take care with every device. If something goes wrong because of my work, I'll make it right by repairing it again, or refunding what you paid for that repair. To the extent the law allows, I'm not responsible for lost data or for indirect losses. This doesn't limit any rights you have under Massachusetts consumer protection law.</p>
 
-  <h2>12. This website</h2>
+  <h2 id="this-website">12. This website</h2>
   <p>The website is provided for information. Prices and services can change. If the site and a written quote from me disagree, the written quote wins.</p>
 
-  <h2>13. Trademarks</h2>
+  <h2 id="trademarks">13. Trademarks</h2>
   <p>PlayStation, PS5 and DualSense are trademarks of Sony Interactive Entertainment. Xbox is a trademark of Microsoft. iPhone is a trademark of Apple. Lami Tech Repair is independent and not affiliated with or endorsed by these companies.</p>
 
-  <h2>14. Governing law</h2>
+  <h2 id="governing-law">14. Governing law</h2>
   <p>These terms are governed by the laws of the Commonwealth of Massachusetts.</p>
 
-  <h2>15. Changes</h2>
+  <h2 id="changes">15. Changes</h2>
   <p>I may update these terms. The version in effect when you book a repair or make a sale applies to it.</p>
 
-  <h2>16. Contact</h2>
+  <h2 id="contact">16. Contact</h2>
   <p>Sajjad Lami, Lami Tech Repair, Peabody, MA<br><a href="tel:+18572441258">(857)&nbsp;244&#8209;1258</a> &middot; <a href="mailto:lamitechrepair@gmail.com">lamitechrepair@gmail.com</a></p>
-  <footer>&copy; 2026 Lami Tech Repair &middot; <a href="/">Home</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/accessibility.html">Accessibility</a></footer>
+      <p><a class="totop" href="#main">Back to top</a></p>
+    </article>
+  </div>
 </main>
+<footer class="foot">
+  <div class="in">
+    <span>&copy; 2026 Lami Tech Repair &middot; Peabody, MA &middot; <a href="tel:+18572441258">(857)&nbsp;244&#8209;1258</a></span>
+    <nav aria-label="Legal">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/terms.html" aria-current="page">Terms</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/accessibility.html">Accessibility</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+<script>
+(function(){
+  var b=document.getElementById('printBtn');if(b)b.addEventListener('click',function(){window.print();});
+  var d=document.querySelector('.toc');var mq=window.matchMedia('(max-width:999px)');
+  if(d&&mq.matches)d.open=false;
+  if(d)d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(mq.matches)d.open=false;});});
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  if('IntersectionObserver' in window&&links.length){
+    var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(x){x.classList.remove('on');x.removeAttribute('aria-current');});var a=map[e.target.id];if(a){a.classList.add('on');a.setAttribute('aria-current','location');}}});},{rootMargin:'-90px 0px -70% 0px'});
+    document.querySelectorAll('article h2[id]').forEach(function(h){io.observe(h);});
+  }
+})();
+</script>
 </body>
 </html>
