@@ -85,6 +85,11 @@ nav a{color:var(--muted);text-decoration:none;font:500 15px var(--body);padding:
 nav a:hover{color:var(--fg);background:var(--panel)}
 .nav-call{background:var(--accent);color:var(--accent-ink);text-decoration:none;font:700 14px var(--body);padding:9px 14px;border-radius:8px;white-space:nowrap}
 
+/* skip link and motion toggle */
+.skip{position:absolute;left:12px;top:-60px;z-index:50;background:var(--accent);color:var(--accent-ink);font:700 15px var(--body);padding:10px 14px;border-radius:8px;text-decoration:none}
+.skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
+.motion-toggle{position:absolute;right:max(14px,env(safe-area-inset-right,0px));bottom:14px;z-index:2;font:700 12px var(--body);color:var(--muted);background:rgba(11,20,34,.7);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.motion-toggle:hover{color:var(--fg);border-color:var(--accent)}
 /* hero */
 .hero{position:relative;overflow:hidden;isolation:isolate}
 .hero::after{content:"";position:absolute;inset:auto 0 0;height:120px;background:linear-gradient(transparent,var(--bg));z-index:-1;pointer-events:none}
@@ -226,7 +231,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
 @media (max-width:860px){
   nav{display:none}
   .hero .wrap,.buy,.area-grid{grid-template-columns:1fr}
-  .hero .wrap{padding-block:40px;gap:28px}
+  .hero .wrap{padding-block:40px 72px;gap:28px}
   .hero-card{order:2}
   .repairs,.contact-grid{grid-template-columns:1fr}
   .strip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -269,6 +274,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   </defs>
 </svg>
 
+<a class="skip" href="#top">Skip to main content</a>
 <header>
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Lami Tech Repair, back to top"><svg aria-hidden="true"><use href="#logo"/></svg><span>Lami Tech <b>Repair</b></span></a>
@@ -290,6 +296,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
 <main id="top">
   <div class="hero">
     <canvas id="sky" aria-hidden="true"></canvas>
+    <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false">Pause animation</button>
     <div class="wrap">
       <div>
         <p class="eyebrow">Controller &amp; console repair &middot; North Shore, MA</p>
@@ -394,12 +401,12 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
       </div>
       <div class="quotes">
         <figure class="quote">
-          <div class="qstars" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+          <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
           <blockquote>"I paid for a cleaning and everything went super smooth from the transaction to the final product (ps5 pro and slim)"</blockquote>
           <figcaption><b>Jay G.</b> &middot; Google review &middot; November 2026</figcaption>
         </figure>
         <figure class="quote">
-          <div class="qstars" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+          <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
           <blockquote>"Very helpful! My controller was fixed in a very timely manner! Sajjad was incredibly welcoming and made me feel heard. I would recommend if you need tech help in the Peabody, North Reading, or Baghdad area. #quickfix #Sajjad #goodservice"</blockquote>
           <figcaption><b>Steven Michael H.</b> &middot; Google review &middot; November 2026 <a href="https://www.google.com/search?q=Lami+Tech+Repair+Peabody+MA+reviews" target="_blank" rel="noopener">See it on Google</a></figcaption>
         </figure>
@@ -520,7 +527,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 Lami Tech Repair, owned and operated by Sajjad Lami &middot; Peabody, MA &middot; (857) 244-1258 &middot; <a href="/privacy.html">Privacy policy</a></span>
+    <span>&copy; 2026 Lami Tech Repair, owned and operated by Sajjad Lami &middot; Peabody, MA &middot; (857) 244-1258 &middot; <a href="/privacy.html">Privacy policy</a> &middot; <a href="/accessibility.html">Accessibility</a></span>
     <span>PlayStation and Xbox are trademarks of their owners. Not affiliated with Sony or Microsoft.</span>
   </div>
 </footer>
@@ -561,6 +568,16 @@ document.addEventListener('click',function(e){
   var c=document.getElementById('sky'); if(!c||!c.getContext) return;
   var ctx=c.getContext('2d'), hero=c.parentElement, logo=document.getElementById('heroLogo');
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var btn=document.getElementById('motionToggle');
+  try{ if(localStorage.getItem('lt-motion')==='off') reduce=true; }catch(e){}
+  function syncBtn(){ if(!btn) return; btn.textContent=reduce?'Play animation':'Pause animation'; btn.setAttribute('aria-pressed',reduce?'true':'false'); }
+  if(btn) btn.addEventListener('click',function(){
+    reduce=!reduce; try{localStorage.setItem('lt-motion',reduce?'off':'on');}catch(e){}
+    if(reduce){ if(raf){cancelAnimationFrame(raf);raf=0;} if(logo){logo.style.transform='';logo.classList.remove('near');} draw(); }
+    else if(!raf){ loop(); }
+    syncBtn();
+  });
+  syncBtn();
   var touch=window.matchMedia&&matchMedia('(hover: none)').matches;
   var W=0,H=0,dpr=1,pts=[],mouse={x:-9999,y:-9999,on:false},raf=0,visible=true,t0=performance.now(),manualUntil=0;
   var LINK=touch?11000:9000, R=touch?120:140;
