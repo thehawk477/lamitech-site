@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,8 +60,8 @@
   --accent:#22d3ee;
   --accent-ink:#04212b;
   --steel:#8aa0b8;
-  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
-  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  --body:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -104,7 +104,7 @@ header .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
 .brand svg{width:34px;height:34px;flex:none}
 .brand b{color:var(--accent)}
 nav ul{list-style:none;display:flex;gap:4px;margin:0;padding:0}
-nav a{color:var(--muted);text-decoration:none;font:500 15px var(--body);padding:8px 10px;border-radius:6px}
+nav a{color:var(--muted);text-decoration:none;font:500 15px var(--body);padding:8px 10px;border-radius:6px;white-space:nowrap}
 nav a:hover{color:var(--fg);background:var(--panel)}
 .nav-call{background:var(--accent);color:var(--accent-ink);text-decoration:none;font:700 14px var(--body);padding:9px 14px;border-radius:8px;white-space:nowrap}
 
@@ -181,9 +181,9 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 #sky{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
 .hero .wrap{position:relative}
 .hero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;padding-block:64px 56px}
-.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.02;font-weight:800;letter-spacing:-1.2px;margin-bottom:18px}
+.hero h1{font-size:clamp(52px,10vw,104px);line-height:.98;font-weight:800;letter-spacing:-.045em;margin-bottom:16px}
 .hero h1 span{color:var(--accent)}
-.hero p.sub{font-size:18px;color:var(--muted);max-width:44ch;margin:0 0 26px}
+.hero p.sub{font-size:clamp(19px,2.2vw,24px);color:var(--muted);max-width:34ch;margin:0 auto 30px;line-height:1.35;font-weight:500}
 .btns{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:8px;font:700 16px var(--body);padding:13px 20px;border-radius:10px;text-decoration:none;border:1.5px solid var(--accent)}
 .btn.primary{background:var(--accent);color:var(--accent-ink)}
@@ -205,8 +205,30 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 /* bands */
 .band{padding-block:72px}
 .band.alt{background:var(--band);border-block:1px solid var(--line)}
-.band h2{font-size:clamp(30px,4vw,42px);font-weight:800;letter-spacing:-.6px;margin-bottom:10px}
-.lede{color:var(--muted);max-width:60ch;margin:0 0 32px;font-size:18px;line-height:1.55}
+.band h2{font-size:clamp(38px,5.4vw,60px);font-weight:700;letter-spacing:-.035em;line-height:1.04;margin-bottom:12px}
+.lede{color:var(--muted);max-width:46ch;margin:0 0 40px;font-size:clamp(18px,1.8vw,21px);line-height:1.45;font-weight:500}
+.band > .wrap > .eyebrow,.band > .wrap > h2,.band > .wrap > .lede{text-align:center;margin-inline:auto}
+.band{padding-block:96px}
+/* centered Apple-style hero */
+.hero .wrap.center{display:block;text-align:center;padding-block:72px 84px}
+.hero-logo{width:112px;height:112px;margin:0 auto 18px;display:block;transition:transform .35s cubic-bezier(.2,.8,.2,1),filter .35s}
+.hero-logo.near{filter:drop-shadow(0 0 22px rgba(34,211,238,.5))}
+.hero .btns{justify-content:center}
+.link-cta{font:600 19px var(--body);color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:12px 6px;min-height:24px}
+.link-cta:hover{text-decoration:underline}
+/* big category tiles */
+.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cat{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:340px;padding:28px;border-radius:24px;text-decoration:none;color:var(--fg);background:linear-gradient(160deg,rgba(26,44,72,.95),rgba(14,25,43,.95));border:1px solid var(--line);overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.cat:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.6);box-shadow:0 26px 60px -30px rgba(34,211,238,.45)}
+.cat:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.cat h3{font:700 clamp(28px,3vw,36px)/1.05 var(--display);letter-spacing:-.03em;margin:0}
+.cat p{margin:6px 0 0;color:var(--muted);font-size:17px;font-weight:500}
+.cat .go{font:600 17px var(--body);color:var(--accent);margin-top:14px}
+.cat .art{display:flex;align-items:flex-end;justify-content:center;gap:10px;height:150px;margin-top:18px}
+.cat .art svg{height:140px;width:auto;max-width:48%;filter:drop-shadow(0 16px 24px rgba(0,0,0,.45))}
+.cat.soon{background:linear-gradient(160deg,rgba(26,36,56,.9),rgba(14,22,38,.9))}
+.cat.soon .art svg{opacity:.75}
+@media (max-width:860px){.cats{grid-template-columns:1fr}.cat{min-height:0}.band{padding-block:64px}}
 
 /* reviews */
 .rev-top{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px}
@@ -317,6 +339,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   nav{display:none}
   .hero .wrap,.buy,.area-grid{grid-template-columns:1fr}
   .hero .wrap{padding-block:40px 72px;gap:28px}
+  .hero .wrap.center{padding-block:48px 80px}
   .hero-card{order:2}
   .repairs,.contact-grid{grid-template-columns:1fr}
   .strip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -334,7 +357,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   .callbar a.text{color:var(--accent)}
 }
 @media (max-width:480px){.nav-call{display:none}}
-@media (max-width:1120px){nav{display:none}}
+@media (max-width:980px){nav{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -375,12 +398,10 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     <a class="brand" href="#top" aria-label="Lami Tech Repair, back to top"><svg aria-hidden="true"><use href="#logo"/></svg><span>Lami Tech <b>Repair</b></span></a>
     <nav aria-label="Sections">
       <ul>
+        <li><a href="#categories">Devices</a></li>
         <li><a href="#fix">Get a quote</a></li>
-        <li><a href="#repairs">Repairs</a></li>
         <li><a href="#prices">Prices</a></li>
         <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#area">Service area</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -394,7 +415,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     <form class="search" id="siteSearch" autocomplete="off">
       <label for="q">Search repairs, devices and info</label>
       <div class="search-row">
-        <input id="q" name="q" type="search" placeholder="Try &quot;PS5 cleaning&quot;, &quot;stick drift&quot; or &quot;iPhone repair&quot;" aria-describedby="searchMsg" aria-controls="sugg">
+        <input id="q" name="q" type="search" placeholder="Search &quot;PS5 cleaning&quot; or &quot;stick drift&quot;" aria-describedby="searchMsg" aria-controls="sugg">
         <button type="submit">Search</button>
       </div>
       <ul class="sugg" id="sugg" hidden></ul>
@@ -407,46 +428,57 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   <div class="hero">
     <canvas id="sky" aria-hidden="true"></canvas>
     <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false">Pause animation</button>
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">Controller &amp; console repair &middot; North Shore, MA</p>
-        <h1>Your controller isn't trash. <span>Let's fix it.</span></h1>
-        <p class="sub">I'm Sajjad. I fix PS5 and Xbox controllers and consoles out of Peabody, and I meet anywhere on the North Shore. Text me a photo of the problem and you'll get a price before anything gets opened.</p>
-        <div class="btns">
-          <a class="btn primary" href="sms:+18572441258">Text me a photo</a>
-          <a class="btn ghost" href="#prices">See prices</a>
-        </div>
-      </div>
-      <div class="hero-card">
-        <svg id="heroLogo" viewBox="0 0 240 240" role="img" aria-label="Lami Tech Repair logo"><use href="#logo"/></svg>
-        <ul class="facts">
-          <li>Flat prices, parts included</li>
-          <li>No fix, no charge</li>
-          <li>Every repair tested before you get it back</li>
-          <li>English and Arabic</li>
-        </ul>
+    <div class="wrap center">
+      <svg id="heroLogo" class="hero-logo" viewBox="0 0 240 240" role="img" aria-label="Lami Tech Repair logo"><use href="#logo"/></svg>
+      <p class="eyebrow">Lami Tech Repair &middot; North Shore, MA</p>
+      <h1>Broken? <span>Fixed.</span></h1>
+      <p class="sub">PS5 and Xbox repair, done right. Right here in Peabody.</p>
+      <div class="btns">
+        <a class="btn primary" href="#fix">Get a quote</a>
+        <a class="link-cta" href="#prices">See prices <span aria-hidden="true">&rsaquo;</span></a>
       </div>
     </div>
   </div>
 
   <div class="strip">
     <div class="wrap">
-      <div><b>Price first</b>You know the cost before I start</div>
-      <div><b>30-day guarantee</b>Same problem comes back, I fix it free</div>
-      <div><b>No shipping</b>We meet locally, in person</div>
-      <div><b>Opening deal</b>20% off for my first 5 customers</div>
+      <div><b>Price first.</b>Know the cost upfront.</div>
+      <div><b>30-day guarantee.</b>Breaks again? It's on me.</div>
+      <div><b>Local.</b>No shipping. We meet up.</div>
+      <div><b>Opening deal.</b>20% off your first repair.</div>
     </div>
   </div>
 
-  <section class="band" id="fix">
+  <section class="band" id="categories">
+    <div class="wrap">
+      <h2>Pick your device.</h2>
+      <p class="lede">Start here. Get a price in minutes.</p>
+      <div class="cats">
+        <a class="cat" href="#consoles">
+          <div><h3>Consoles</h3><p>PS5. Xbox Series X|S.</p><div class="go">Fix my console <span aria-hidden="true">&rsaquo;</span></div></div>
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 60 100"><use href="#ill-tower"/></svg><svg viewBox="0 0 70 100"><use href="#ill-box"/></svg></div>
+        </a>
+        <a class="cat" href="#controllers">
+          <div><h3>Controllers</h3><p>DualSense. Xbox.</p><div class="go">Fix my controller <span aria-hidden="true">&rsaquo;</span></div></div>
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 120 80"><use href="#ill-pad"/></svg></div>
+        </a>
+        <a class="cat soon" href="#phones">
+          <div><span class="soon-badge">COMING SOON</span><h3>Phones</h3><p>iPhone. Android.</p><div class="go">Get notified <span aria-hidden="true">&rsaquo;</span></div></div>
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 50 100"><use href="#ill-phone"/></svg><svg viewBox="0 0 50 100"><use href="#ill-phone"/></svg></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="fix">
     <div class="wrap">
       <p class="eyebrow">Get a quote</p>
       <h2>What needs fixing?</h2>
-      <p class="lede">Tap your device, pick what's wrong, and you'll get a ready-to-send text. I reply with a price before anything gets opened.</p>
+      <p class="lede">Tap your device. Pick the problem. Get a price.</p>
       <div class="groups">
         <div class="group" id="consoles">
           <h3>Consoles</h3>
-          <p>Cleaning, overheating, loud or dead fans and more.</p>
+          <p>Cleaning. Fans. Overheating.</p>
           <div class="dev-grid">
           <button class="dev-card" type="button" data-device="ps5" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower"/></svg></span><b>PS5</b><span>Disc or digital</span></button>
           <button class="dev-card" type="button" data-device="ps5-slim" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower-slim"/></svg></span><b>PS5 Slim</b><span>Disc or digital</span></button>
@@ -457,7 +489,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
         </div>
         <div class="group" id="controllers">
           <h3>Controllers</h3>
-          <p>Stick drift, broken bumpers and buttons, batteries and charging.</p>
+          <p>Drift. Buttons. Batteries.</p>
           <div class="dev-grid">
           <button class="dev-card" type="button" data-device="dualsense" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-pad"/></svg></span><b>PS5 DualSense</b><span>Standard or Edge</span></button>
           <button class="dev-card" type="button" data-device="xbox-pad" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-pad-dark"/></svg></span><b>Xbox controller</b><span>Series X|S or One</span></button>
@@ -468,9 +500,9 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
             <div class="bgphones" aria-hidden="true"><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg></div>
             <span class="soon-badge">COMING SOON</span>
             <h3>Phone repair</h3>
-            <p>iPhone and Android repairs aren't available yet. Text me if you want me to let you know when they start.</p>
+            <p>iPhone and Android. Coming soon.</p>
             <div class="phone-chips"><span>iPhone</span><span>Samsung Galaxy</span><span>Google Pixel</span><span>Other Android</span></div>
-            <a class="btn ghost" href="sms:+18572441258?&amp;body=Hi%2C%20let%20me%20know%20when%20phone%20repair%20is%20available.">Text me when it starts</a>
+            <a class="btn ghost" href="sms:+18572441258?&amp;body=Hi%2C%20let%20me%20know%20when%20phone%20repair%20is%20available.">Get notified</a>
           </div>
         </div>
       </div>
@@ -480,28 +512,28 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   <section class="band" id="repairs">
     <div class="wrap">
       <p class="eyebrow">Repairs</p>
-      <h2>What I fix</h2>
-      <p class="lede">I only list repairs I'm set up to do right. If yours isn't here, text me anyway and I'll tell you straight whether I can take it on.</p>
+      <h2>What I fix.</h2>
+      <p class="lede">Done right, or not at all.</p>
       <div class="repairs">
         <article class="repair">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10 6.5h4M12 18h.01"/><path d="M4 9c1 1.2 1 4.8 0 6M20 9c-1 1.2-1 4.8 0 6"/></svg></div>
           <span class="dev">PS5, PS5 Slim, PS5 Pro &amp; Xbox Series X|S</span>
           <h3>Console cleaning</h3>
-          <p>Fan screaming, random shutdowns, hot to the touch. Opened up, dust cleared from the fan, heatsink and vents. Xbox consoles also get fresh thermal paste.</p>
+          <p>Loud, hot or shutting off? Opened, dusted, cooled down.</p>
           <div class="price">$60<small>flat</small></div>
         </article>
         <article class="repair">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9h10a4 4 0 0 1 3.9 4.9l-.8 3.4a2 2 0 0 1-3.5.8L15 16H9l-1.6 2.1a2 2 0 0 1-3.5-.8l-.8-3.4A4 4 0 0 1 7 9z"/><path d="M5.5 6.5 8 5M18.5 6.5 16 5"/><path d="M8 12v2M7 13h2M16 12.5h.01M17.5 14h.01"/></svg></div>
           <span class="dev">Xbox Series controller</span>
           <h3>Bumper won't click</h3>
-          <p>LB or RB feels mushy or does nothing. Usually a snapped plastic piece inside, and it's a quick swap.</p>
+          <p>Mushy LB or RB. Quick swap.</p>
           <div class="price">$30<small>flat</small></div>
         </article>
         <article class="repair">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9 9 12.5h3.5L10 15"/></svg></div>
           <span class="dev">PS5 DualSense</span>
           <h3>Battery dies fast</h3>
-          <p>Barely lasts a session, or the touchpad is starting to lift. New battery installed and tested.</p>
+          <p>Dies fast? New battery. Tested.</p>
           <div class="price">$45<small>battery included</small></div>
         </article>
       </div>
@@ -511,8 +543,8 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   <section class="band alt" id="prices">
     <div class="wrap">
       <p class="eyebrow">Prices</p>
-      <h2>Flat prices, lower than the shops</h2>
-      <p class="lede">Parts are included. The shop column shows what US repair shops post for the same job, so you can compare.</p>
+      <h2>Simple prices.</h2>
+      <p class="lede">Parts included. Less than the shops.</p>
       <div class="price-wrap" tabindex="0" role="region" aria-label="Price list">
         <table class="prices">
           <thead><tr><th scope="col">Repair</th><th scope="col">Typical shop</th><th scope="col">My price</th></tr></thead>
@@ -525,16 +557,16 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
           </tbody>
         </table>
       </div>
-      <div class="deal"><b>20% off</b><span>for my first 5 repair customers. All I ask is an honest review after.</span></div>
-      <p class="fine">Shop prices come from posted price lists at US repair shops, November 2026. Payment by cash or Zelle when the repair is done.</p>
+      <div class="deal"><b>20% off</b><span>for my first 5 customers. Just leave an honest review.</span></div>
+      <p class="fine">Shop prices from posted US repair shop price lists, Nov 2026. Pay by cash or Zelle when it's done.</p>
     </div>
   </section>
 
   <section class="band" id="reviews">
     <div class="wrap">
       <p class="eyebrow">Reviews</p>
-      <h2>What customers say</h2>
-      <p class="lede">Real reviews from real customers, copied straight from Google.</p>
+      <h2>What customers say.</h2>
+      <p class="lede">Real reviews. Straight from Google.</p>
       <div class="rev-top">
         <div class="score" role="group" aria-label="5 out of 5 stars from 2 Google reviews">
           <div class="num">5.0</div>
@@ -542,8 +574,8 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
           <div class="count">2 reviews on Google</div>
         </div>
         <div class="rev-copy">
-          <h3>Be one of my next reviews</h3>
-          <p>My first 5 repair customers get 20% off. After your repair, leave an honest review on Google, Facebook or Yelp, good or bad, so the next person knows what to expect.</p>
+          <h3>Be next.</h3>
+          <p>Had a repair? Leave an honest review.</p>
           <div class="rev-links">
             <a class="btn primary" href="https://g.page/r/Ce7PV6UOvdixEBM/review" target="_blank" rel="noopener">Review on Google</a>
             <a class="btn ghost" href="https://www.facebook.com/profile.php?id=61596750237914" target="_blank" rel="noopener">Review on Facebook</a>
@@ -563,7 +595,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
           <figcaption><b>Steven Michael H.</b> &middot; Google review &middot; November 2026 <a href="https://www.google.com/search?q=Lami+Tech+Repair+Peabody+MA+reviews" target="_blank" rel="noopener">See it on Google</a></figcaption>
         </figure>
       </div>
-      <p class="rev-note">Reviews are copied word for word from Google, Facebook and Yelp as they come in.</p>
+      <p class="rev-note">Reviews are copied word for word.</p>
     </div>
   </section>
 
@@ -572,9 +604,9 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
       <div class="buy">
         <div>
           <p class="eyebrow">Sell to me</p>
-          <h2>Got a broken one in a drawer?</h2>
-          <p class="lede">I buy broken consoles and controllers for cash or Zelle. Text me the model, what's wrong, and a short video, and I'll make you an offer.</p>
-          <a class="btn ghost" href="sms:+18572441258">Text me what you've got</a>
+          <h2>Got a broken one?</h2>
+          <p class="lede">I'll buy it. Cash or Zelle. Send the model and a video.</p>
+          <a class="btn ghost" href="sms:+18572441258">Get an offer</a>
         </div>
         <ul>
           <li>PS5 consoles and DualSense controllers<span>Drift, dead buttons, bad batteries</span></li>
@@ -588,12 +620,12 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   <section class="band" id="how">
     <div class="wrap">
       <p class="eyebrow">How it works</p>
-      <h2>Three steps, no counter, no shipping</h2>
-      <p class="lede">You deal with me from start to finish.</p>
+      <h2>Three steps.</h2>
+      <p class="lede">No counter. No shipping. Just me.</p>
       <ol class="steps">
-        <li><h3>Text me</h3><p>The model, what's wrong, and a photo or short video.</p></li>
-        <li><h3>Get your price</h3><p>I reply with a flat repair price or an offer to buy it.</p></li>
-        <li><h3>Meet up</h3><p>We meet somewhere public in your town or in Peabody. You pay when it works.</p></li>
+        <li><h3>Text me</h3><p>Model, problem, photo.</p></li>
+        <li><h3>Get a price</h3><p>Flat. Upfront.</p></li>
+        <li><h3>Meet up</h3><p>Pay when it works.</p></li>
       </ol>
     </div>
   </section>
@@ -601,13 +633,13 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   <section class="band alt" id="area">
     <div class="wrap">
       <p class="eyebrow">Service area</p>
-      <h2>The whole North Shore</h2>
-      <p class="lede">Based in Peabody. I meet customers in a public spot in their town, like a coffee shop or a police station safe-exchange lot.</p>
+      <h2>All of the North Shore.</h2>
+      <p class="lede">Based in Peabody. We meet somewhere public in your town.</p>
       <div class="area-grid">
         <div class="base">
-          <h3>Home base: Peabody, MA</h3>
-          <p>Closest towns are the quickest to schedule. Farther out, I'll set a meetup that works for both of us.</p>
-          <p>Don't see your town? Text me. If it's nearby, I'll likely come to you.</p>
+          <h3>Home base: Peabody</h3>
+          <p>Nearby towns get the fastest meetups.</p>
+          <p>Don't see yours? Text me.</p>
         </div>
         <div class="towns area-map" role="group" aria-label="Towns served">
           <span class="home">Peabody</span><span>Salem</span><span>Danvers</span><span>Beverly</span><span>Lynn</span><span>Lynnfield</span><span>Saugus</span><span>Marblehead</span><span>Swampscott</span><span>Nahant</span><span>Middleton</span><span>Topsfield</span><span>Wenham</span><span>Hamilton</span><span>Ipswich</span><span>Essex</span><span>Manchester-by-the-Sea</span><span>Gloucester</span><span>Rockport</span><span>Newburyport</span><span>Wakefield</span><span>Reading</span><span>North Reading</span>
@@ -622,9 +654,9 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
         <div class="badge"><svg aria-hidden="true"><use href="#logo"/></svg></div>
         <div>
           <p class="eyebrow">About</p>
-          <h2>A Peabody local who fixes things</h2>
-          <p>I've always taken things apart to see how they work. I started Lami Tech Repair in 2026 because I was tired of seeing good controllers and consoles thrown out over problems that cost a few dollars in parts to fix.</p>
-          <p>It's just me. That means you text the person doing the work, you get a straight answer about whether it's worth fixing, and every repair gets tested before it goes back to you. I speak English and Arabic.</p>
+          <h2>Local. Honest. Hands-on.</h2>
+          <p>I'm Sajjad. I started Lami Tech Repair in 2026 to keep good gear out of the trash.</p>
+          <p>You text the person doing the work. Every repair is tested. English and Arabic.</p>
         </div>
       </div>
       <div class="stats">
@@ -638,14 +670,14 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   <section class="band alt" id="faq">
     <div class="wrap">
       <p class="eyebrow">FAQ</p>
-      <h2>Questions people ask</h2>
+      <h2>Questions.</h2>
       <div class="faq" style="margin-top:28px">
-        <details><summary>How long does a repair take?</summary><p>Most controller repairs are done within a few days. Console cleanings usually take a day or two. I'll give you a time when I give you the price.</p></details>
-        <details><summary>What if you can't fix it?</summary><p>Then you don't pay for the repair, and you get your device back the way you gave it to me.</p></details>
-        <details><summary>Is there a guarantee?</summary><p>Yes. If the same problem comes back within 30 days, I'll fix it again for free.</p></details>
-        <details><summary>Do you work on PS5 consoles?</summary><p>Yes. I clean PS5, PS5 Slim and PS5 Pro consoles, and I fix DualSense controllers. Text me what's going on and I'll tell you what it needs.</p></details>
-        <details><summary>How do I pay?</summary><p>Cash or Zelle, after the repair is done and you've seen it working.</p></details>
-        <details><summary>Will you buy my broken console?</summary><p>Probably. Text me the model, what's wrong, and a video. I'll make you an offer, and we meet locally.</p></details>
+        <details><summary>How long does a repair take?</summary><p>Controllers: a few days. Cleanings: a day or two.</p></details>
+        <details><summary>What if you can't fix it?</summary><p>You don't pay. You get it back as it was.</p></details>
+        <details><summary>Is there a guarantee?</summary><p>Yes. Same problem within 30 days? Fixed free.</p></details>
+        <details><summary>Do you work on PS5 consoles?</summary><p>Yes. All PS5 models, plus DualSense controllers.</p></details>
+        <details><summary>How do I pay?</summary><p>Cash or Zelle, once it works.</p></details>
+        <details><summary>Will you buy my broken console?</summary><p>Probably. Text the model and a video for an offer.</p></details>
       </div>
     </div>
   </section>
@@ -653,8 +685,8 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
   <section class="band" id="contact">
     <div class="wrap">
       <p class="eyebrow">Contact</p>
-      <h2>Text me a photo, get a price</h2>
-      <p class="lede">Texting is fastest. I reply as soon as I'm off work.</p>
+      <h2>Let's fix it.</h2>
+      <p class="lede">Texting is fastest.</p>
       <div class="contact-grid">
         <div class="card">
           <span class="label">Call or text</span>
@@ -669,7 +701,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
         <div class="card">
           <span class="label">Location</span>
           <span class="value">Peabody, MA</span>
-          <span style="color:var(--muted);font-size:14px">Serving the whole North Shore. Meetups in public places.</span>
+          <span style="color:var(--muted);font-size:14px">All of the North Shore. Public meetups.</span>
         </div>
       </div>
       <div class="social">
@@ -684,7 +716,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 Lami Tech Repair, owned and operated by Sajjad Lami &middot; Peabody, MA &middot; (857) 244-1258 &middot; <a href="/privacy.html">Privacy policy</a> &middot; <a href="/accessibility.html">Accessibility</a></span>
+    <span>&copy; 2026 Lami Tech Repair, owned and operated by Sajjad Lami &middot; Peabody, MA &middot; (857) 244-1258 &middot; <a href="/terms.html">Terms</a> &middot; <a href="/privacy.html">Privacy</a> &middot; <a href="/accessibility.html">Accessibility</a></span>
     <span>PlayStation and Xbox are trademarks of their owners. Not affiliated with Sony or Microsoft.</span>
   </div>
 </footer>
@@ -698,10 +730,10 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
     </div>
     <form id="issueForm" novalidate>
       <fieldset>
-        <legend id="issueLegend">Pick the problem that fits best.</legend>
+        <legend id="issueLegend">Pick the closest match.</legend>
         <div class="opts" id="issueOpts"></div>
         <div class="other-box" id="otherBox" hidden>
-          <label for="otherText">Tell me what happened</label>
+          <label for="otherText">What happened?</label>
           <textarea id="otherText" maxlength="500" aria-describedby="issueErr"></textarea>
         </div>
       </fieldset>
@@ -709,7 +741,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
       <div class="dlg-actions"><button class="btn primary" type="submit">Get my price</button></div>
     </form>
     <div class="result" id="issueResult" hidden>
-      <p><b>Your message is ready.</b> Send it by text and attach a photo or short video of the problem. I'll reply with a price.</p>
+      <p><b>Ready to send.</b> Add a photo or video. I'll reply with a price.</p>
       <label for="msgText" style="font:600 14px var(--body);display:block;margin:10px 0 6px">Message</label>
       <textarea id="msgText" readonly></textarea>
       <div class="dlg-actions">
@@ -717,7 +749,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
         <button class="btn ghost" type="button" id="copyMsg">Copy message</button>
         <a class="btn ghost" id="mailLink" href="#">Email instead</a>
       </div>
-      <p class="hint">Texts go to (857) 244-1258. If the text button doesn't open your messages app, copy the message and send it yourself.</p>
+      <p class="hint">Goes to (857) 244-1258. Button not working? Copy and send it yourself.</p>
       <div class="dlg-actions"><button class="btn ghost" type="button" id="backBtn">Change the problem</button></div>
     </div>
   </div>
@@ -726,11 +758,11 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
 <dialog id="waterDlg" role="alertdialog" aria-labelledby="waterTitle" aria-describedby="waterText">
   <div class="dlg">
     <div class="alert-ico" aria-hidden="true">!</div>
-    <h2 id="waterTitle" style="font-size:24px;margin:0 0 8px">Sorry, I can't fix water damage</h2>
+    <h2 id="waterTitle" style="font-size:24px;margin:0 0 8px">Water damage can't be fixed.</h2>
     <div id="waterText">
-      <p>When water or any liquid gets inside a console or controller, it starts corroding the circuit board right away. The damage keeps spreading even after the device dries out, so a repair that seems to work often fails again days or weeks later.</p>
-      <p>I don't want to charge you for a fix I can't stand behind, so I don't take water-damaged devices for repair.</p>
-      <p class="hint">If it just got wet: unplug it, don't turn it on, and let it dry completely before trying it again.</p>
+      <p>Liquid corrodes the board from the inside. It keeps spreading after it dries, so repairs rarely last.</p>
+      <p>I won't charge you for a fix I can't stand behind.</p>
+      <p class="hint">Just got wet? Unplug it. Don't turn it on. Let it dry fully.</p>
     </div>
     <div class="dlg-actions">
       <button class="btn primary" type="button" id="waterBack">Pick a different problem</button>
@@ -793,7 +825,7 @@ document.addEventListener('click',function(e){
     W=r.width; H=r.height; c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
     var n=Math.round(Math.min(110,Math.max(touch?60:40,W*H/(touch?7000:11000))));
     pts=[]; for(var i=0;i<n;i++){var x=Math.random()*W,y=Math.random()*H;
-      pts.push({hx:x,hy:y,x:x,y:y,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.5+(touch?.9:.6)});}
+      pts.push({hx:x,hy:y,x:x,y:y,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.7+(touch?1:.8),ph:Math.random()*6.283,sp:.6+Math.random()*1.8,big:Math.random()<.12});}
     draw();
   }
   function tilt(cx0,cy0){
@@ -828,12 +860,17 @@ document.addEventListener('click',function(e){
     for(var a=0;a<pts.length;a++){for(var b=a+1;b<pts.length;b++){
       var A=pts[a],B=pts[b],ex=A.x-B.x,ey=A.y-B.y,dd=ex*ex+ey*ey;
       if(dd<LINK){var near=mouse.on&&((A.x-mouse.x)*(A.x-mouse.x)+(A.y-mouse.y)*(A.y-mouse.y))<32000;
-        ctx.strokeStyle=near?'rgba(34,211,238,'+(0.4*(1-dd/LINK))+')':'rgba(159,177,198,'+((touch?0.2:0.14)*(1-dd/LINK))+')';
+        ctx.strokeStyle=near?'rgba(34,211,238,'+(0.55*(1-dd/LINK))+')':'rgba(180,200,222,'+((touch?0.34:0.28)*(1-dd/LINK))+')';
         ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();}
     }}
+    var tw=reduce?0:performance.now()/1000;
     for(var k=0;k<pts.length;k++){var q=pts[k],md=mouse.on?Math.hypot(q.x-mouse.x,q.y-mouse.y):999,glow=md<R?(R-md)/R:0;
-      ctx.fillStyle=glow?'rgba(34,211,238,'+(0.5+glow*0.5)+')':'rgba(200,214,230,'+(touch?0.6:0.5)+')';
-      ctx.beginPath(); ctx.arc(q.x,q.y,q.r+glow*1.8,0,6.283); ctx.fill();}
+      var tk=reduce?1:(0.55+0.45*Math.sin(tw*q.sp+q.ph)), a=glow?(0.6+glow*0.4):(0.5+0.45*tk), rad=q.r*(reduce?1:(0.85+0.3*tk))+glow*1.8;
+      ctx.fillStyle=glow?'rgba(34,211,238,'+a+')':'rgba(226,236,248,'+a+')';
+      ctx.beginPath(); ctx.arc(q.x,q.y,rad,0,6.283); ctx.fill();
+      if(q.big&&!reduce&&tk>0.9){var L=rad*4*(tk-0.9)*10; ctx.strokeStyle='rgba(226,236,248,'+(0.5*(tk-0.9)*10)+')'; ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(q.x-L,q.y); ctx.lineTo(q.x+L,q.y); ctx.moveTo(q.x,q.y-L); ctx.lineTo(q.x,q.y+L); ctx.stroke();}
+    }
   }
   function loop(now){ wander(now||performance.now()); draw(); raf=visible?requestAnimationFrame(loop):0; }
   function setFrom(e){var r=hero.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top; mouse.on=true; tilt(e.clientX,e.clientY);}
@@ -866,7 +903,7 @@ document.addEventListener('click',function(e){
   function openDevice(key,from){
     var d=DEVICES[key]; if(!d) return; current=d; opener=from||document.activeElement;
     title.textContent='What\'s wrong with your '+d.name+'?';
-    legend.textContent='Pick the problem that fits best.';
+    legend.textContent='Pick the closest match.';
     opts.innerHTML='';
     d.issues.forEach(function(t,i){
       var id='iss'+i, lab=document.createElement('label'); lab.className='opt'; lab.setAttribute('for',id);
@@ -891,11 +928,11 @@ document.addEventListener('click',function(e){
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var pick=opts.querySelector('input:checked');
-    if(!pick){ err.textContent='Pick one of the problems above, or choose Other and describe it.'; var f=opts.querySelector('input'); if(f) f.focus(); return; }
+    if(!pick){ err.textContent='Pick a problem, or choose Other.'; var f=opts.querySelector('input'); if(f) f.focus(); return; }
     var detail=pick.value;
     if(pick.value==='Other'){
       var t=otherText.value.trim();
-      if(t.length<3){ err.textContent='Tell me a little about what happened so I can give you a price.'; otherText.focus(); return; }
+      if(t.length<3){ err.textContent='Add a few words about what happened.'; otherText.focus(); return; }
       detail='Other: '+t;
     }
     var msg='Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+detail+'. I\'ll send a photo or video.';
@@ -940,7 +977,8 @@ document.addEventListener('click',function(e){
     {label:'Contact',note:'Call, text or email',go:'#contact',k:['contact','call','text','email','phone number','number','reach','message','hours','open']},
     {label:'About Sajjad',note:'About',go:'#about',k:['about','owner','who','sajjad','arabic','english']},
     {label:'Accessibility',note:'Page',go:'/accessibility.html',k:['accessibility','accessible','screen reader','disability','ada']},
-    {label:'Privacy policy',note:'Page',go:'/privacy.html',k:['privacy','data','cookies','policy']}
+    {label:'Privacy policy',note:'Page',go:'/privacy.html',k:['privacy','data','cookies','policy']},
+    {label:'Terms of Service',note:'Page',go:'/terms.html',k:['terms','terms of service','tos','conditions','rules','liability','pickup']}
   ];
   var FILL=/\b(my|the|a|an|i|im|need|want|to|for|please|get|got|is|it|some|can|you|do)\b/g, STOP={repair:1,repairs:1,fix:1,fixing:1,fixed:1,screen:1,broken:1,service:1,help:1};
   function norm(t){ return (' '+t.toLowerCase().replace(FILL,' ').replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').replace(/\bps\s5\b/g,'ps5').replace(/\bx\s?box\b/g,'xbox').replace(/\bi\s?phone\b/g,'iphone').replace(/\bplay\s?station\b/g,'playstation').replace(/\s+/g,' ')+' '); }
