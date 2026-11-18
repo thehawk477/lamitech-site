@@ -152,6 +152,9 @@ nav a:hover{color:var(--fg);background:var(--panel)}
 .dev-card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .dev-pic{height:96px;display:grid;place-items:center;border-radius:10px;background:radial-gradient(circle at 50% 60%,rgba(34,211,238,.16),transparent 70%)}
 .dev-pic svg{height:78px;width:auto;max-width:100%}
+.dev-pic.photo{background:#fff}
+.dev-pic.photo img{height:88px;width:auto;max-width:100%;object-fit:contain}
+@media (forced-colors:active){.dev-pic.photo{border:1px solid CanvasText}}
 .dev-card b{font:700 16px var(--body);color:var(--fg)}
 .dev-card span{color:var(--muted);font-size:14px}
 .phones{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(20,35,59,.6)}
@@ -567,18 +570,18 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <p>Cleaning. Fans. Overheating. From $45.</p>
           <div class="dev-grid">
           <button class="dev-card" type="button" data-device="ps5" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower"/></svg></span><b>PS5</b><span>Disc or digital</span></button>
-          <button class="dev-card" type="button" data-device="ps5-slim" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower-slim"/></svg></span><b>PS5 Slim</b><span>Disc or digital</span></button>
+          <button class="dev-card" type="button" data-device="ps5-slim" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/ps5-slim.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>PS5 Slim</b><span>Disc or digital</span></button>
           <button class="dev-card" type="button" data-device="ps5-pro" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-tower-pro"/></svg></span><b>PS5 Pro</b><span></span></button>
-          <button class="dev-card" type="button" data-device="xbox-x" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-box"/></svg></span><b>Xbox Series X</b><span></span></button>
-          <button class="dev-card" type="button" data-device="xbox-s" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-box-flat"/></svg></span><b>Xbox Series S</b><span></span></button>
+          <button class="dev-card" type="button" data-device="xbox-x" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/xbox-x.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>Xbox Series X</b><span></span></button>
+          <button class="dev-card" type="button" data-device="xbox-s" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/xbox-s.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>Xbox Series S</b><span></span></button>
           </div>
         </div>
         <div class="group" id="controllers">
           <h3>Controllers</h3>
           <p>Drift. Buttons. Batteries. From $20.</p>
           <div class="dev-grid">
-          <button class="dev-card" type="button" data-device="dualsense" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-pad"/></svg></span><b>PS5 DualSense</b><span>Standard or Edge</span></button>
-          <button class="dev-card" type="button" data-device="xbox-pad" aria-haspopup="dialog"><span class="dev-pic"><svg aria-hidden="true"><use href="#ill-pad-dark"/></svg></span><b>Xbox controller</b><span>Series X|S or One</span></button>
+          <button class="dev-card" type="button" data-device="dualsense" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/dualsense.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>PS5 DualSense</b><span>Standard or Edge</span></button>
+          <button class="dev-card" type="button" data-device="xbox-pad" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/xbox-pad.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>Xbox controller</b><span>Series X|S or One</span></button>
           </div>
         </div>
         <div class="group" id="phones">
@@ -886,7 +889,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
   <div class="wrap fbase">
     <span>&copy; 2026 Lami Tech Repair &middot; Peabody, MA</span>
     <nav aria-label="Legal"><ul><li><a href="#top">Back to top</a></li><li><a href="mailto:lamitechrepair@gmail.com?subject=Website%20feedback">Send feedback</a></li><li><a href="/terms.html">Terms</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/accessibility.html">Accessibility</a></li></ul></nav>
-    <span>PlayStation, PS5 and DualSense are trademarks of Sony Interactive Entertainment. Xbox is a trademark of Microsoft. Not affiliated with Sony or Microsoft.</span>
+    <span>PlayStation, PS5 and DualSense are trademarks of Sony Interactive Entertainment. Xbox is a trademark of Microsoft. Product photos &copy; Sony Interactive Entertainment and Microsoft. Not affiliated with Sony or Microsoft.</span>
   </div>
 </footer>
 
