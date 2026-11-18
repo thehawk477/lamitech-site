@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PQ9SRB9Q"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7TWFJ6V5KK"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  gtag('config', 'G-7TWFJ6V5KK');
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -502,6 +503,20 @@ document.querySelectorAll('[data-copy]').forEach(function(b){
     function done(ok){b.textContent=ok?'Copied':'Select it';setTimeout(function(){b.textContent=old},1600)}
     try{navigator.clipboard.writeText(t).then(function(){done(true)},function(){done(false)})}catch(e){done(false)}
   });
+});
+</script>
+<script>
+/* Count taps on Call, Text, Email and social buttons in Google Analytics */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href]'); if(!a||typeof gtag!=='function') return;
+  var h=a.getAttribute('href'), ev=null, where=a.closest('.callbar')?'phone_bar':(a.closest('header')?'header':(a.closest('section')||{}).id||'page');
+  if(h.indexOf('tel:')===0) ev='click_call';
+  else if(h.indexOf('sms:')===0) ev='click_text';
+  else if(h.indexOf('mailto:')===0) ev='click_email';
+  else if(/facebook\.com/.test(h)) ev='click_facebook';
+  else if(/yelp\.com/.test(h)) ev='click_yelp';
+  else if(/maps\.apple\.com|google\.com\/maps|g\.page/.test(h)) ev='click_maps';
+  if(ev) gtag('event',ev,{link_location:where});
 });
 </script>
 </body>
