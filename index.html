@@ -364,14 +364,15 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
         </div>
         <div class="rev-copy">
           <h3>Be one of my first reviews</h3>
-          <p>My first 5 repair customers get 20% off. After your repair, leave an honest review on Facebook or Yelp, good or bad, so the next person knows what to expect.</p>
+          <p>My first 5 repair customers get 20% off. After your repair, leave an honest review on Google, Facebook or Yelp, good or bad, so the next person knows what to expect.</p>
           <div class="rev-links">
+            <a class="btn primary" href="https://g.page/r/Ce7PV6UOvdixEBM/review" target="_blank" rel="noopener">Review on Google</a>
             <a class="btn ghost" href="https://www.facebook.com/search/top?q=Lami%20Tech%20Repair" target="_blank" rel="noopener">Review on Facebook</a>
             <a class="btn ghost" href="https://www.yelp.com/search?find_desc=Lami+Tech+Repair&amp;find_loc=Peabody%2C+MA" target="_blank" rel="noopener">Review on Yelp</a>
           </div>
         </div>
       </div>
-      <p class="rev-note">Reviews will show up here as they come in, copied word for word from Facebook and Yelp.</p>
+      <p class="rev-note">Reviews will show up here as they come in, copied word for word from Google, Facebook and Yelp.</p>
     </div>
   </section>
 
@@ -476,6 +477,7 @@ footer .wrap{padding-block:28px 32px;color:var(--muted);font-size:13px;display:f
         </div>
       </div>
       <div class="social">
+        <a href="https://g.page/r/Ce7PV6UOvdixEBM/review" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>Google reviews</a>
         <a href="https://www.facebook.com/search/top?q=Lami%20Tech%20Repair" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook</a>
         <a href="https://www.yelp.com/search?find_desc=Lami+Tech+Repair&amp;find_loc=Peabody%2C+MA" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>Yelp</a>
         <a href="https://maps.apple.com/?q=Lami+Tech+Repair&amp;near=Peabody,MA" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Apple Maps</a>
@@ -515,7 +517,8 @@ document.addEventListener('click',function(e){
   else if(h.indexOf('mailto:')===0) ev='click_email';
   else if(/facebook\.com/.test(h)) ev='click_facebook';
   else if(/yelp\.com/.test(h)) ev='click_yelp';
-  else if(/maps\.apple\.com|google\.com\/maps|g\.page/.test(h)) ev='click_maps';
+  else if(/g\.page\/r\//.test(h)) ev='click_google_review';
+  else if(/maps\.apple\.com|google\.com\/maps/.test(h)) ev='click_maps';
   if(ev) gtag('event',ev,{link_location:where});
 });
 </script>
