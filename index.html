@@ -176,6 +176,24 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 .opt:hover{border-color:rgba(34,211,238,.5)}
 .opt input{width:20px;height:20px;accent-color:var(--accent);flex:none;margin:0}
 .opt:has(input:checked){border-color:var(--accent);background:rgba(34,211,238,.10)}
+.diag-cta{margin:0 0 14px;padding:12px 14px;border:1px dashed var(--accent);border-radius:10px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+.diag-cta span{color:var(--muted);font-size:15px}
+.linkbtn{background:none;border:0;padding:6px 0;font:700 15px var(--body);color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:24px}
+.linkbtn:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.diag h3{font:700 20px/1.25 var(--display);letter-spacing:-.01em;margin:0 0 6px}
+.diag h3:focus{outline:none}
+.diag h3:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.diag .sub{color:var(--muted);margin:0 0 12px;font-size:15px}
+.symptoms{display:grid;gap:8px;list-style:none;margin:0;padding:0}
+.symptoms button{width:100%;text-align:left;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(11,20,34,.6);color:var(--fg);font:600 15px var(--body);cursor:pointer;min-height:44px}
+.symptoms button:hover{border-color:var(--accent)}
+.symptoms button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cause{margin:0 0 12px;color:var(--fg)}
+.diag ol{margin:0 0 12px;padding-left:22px}
+.diag ol li{margin-bottom:6px;color:var(--fg)}
+.diag .src{font-size:14px;margin:0 0 10px}
+.diag .src a{color:var(--accent)}
+.diag .warn{font-size:14px;color:var(--muted);margin:0 0 4px}
 .other-box{margin-top:10px}
 .other-box label{display:block;font:600 14px var(--body);margin-bottom:6px}
 .other-box textarea,.result textarea{width:100%;min-height:90px;font:500 16px var(--body);color:var(--fg);background:rgba(11,20,34,.8);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
@@ -756,6 +774,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <h2>Questions.</h2>
       <div class="faq" style="margin-top:28px">
         <details><summary>How much does a repair cost?</summary><p>Prices start at what's listed above, parts included. Text me the model and problem and you'll get your exact price before any work.</p></details>
+        <details><summary>Can I figure out the problem myself first?</summary><p>Yes. Pick your device under Get a quote and tap the 1-minute check. It walks you through the first steps PlayStation and Xbox support recommend. Still broken? Text me from there.</p></details>
         <details><summary>Is there a fee to check my device?</summary><p>No. Quotes are free. If I can't fix it, you don't pay.</p></details>
         <details><summary>How long does a repair take?</summary><p>Controllers: a few days. Cleanings: a day or two. I'll give you a time with your quote.</p></details>
         <details><summary>Do you pick up?</summary><p>Yes. Free pickup and drop-off within 10 miles of Peabody. Farther out, a small travel fee, quoted upfront. We can also meet somewhere public.</p></details>
@@ -855,6 +874,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <button class="x" type="button" data-close aria-label="Close">&times;</button>
     </div>
     <form id="issueForm" novalidate>
+      <div class="diag-cta"><span>Not sure what the problem is?</span><button class="linkbtn" type="button" id="diagBtn">Take a 1-minute check</button></div>
       <fieldset>
         <legend id="issueLegend">Pick the closest match.</legend>
         <div class="opts" id="issueOpts"></div>
@@ -866,6 +886,24 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <p class="err" id="issueErr" role="alert"></p>
       <div class="dlg-actions"><button class="btn primary" type="submit">Get my price</button></div>
     </form>
+    <div class="diag" id="diagList" hidden>
+      <h3 id="diagListTitle" tabindex="-1">What do you notice?</h3>
+      <p class="sub">Pick the closest one. You'll get the first steps PlayStation or Xbox support recommends.</p>
+      <ul class="symptoms" id="symptoms"></ul>
+      <div class="dlg-actions"><button class="btn ghost" type="button" id="diagBack">Back to the problem list</button></div>
+    </div>
+    <div class="diag" id="diagResult" hidden>
+      <h3 id="diagTitle" tabindex="-1">Your result</h3>
+      <p class="cause" id="diagCause"></p>
+      <p style="font-weight:700;margin:0 0 6px">Try this first</p>
+      <ol id="diagSteps"></ol>
+      <p class="src" id="diagSrc"></p>
+      <p class="warn">Unplug before cleaning vents. Don't open the console yourself. That can void your warranty and cause damage.</p>
+      <div class="dlg-actions">
+        <button class="btn primary" type="button" id="diagText">Still not fixed? Text me</button>
+        <button class="btn ghost" type="button" id="diagAgain">Pick a different symptom</button>
+      </div>
+    </div>
     <div class="result" id="issueResult" hidden>
       <p><b>Ready to send.</b> Add a photo or video. I'll reply with a price.</p>
       <label for="msgText" style="font:600 14px var(--body);display:block;margin:10px 0 6px">Message</label>
@@ -1014,6 +1052,9 @@ document.addEventListener('click',function(e){
   var PHONE='+18572441258', EMAIL='lamitechrepair@gmail.com';
   var CONSOLE_ISSUES=['Needs a cleaning (dusty or overheating)','Fan is really loud','Fan stopped working','Shuts off by itself','Won\'t turn on','No picture on the TV (HDMI)','Disc drive problem','Water damage','Other'];
   var PAD_ISSUES=['Stick drift','Bumper or trigger not working','Button sticking or not working','Battery dies fast','Won\'t charge','Won\'t connect or pair','Water damage','Other'];
+
+  var DIAG={"console-ps": [{"q": "Gets hot, loud, or shuts off during games", "t": "Sounds like dust buildup", "c": "Dust blocks the airflow, so the console runs hot. This is the most common PS5 problem.", "s": ["Leave about 4 inches (10 cm) of space on every side.", "Keep it off carpet and out of closed cabinets.", "Unplug it, then vacuum the side and back vents on low power.", "A louder fan in big games is normal. Hot and loud all the time is not."], "src": ["PlayStation Support: PS5 console noise", "https://www.playstation.com/en-us/support/hardware/ps5-console-noise/"], "i": "Needs a cleaning (dusty or overheating)"}, {"q": "Fan is loud even on the home screen", "t": "Sounds like a dusty or worn fan", "c": "Dust on the fan blades makes it spin harder and louder. A fan that rattles or grinds may be failing.", "s": ["Give it space on every side and keep the vents clear.", "Unplug it and vacuum the vents on low power.", "Update the system software in Settings > System > System Software."], "src": ["PlayStation Support: PS5 console noise", "https://www.playstation.com/en-us/support/hardware/ps5-console-noise/"], "i": "Fan is really loud"}, {"q": "Won't turn on at all", "t": "Sounds like a power problem", "c": "The cause is the outlet, the cable, or the power supply inside the console.", "s": ["Plug it straight into a wall outlet, not a power strip.", "Push the power cable firmly into the back of the console.", "Unplug it for 60 seconds, plug it back in, and press the power button.", "If no light comes on at all, the problem is inside."], "src": ["PlayStation Support: PS5 hardware", "https://www.playstation.com/en-us/support/hardware/ps5/"], "i": "Won't turn on"}, {"q": "Turns on, but the TV shows no picture", "t": "Sounds like a video or HDMI problem", "c": "It could be a video setting, the HDMI cable, or the HDMI port.", "s": ["Try a different HDMI cable and a different input on the TV.", "Make sure the TV is set to the right input.", "Start Safe Mode: turn the PS5 off, then hold the power button until the second beep, about 7 seconds.", "Connect the controller with a USB cable, press the PS button, and choose Change Video Output.", "Still black? The HDMI port may be damaged. Port repair is coming soon."], "src": ["PlayStation Support: Safe Mode", "https://www.playstation.com/en-us/support/hardware/safe-mode-playstation/"], "i": "No picture on the TV (HDMI)"}, {"q": "Freezes, crashes, or turns off by itself", "t": "Sounds like heat or a software glitch", "c": "Heat causes most random shutdowns. Corrupted data or a failing part causes the rest.", "s": ["Update the system software.", "Start Safe Mode (turn it off, hold power until the second beep) and choose Rebuild Database. Your games and saves stay.", "Give it space on every side so it can cool."], "src": ["PlayStation Support: Safe Mode", "https://www.playstation.com/en-us/support/hardware/safe-mode-playstation/"], "i": "Shuts off by itself"}, {"q": "Disc won't read or won't come out", "t": "Sounds like a disc or drive problem", "c": "A dirty disc, a software glitch, or a worn disc drive. The Digital Edition has no disc drive.", "s": ["Try a different disc. Wipe discs from the center outward.", "Update the system software.", "Fully turn the console off (not Rest Mode), then turn it back on."], "src": ["PlayStation Support: PS5 hardware", "https://www.playstation.com/en-us/support/hardware/ps5/"], "i": "Disc drive problem"}], "console-xbox": [{"q": "Gets hot, loud, or shuts off during games", "t": "Sounds like dust buildup", "c": "Dust blocks the airflow, so the console runs hot.", "s": ["Leave space on every side. A Series X needs extra room above it.", "Keep it off carpet, out of closed cabinets, and don't stack things on top.", "Unplug it, then wipe or vacuum the vents on low power."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Needs a cleaning (dusty or overheating)"}, {"q": "Fan is loud even on the home screen", "t": "Sounds like a dusty or worn fan", "c": "Dust on the fan makes it spin harder and louder. A rattle or grind may mean the fan is failing.", "s": ["Give it space and keep the vents clear.", "Unplug it and clean the vents.", "Check for updates in Settings > System > Updates."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Fan is really loud"}, {"q": "Won't turn on at all", "t": "Sounds like a power problem", "c": "The cause is the outlet, the cable, or the power supply inside the console.", "s": ["Plug it straight into a wall outlet, not a power strip.", "Push the power cable firmly into the back.", "Unplug it for 10 seconds, plug it back in, and press the power button.", "No light and no sound at all usually means the power supply inside."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Won't turn on"}, {"q": "Turns on, but the TV shows no picture", "t": "Sounds like a video or HDMI problem", "c": "It could be a display setting, the HDMI cable, or the HDMI port.", "s": ["Try a different HDMI cable and a different input on the TV.", "Reset the display: with the console off, hold Power and Eject (Series S: Power and Pair) until you hear a second beep, about 10 seconds.", "It starts in low resolution. Then set your TV settings again in Settings > General > TV & display options.", "Still black? The HDMI port may be damaged. Port repair is coming soon."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "No picture on the TV (HDMI)"}, {"q": "Freezes, crashes, or turns off by itself", "t": "Sounds like heat or a software glitch", "c": "Heat causes most random shutdowns. A stuck update or a failing part causes the rest.", "s": ["Hold the power button on the console for 10 seconds until it turns off.", "Unplug it for 10 seconds, then turn it back on.", "Check for updates in Settings > System > Updates.", "Give it space so it can cool."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Shuts off by itself"}, {"q": "Disc won't read or won't come out", "t": "Sounds like a disc or drive problem", "c": "A dirty disc, a software glitch, or a worn drive. The Series S has no disc drive.", "s": ["Try a different disc. Wipe discs from the center outward.", "Hold the console power button for 10 seconds, unplug for 10 seconds, then turn it on.", "Check for updates."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Disc drive problem"}], "pad-ps": [{"q": "Moves on its own (stick drift)", "t": "Sounds like stick drift", "c": "The stick sensors wear out over time. It's very common after a year or two of use.", "s": ["Turn off the PS5 and unplug the controller.", "Press the reset button in the small hole next to the Sony logo on the back with a pin for at least 5 seconds.", "Connect it with a USB cable and press the PS button.", "Update the PS5 system software.", "Still drifting? The stick needs replacing."], "src": ["PlayStation Support: DualSense troubleshooting", "https://www.playstation.com/en-us/support/hardware/troubleshoot-dualsense/"], "i": "Stick drift"}, {"q": "A button, trigger, or bumper is sticky or not working", "t": "Sounds like a worn or dirty button", "c": "Dirt, a spill, or a worn part under the button.", "s": ["Reset the controller with the button on the back (hold 5 seconds with a pin).", "Connect with USB and press the PS button.", "Sticky after a spill? Stop using it. Liquid keeps spreading inside."], "src": ["PlayStation Support: DualSense troubleshooting", "https://www.playstation.com/en-us/support/hardware/troubleshoot-dualsense/"], "i": "Button sticking or not working"}, {"q": "Won't connect to the PS5", "t": "Sounds like a pairing problem", "c": "Usually fixed by a reset. If not, it can be the charging port or the board.", "s": ["Reset the controller with the button on the back (hold 5 seconds).", "Connect it with a USB cable that carries data, then press the PS button.", "Try a different USB cable."], "src": ["PlayStation Support: DualSense troubleshooting", "https://www.playstation.com/en-us/support/hardware/troubleshoot-dualsense/"], "i": "Won't connect or pair"}, {"q": "Won't charge", "t": "Sounds like a cable, port, or battery problem", "c": "Often the cable. If the light never comes on, it can be the charging port or the battery.", "s": ["Try a different USB cable and a different USB port.", "Charge it for at least an hour.", "Reset the controller with the button on the back."], "src": ["PlayStation Support: DualSense troubleshooting", "https://www.playstation.com/en-us/support/hardware/troubleshoot-dualsense/"], "i": "Won't charge"}, {"q": "Battery dies really fast", "t": "Sounds like a worn battery", "c": "DualSense batteries lose capacity over time. A few hours of play is normal. Under an hour usually means a worn battery.", "s": ["Lower the controller speaker volume, vibration, and light brightness in Settings > Accessories > Controllers.", "Update the PS5 system software.", "Still dying fast? The battery needs replacing."], "src": ["PlayStation Support: DualSense troubleshooting", "https://www.playstation.com/en-us/support/hardware/troubleshoot-dualsense/"], "i": "Battery dies fast"}], "pad-xbox": [{"q": "Moves on its own (stick drift)", "t": "Sounds like stick drift", "c": "The stick sensors wear out over time. Very common on older controllers.", "s": ["Hold the Xbox button on the controller for 5 to 10 seconds to turn it off, then turn it back on.", "Update the controller in Settings > Devices & connections > Accessories.", "Put in fresh batteries. Low batteries cause odd input.", "Still drifting? The stick needs replacing."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Stick drift"}, {"q": "A button, trigger, or bumper is sticky or not working", "t": "Sounds like a worn bumper or button", "c": "Mushy or dead bumpers (LB or RB) are a very common Xbox controller wear problem.", "s": ["Update the controller in Settings > Devices & connections > Accessories.", "Turn it off and on again.", "Mushy or clicky bumper that won't press? That's a worn part."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Bumper or trigger not working"}, {"q": "Won't connect to the Xbox", "t": "Sounds like a pairing problem", "c": "Usually batteries or pairing.", "s": ["Put in fresh batteries.", "Press the pair button on the console, then hold the pair button on the controller until the Xbox button flashes fast.", "Or connect it with a USB-C cable."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Won't connect or pair"}, {"q": "Won't charge or keeps dying", "t": "Sounds like a battery or contact problem", "c": "Worn rechargeable packs or dirty battery contacts.", "s": ["Try fresh AA batteries to rule out the battery pack.", "Check the battery contacts for dirt or corrosion.", "Using a USB-C cable? Try a different cable."], "src": ["Xbox Support", "https://support.xbox.com/en-US/"], "i": "Battery dies fast"}]};
+  var DIAG_OF={"ps5":"console-ps","ps5-slim":"console-ps","ps5-pro":"console-ps","xbox-x":"console-xbox","xbox-s":"console-xbox","dualsense":"pad-ps","xbox-pad":"pad-xbox"};
   var DEVICES={
     'ps5':{name:'PS5',issues:CONSOLE_ISSUES},'ps5-slim':{name:'PS5 Slim',issues:CONSOLE_ISSUES},'ps5-pro':{name:'PS5 Pro',issues:CONSOLE_ISSUES},
     'xbox-x':{name:'Xbox Series X',issues:CONSOLE_ISSUES},'xbox-s':{name:'Xbox Series S',issues:CONSOLE_ISSUES},
@@ -1024,10 +1065,11 @@ document.addEventListener('click',function(e){
   var form=document.getElementById('issueForm'), opts=document.getElementById('issueOpts'), title=document.getElementById('issueTitle'),
       legend=document.getElementById('issueLegend'), otherBox=document.getElementById('otherBox'), otherText=document.getElementById('otherText'),
       err=document.getElementById('issueErr'), result=document.getElementById('issueResult'), msgText=document.getElementById('msgText'),
-      sms=document.getElementById('smsLink'), mail=document.getElementById('mailLink'), current=null, opener=null;
+      sms=document.getElementById('smsLink'), mail=document.getElementById('mailLink'), current=null, currentKey=null, opener=null,
+      diagList=document.getElementById('diagList'), diagRes=document.getElementById('diagResult'), symptomsEl=document.getElementById('symptoms'), diagPick=null;
   function track(ev,p){ if(typeof gtag==='function') gtag('event',ev,p||{}); }
   function openDevice(key,from){
-    var d=DEVICES[key]; if(!d) return; current=d; opener=from||document.activeElement;
+    var d=DEVICES[key]; if(!d) return; current=d; currentKey=key; opener=from||document.activeElement;
     title.textContent='What\'s wrong with your '+d.name+'?';
     legend.textContent='Pick the closest match.';
     opts.innerHTML='';
@@ -1036,7 +1078,7 @@ document.addEventListener('click',function(e){
       var r=document.createElement('input'); r.type='radio'; r.name='issue'; r.id=id; r.value=t;
       lab.appendChild(r); lab.appendChild(document.createTextNode(t)); opts.appendChild(lab);
     });
-    otherBox.hidden=true; otherText.value=''; err.textContent=''; result.hidden=true; form.hidden=false;
+    otherBox.hidden=true; otherText.value=''; err.textContent=''; result.hidden=true; diagList.hidden=true; diagRes.hidden=true; form.hidden=false;
     dlg.showModal(); var first=opts.querySelector('input'); if(first) first.focus();
     track('quote_open',{device:d.name});
   }
@@ -1061,12 +1103,43 @@ document.addEventListener('click',function(e){
       if(t.length<3){ err.textContent='Add a few words about what happened.'; otherText.focus(); return; }
       detail='Other: '+t;
     }
-    var msg='Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+detail+'. I\'ll send a photo or video.';
+    showMsg('Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+detail+'. I\'ll send a photo or video.');
+    track('quote_ready',{device:current.name,issue:pick.value});
+  });
+  function showMsg(msg){
     msgText.value=msg;
     sms.href='sms:'+PHONE+'?&body='+encodeURIComponent(msg);
     mail.href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Repair quote: '+current.name)+'&body='+encodeURIComponent(msg);
-    form.hidden=true; result.hidden=false; msgText.focus();
-    track('quote_ready',{device:current.name,issue:pick.value});
+    form.hidden=true; diagList.hidden=true; diagRes.hidden=true; result.hidden=false; msgText.focus();
+  }
+  function showDiagList(){
+    var list=DIAG[DIAG_OF[currentKey]]||[]; symptomsEl.innerHTML='';
+    list.forEach(function(d,i){
+      var li=document.createElement('li'), b=document.createElement('button'); b.type='button'; b.textContent=d.q;
+      b.addEventListener('click',function(){ showDiagResult(i); }); li.appendChild(b); symptomsEl.appendChild(li);
+    });
+    form.hidden=true; result.hidden=true; diagRes.hidden=true; diagList.hidden=false;
+    document.getElementById('diagListTitle').focus();
+  }
+  function showDiagResult(i){
+    var d=DIAG[DIAG_OF[currentKey]][i]; diagPick=d;
+    document.getElementById('diagTitle').textContent=d.t;
+    document.getElementById('diagCause').textContent=d.c;
+    var ol=document.getElementById('diagSteps'); ol.innerHTML='';
+    d.s.forEach(function(t){ var li=document.createElement('li'); li.textContent=t; ol.appendChild(li); });
+    var src=document.getElementById('diagSrc'); src.innerHTML='';
+    src.appendChild(document.createTextNode('Source: '));
+    var a=document.createElement('a'); a.href=d.src[1]; a.target='_blank'; a.rel='noopener'; a.textContent=d.src[0]+' (opens in a new tab)'; src.appendChild(a);
+    diagList.hidden=true; diagRes.hidden=false; document.getElementById('diagTitle').focus();
+    track('diag_result',{device:current.name,symptom:d.q});
+  }
+  document.getElementById('diagBtn').addEventListener('click',function(){ showDiagList(); track('diag_open',{device:current&&current.name}); });
+  document.getElementById('diagBack').addEventListener('click',function(){ diagList.hidden=true; form.hidden=false; document.getElementById('diagBtn').focus(); });
+  document.getElementById('diagAgain').addEventListener('click',showDiagList);
+  document.getElementById('diagText').addEventListener('click',function(){
+    if(!diagPick) return;
+    showMsg('Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+diagPick.i+'. I already tried the basic steps from your self-check. I\'ll send a photo or video.');
+    track('diag_text',{device:current.name,issue:diagPick.i});
   });
   document.getElementById('backBtn').addEventListener('click',function(){ result.hidden=true; form.hidden=false; var c=opts.querySelector('input:checked')||opts.querySelector('input'); if(c) c.focus(); });
   document.getElementById('copyMsg').addEventListener('click',function(){
@@ -1097,6 +1170,7 @@ document.addEventListener('click',function(e){
     {label:'Soldering and board repair',note:'Coming soon',go:'#soldering',k:['solder','soldering','saudring','micro soldering','microsoldering','board repair','motherboard','hdmi port','hdmi','charging port','usb c port','port replacement']},
     {label:'Stick drift fix',note:'From $25, one or both sticks',go:'#repairs',k:['stick drift','drift','drifting','joystick','thumbstick','analog stick']},
     {label:'Water damage',note:'Can\'t be repaired',water:true,k:['water','water damage','liquid','spill','spilled','wet','soda','juice','dropped in water','flood']},
+    {label:'Check the problem yourself',note:'1-minute self-check',go:'#fix',k:['diagnose','diagnosis','not sure','whats wrong','what is wrong','troubleshoot','troubleshooting','check','self check','help me figure','problem','fix it myself','safe mode','reset controller']},
     {label:'Prices',note:'Price list',go:'#prices',k:['price','prices','pricing','cost','costs','how much','quote','estimate','cheap','rate','rates']},
     {label:'Reviews',note:'What customers say',go:'#reviews',k:['review','reviews','rating','ratings','stars','testimonials','google reviews','yelp']},
     {label:'Sell me your broken console',note:'Cash or Zelle',go:'#buying',k:['sell','selling','buy','buying','cash','trade','trade in','broken console','sell controller','sell ps5','sell xbox','for parts']},
