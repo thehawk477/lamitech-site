@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lamitechrepair.pages.dev/sitemap.xml
