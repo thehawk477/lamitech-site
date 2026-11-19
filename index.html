@@ -371,6 +371,90 @@ ol.steps p{margin:0;color:var(--muted);font-size:15px}
 .faq details p{margin:0 0 18px;color:var(--muted)}
 
 /* contact */
+
+/* Reviews: score ring + sideways carousel */
+.rv-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;padding:24px 28px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,rgba(20,35,59,.95),rgba(14,25,43,.8));margin-bottom:22px}
+.rv-score{display:flex;align-items:center;gap:20px}
+.rv-ring{width:108px;height:108px;border-radius:50%;flex:none;display:grid;place-content:center;text-align:center;background:radial-gradient(closest-side,var(--panel) 80%,transparent 81% 100%),conic-gradient(#fbbf24 0 96%,var(--line) 96% 100%)}
+.rv-ring b{font:800 34px/1 var(--display);letter-spacing:-.03em;color:var(--fg)}
+.rv-ring span{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.rv-stars{display:flex;gap:2px;color:#fbbf24}
+.rv-stars svg{width:18px;height:18px}
+.rv-stars.big svg{width:24px;height:24px}
+.rv-stars svg.off{color:#5b7290}
+.rv-count{margin:6px 0 0;color:var(--fg);font-weight:600}
+.rv-actions{display:flex;flex-wrap:wrap;gap:10px}
+.rv-carousel{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
+.rv-track{list-style:none;margin:0;padding:6px 2px 14px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,calc((100% - 32px)/3));gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.rv-track:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:12px}
+.rv-card{scroll-snap-align:start;display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid var(--line);border-left:3px solid #34d399;border-radius:16px;background:var(--panel);min-width:0}
+.rv-who{display:flex;align-items:center;gap:12px}
+.rv-who b{display:block;color:var(--fg);font-size:16px}
+.rv-who div span{color:var(--muted);font-size:13px}
+.rv-who .rv-av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;font:800 17px var(--body);color:var(--accent-ink);background:var(--accent)}
+.rv-card .rtag{margin:0;align-self:flex-start}
+.rv-text{margin:0;color:var(--fg);font-size:15.5px;line-height:1.55}
+.rv-text.clamp{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.rv-more{align-self:flex-start;background:none;border:0;padding:6px 0;font:700 14px var(--body);color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;min-height:24px}
+.rv-more:focus-visible,.rv-nav:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.rv-nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:700 26px/1 var(--body);cursor:pointer;display:grid;place-items:center}
+.rv-nav:hover:not(:disabled){border-color:var(--accent)}
+.rv-nav:disabled{opacity:.35;cursor:default}
+.rv-also{text-align:center;color:var(--muted);margin:14px 0 0}
+.rv-also a{color:var(--fg);display:inline-block;padding-block:3px}
+@media (max-width:900px){.rv-track{grid-auto-columns:minmax(260px,calc((100% - 16px)/2))}}
+@media (max-width:600px){.rv-nav{display:none}.rv-carousel{grid-template-columns:minmax(0,1fr)}.rv-track{grid-auto-columns:86%}.rv-top{padding:20px}}
+@media (prefers-reduced-motion:reduce){.rv-track{scroll-behavior:auto}}
+@media (forced-colors:active){.rv-card,.rv-top{border:1px solid CanvasText}.rv-ring{border:2px solid CanvasText}}
+/* Coming soon, compact */
+.soon-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:14px 18px;border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
+.soon-row .soon-badge{margin:0;font-size:11px;padding:4px 10px}
+.soon-row p{margin:0;flex:1 1 280px}
+.soon-row b{color:var(--fg)}
+.soon-btn{padding:9px 14px;font-size:14px}
+/* Contact: info card + form */
+.ct-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:20px;align-items:start}
+.ct-side,.ct-form{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:26px;min-width:0}
+.ct-side h3,.ct-form h3{font:700 24px/1.2 var(--display);letter-spacing:-.02em;margin:0 0 8px}
+.ct-side > p{color:var(--muted);margin:0 0 16px}
+.ct-points{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:10px}
+.ct-points li{position:relative;padding-left:30px;color:var(--fg)}
+.ct-points li::before{content:"\2713";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;color:var(--accent)}
+.ct-quick{display:grid;gap:14px;border-top:1px solid var(--line);padding-top:18px}
+.ct-item{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ct-item .label{font:700 12px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ct-item .value{font:700 18px var(--body);color:var(--fg);text-decoration:none;overflow-wrap:anywhere;padding-block:2px}
+.ct-item .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.ct-note{color:var(--muted);font-size:14px}
+.ct-form .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;min-width:0}
+.ct-form label,.ct-form legend{font:700 15px var(--body);color:var(--fg)}
+.ct-form .ct-opt{font-weight:500;color:var(--muted)}
+.ct-form input,.ct-form textarea{font:500 16px var(--body);color:var(--fg);background:var(--bg);border:1px solid #6b84a3;border-radius:10px;padding:12px 14px;width:100%;box-sizing:border-box}
+.ct-form textarea{resize:vertical;min-height:120px}
+.ct-form input:focus-visible,.ct-form textarea:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.ct-form [aria-invalid="true"]{border-color:#fca5a5}
+.ct-form .hint{margin:0}
+.ct-form .err{margin:0}
+.ct-form .err:empty{display:none}
+.ct-reach{border:0;padding:0;margin:0 0 14px;min-width:0}
+.ct-reach legend{padding:0;margin-bottom:2px}
+.ct-reach .hint{margin-bottom:10px}
+.ct-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ct-two .field{margin-bottom:0}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ct-send{width:100%;justify-content:center;cursor:pointer;margin-top:4px}
+.ct-send[disabled]{opacity:.6;cursor:wait}
+.ct-legal{color:var(--muted);font-size:13px;margin:10px 0 0}
+.ct-legal a{color:var(--fg)}
+.ct-status{margin-top:12px;font-weight:600}
+.ct-status:empty{display:none}
+.ct-status.ok{padding:14px;border-radius:12px;border:1px solid #34d399;color:#bbf7d0;background:rgba(52,211,153,.08)}
+.ct-status.bad{padding:14px;border-radius:12px;border:1px solid #fca5a5;color:#fecaca;background:rgba(252,165,165,.08)}
+.ct-status a{color:inherit}
+.ct-err-sum{padding:12px 14px;border:1px solid #fca5a5;border-radius:12px;color:#fecaca;margin-bottom:14px;font-weight:600}
+.ct-err-sum:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:860px){.ct-grid{grid-template-columns:1fr}}
+@media (max-width:480px){.ct-two{grid-template-columns:1fr}.ct-side,.ct-form{padding:20px}}
 .contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .card{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--panel);min-width:0;display:flex;flex-direction:column;gap:6px}
 .card .label{font:700 12px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -584,24 +668,10 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <button class="dev-card" type="button" data-device="xbox-pad" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/xbox-pad.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>Xbox controller</b><span>Series X|S or One</span></button>
           </div>
         </div>
-        <div class="group" id="phones">
-          <div class="phones">
-            <div class="bgphones" aria-hidden="true"><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg><svg><use href="#ill-phone"/></svg></div>
-            <span class="soon-badge">COMING SOON</span>
-            <h3>Phone repair</h3>
-            <p>iPhone and Android. Coming soon.</p>
-            <div class="phone-chips"><span>iPhone</span><span>Samsung Galaxy</span><span>Google Pixel</span><span>Other Android</span></div>
-            <a class="btn ghost" href="sms:+18572441258?&amp;body=Hi%2C%20let%20me%20know%20when%20phone%20repair%20is%20available.">Get notified</a>
-          </div>
-        </div>
-        <div class="group" id="soldering">
-          <div class="phones">
-            <div class="bgphones" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#e7eef6" stroke-width="1.2"><path d="M4 20l6-6M14 4l6 6-8 8-6-6z"/><path d="M15 9l-2-2"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="#e7eef6" stroke-width="1.2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h2v4H7zM11 10h6M11 14h4"/></svg></div>
-            <span class="soon-badge">COMING SOON</span>
-            <h3>Soldering and board repair</h3>
-            <p>HDMI ports. Charging ports. Board-level fixes.</p>
-            <a class="btn ghost" href="sms:+18572441258?&amp;body=Hi%2C%20let%20me%20know%20when%20soldering%20repairs%20are%20available.">Get notified</a>
-          </div>
+        <div class="soon-row" id="phones">
+          <span class="soon-badge">COMING SOON</span>
+          <p><b>Phone repair</b> (iPhone and Android) and <b id="soldering">soldering</b> (HDMI and charging ports).</p>
+          <a class="btn ghost soon-btn" href="sms:+18572441258?&amp;body=Hi%2C%20let%20me%20know%20when%20phone%20repair%20or%20soldering%20is%20available.">Get notified</a>
         </div>
       </div>
     </div>
@@ -665,7 +735,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
         </table>
       </div>
       <div class="deal"><b>20% off</b><span>for my first 5 customers.</span></div>
-      <p class="fine">Typical prices are averages from posted US repair price lists, Nov 2026. "+" means starting price. Pay by cash or Zelle when it's done.</p>
+      <p class="fine">Typical prices are averages from posted US repair price lists, Nov 2026. "+" means starting price: it only goes up if your device needs an extra part, like a new fan or battery, and I text you the new price first. Stick drift is one price for one stick or both. Pay by cash or Zelle when it's done.</p>
     </div>
   </section>
 
@@ -673,56 +743,62 @@ footer .fbase a{color:var(--muted);font-size:13px}
     <div class="wrap">
       <p class="eyebrow">Reviews</p>
       <h2>What customers say.</h2>
-      <p class="lede">Real reviews. Straight from Google.</p>
-      <div class="rev-top">
-        <div class="score" role="group" aria-label="4.8 out of 5 stars from 5 Google reviews">
-          <div class="num">4.8</div>
-          <div class="stars on" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
-          <div class="count">5 reviews on Google</div>
-        </div>
-        <div class="rev-copy">
-          <h3>Be next.</h3>
-          <p>Had a repair? Leave an honest review.</p>
-          <div class="rev-links">
-            <a class="btn primary" href="https://g.page/r/Ce7PV6UOvdixEBM/review" target="_blank" rel="noopener">Review on Google</a>
-            <a class="btn ghost" href="https://www.facebook.com/profile.php?id=61596750237914" target="_blank" rel="noopener">Review on Facebook</a>
-            <a class="btn ghost" href="https://www.yelp.com/biz/lami-tech-repair-peabody" target="_blank" rel="noopener">Review on Yelp</a>
+      <p class="lede">Real reviews from real repairs, copied word for word from Google.</p>
+      <div class="rv-top">
+        <div class="rv-score" role="group" aria-label="Rated 4.8 out of 5 from 5 Google reviews">
+          <div class="rv-ring" aria-hidden="true"><b>4.8</b><span>out of 5</span></div>
+          <div>
+            <div class="rv-stars big" aria-hidden="true"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+            <p class="rv-count">5 reviews on Google</p>
           </div>
         </div>
+        <div class="rv-actions">
+          <a class="btn primary" href="https://g.page/r/Ce7PV6UOvdixEBM/review" target="_blank" rel="noopener">Write a review</a>
+          <a class="btn ghost" href="https://www.google.com/search?q=Lami+Tech+Repair+Peabody+MA+reviews" target="_blank" rel="noopener">Read all on Google</a>
+        </div>
       </div>
-      <div class="quotes">
-        <figure class="quote">
-          <div class="qstars" role="img" aria-label="4 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg class="off" aria-hidden="true"><use href="#i-star"/></svg></div>
-          <p class="rtag">Stick drift fix</p>
-          <blockquote>"My controller had a stick drift badly looking for someone to fix it, Luckily I came across Lami Tech Repair. Fixed my controller in an efficient, timely manner and got it back like it was a brand-new controller."</blockquote>
-          <figcaption><b>Henry H.</b> &middot; Google review &middot; November 2026</figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
-          <p class="rtag">Xbox repair</p>
-          <blockquote>"Got my Xbox fixed and I'm very happy with the results! Excellent service, great work, and everything was done right. If you need your Xbox or PS5 repaired, I highly recommend going to him. You won't be disappointed! <span aria-hidden="true">&#x1F4AF;&#x1F3AE;</span>"</blockquote>
-          <figcaption><b>Comlan A.</b> &middot; Google review &middot; November 2026</figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
-          <p class="rtag">PS5 repair</p>
-          <blockquote>"Lami Tech Repair really came through for me. I was in a rough spot with damage to my PS5. Upon finding this site, I texted the support chat using the phone number on the site and it was super easy! I was able to correctly identify the issues I was having and sent it to be fixed promptly. Sajjad, you are a lifesaver, my console is back working perfectly! 5/5 experience. Will be bringing future consoles that may need it in the future."</blockquote>
-          <figcaption><b>Hunter M.</b> &middot; Google review &middot; November 2026</figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
-          <p class="rtag">PS5 Pro and PS5 Slim cleaning</p>
-          <blockquote>"I paid for a cleaning and everything went super smooth from the transaction to the final product (ps5 pro and slim)"</blockquote>
-          <figcaption><b>Jay G.</b> &middot; Google review &middot; November 2026</figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="qstars" role="img" aria-label="5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
-          <p class="rtag">Controller repair</p>
-          <blockquote>"Very helpful! My controller was fixed in a very timely manner! Sajjad was incredibly welcoming and made me feel heard. I would recommend if you need tech help in the Peabody, North Reading, or Baghdad area. #quickfix #Sajjad #goodservice"</blockquote>
-          <figcaption><b>Steven Michael H.</b> &middot; Google review &middot; November 2026 <a href="https://www.google.com/search?q=Lami+Tech+Repair+Peabody+MA+reviews" target="_blank" rel="noopener">See it on Google</a></figcaption>
-        </figure>
+      <div class="rv-carousel">
+        <button class="rv-nav" type="button" id="rvPrev" aria-controls="rvTrack" aria-label="Previous reviews"><span aria-hidden="true">&lsaquo;</span></button>
+        <ul class="rv-track" id="rvTrack" tabindex="0" aria-label="Customer reviews. Scroll sideways for more.">
+          <li class="rv-card">
+            <div class="rv-who"><span class="rv-av" aria-hidden="true">H</span><div><b>Henry H.</b><span>Google review &middot; Nov 2026</span></div></div>
+            <div class="rv-stars" role="img" aria-label="4 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg class="off" aria-hidden="true"><use href="#i-star"/></svg></div>
+            <p class="rtag">Stick drift fix</p>
+            <blockquote class="rv-text">"My controller had a stick drift badly looking for someone to fix it, Luckily I came across Lami Tech Repair. Fixed my controller in an efficient, timely manner and got it back like it was a brand-new controller."</blockquote>
+            <button class="rv-more" type="button" aria-expanded="false" hidden>Read more</button>
+          </li>
+          <li class="rv-card">
+            <div class="rv-who"><span class="rv-av" aria-hidden="true">C</span><div><b>Comlan A.</b><span>Google review &middot; Nov 2026</span></div></div>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+            <p class="rtag">Xbox repair</p>
+            <blockquote class="rv-text">"Got my Xbox fixed and I'm very happy with the results! Excellent service, great work, and everything was done right. If you need your Xbox or PS5 repaired, I highly recommend going to him. You won't be disappointed! <span aria-hidden="true">&#x1F4AF;&#x1F3AE;</span>"</blockquote>
+            <button class="rv-more" type="button" aria-expanded="false" hidden>Read more</button>
+          </li>
+          <li class="rv-card">
+            <div class="rv-who"><span class="rv-av" aria-hidden="true">H</span><div><b>Hunter M.</b><span>Google review &middot; Nov 2026</span></div></div>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+            <p class="rtag">PS5 repair</p>
+            <blockquote class="rv-text">"Lami Tech Repair really came through for me. I was in a rough spot with damage to my PS5. Upon finding this site, I texted the support chat using the phone number on the site and it was super easy! I was able to correctly identify the issues I was having and sent it to be fixed promptly. Sajjad, you are a lifesaver, my console is back working perfectly! 5/5 experience. Will be bringing future consoles that may need it in the future."</blockquote>
+            <button class="rv-more" type="button" aria-expanded="false" hidden>Read more</button>
+          </li>
+          <li class="rv-card">
+            <div class="rv-who"><span class="rv-av" aria-hidden="true">J</span><div><b>Jay G.</b><span>Google review &middot; Nov 2026</span></div></div>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+            <p class="rtag">PS5 Pro and PS5 Slim cleaning</p>
+            <blockquote class="rv-text">"I paid for a cleaning and everything went super smooth from the transaction to the final product (ps5 pro and slim)"</blockquote>
+            <button class="rv-more" type="button" aria-expanded="false" hidden>Read more</button>
+          </li>
+          <li class="rv-card">
+            <div class="rv-who"><span class="rv-av" aria-hidden="true">S</span><div><b>Steven Michael H.</b><span>Google review &middot; Nov 2026</span></div></div>
+            <div class="rv-stars" role="img" aria-label="5 out of 5 stars"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
+            <p class="rtag">Controller repair</p>
+            <blockquote class="rv-text">"Very helpful! My controller was fixed in a very timely manner! Sajjad was incredibly welcoming and made me feel heard. I would recommend if you need tech help in the Peabody, North Reading, or Baghdad area. #quickfix #Sajjad #goodservice"</blockquote>
+            <button class="rv-more" type="button" aria-expanded="false" hidden>Read more</button>
+          </li>
+        </ul>
+        <button class="rv-nav" type="button" id="rvNext" aria-controls="rvTrack" aria-label="Next reviews"><span aria-hidden="true">&rsaquo;</span></button>
       </div>
-      <p class="rev-note">Reviews are copied word for word.</p>
+      <p class="rv-also">Also on <a href="https://www.facebook.com/profile.php?id=61596750237914" target="_blank" rel="noopener">Facebook</a>, <a href="https://www.yelp.com/biz/lami-tech-repair-peabody" target="_blank" rel="noopener">Yelp</a> and <a href="https://nextdoor.com/page/lami-tech-repair-peabody-ma" target="_blank" rel="noopener">Nextdoor</a>.</p>
     </div>
   </section>
 
@@ -806,12 +882,12 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <details><summary>How long does a repair take?</summary><p>Controllers: a few days. Cleanings: a day or two. I'll give you a time with your quote.</p></details>
         <details><summary>Do you pick up?</summary><p>Yes. Free pickup and drop-off within 10 miles of Peabody. Farther out, a small travel fee, quoted upfront. We can also meet somewhere public.</p></details>
         <details><summary>I'm not on the North Shore. Can you help?</summary><p>Yes. Bring it by in Peabody, or text me for a travel quote.</p></details>
-        <details><summary>Is there a guarantee?</summary><p>Yes. Same problem within 30 days? Fixed free. New damage, like drops or spills, isn't covered.</p></details>
-        <details><summary>Will I lose my games or saves?</summary><p>Repairs don't touch your data, and I never need your passwords. Still, back up anything important first.</p></details>
+        <details><summary>Is there a guarantee?</summary><p>Yes, 30 days on the repair I did. If the same problem comes back, I fix it free. New damage, like drops or spills, isn't covered. It's on top of any rights you already have by law.</p></details>
+        <details><summary>Will I lose my games or saves?</summary><p>Your games and saves aren't part of the repair, and I never need your passwords. A hardware failure can still wipe data in rare cases, so back up anything important first.</p></details>
         <details><summary>What parts do you use?</summary><p>Quality replacement parts. I test every repair before it goes back to you.</p></details>
         <details><summary>Do you fix stick drift?</summary><p>Yes. From $25 per controller, one stick or both. Calibrated and tested.</p></details>
         <details><summary>Do you fix water damage?</summary><p>No. Corrosion keeps spreading after a device dries, so those repairs rarely last.</p></details>
-        <details><summary>How do I pay?</summary><p>Cash or Zelle, once it works.</p></details>
+        <details><summary>How do I pay?</summary><p>Cash or Zelle, once it works. I'll never ask for your bank login, card number or Zelle password.</p></details>
         <details><summary>Will you buy my broken console?</summary><p>Probably. Text the model and a video for an offer.</p></details>
       </div>
     </div>
@@ -821,28 +897,65 @@ footer .fbase a{color:var(--muted);font-size:13px}
     <div class="wrap">
       <p class="eyebrow">Contact</p>
       <h2>Let's fix it.</h2>
-      <p class="lede">Texting is fastest.</p>
-      <div class="contact-grid">
-        <div class="card">
-          <span class="label">Call or text</span>
-          <a class="value" href="tel:+18572441258">(857)&nbsp;244&#8209;1258</a>
-          <div class="row"><a class="small-btn" href="sms:+18572441258">Text</a><a class="small-btn" href="tel:+18572441258">Call</a><button class="small-btn" type="button" data-copy="(857) 244-1258">Copy</button></div>
+      <p class="lede">Text, call, or send a message below. I'll get back to you.</p>
+      <div class="ct-grid">
+        <div class="ct-side">
+          <h3>Get in touch</h3>
+          <p>Tell me the device and what's wrong. A photo or video helps.</p>
+          <ul class="ct-points">
+            <li>You talk to me, the person doing the repair</li>
+            <li>Price before any work</li>
+            <li>Free pickup within 10 miles of Peabody</li>
+          </ul>
+          <div class="ct-quick">
+            <div class="ct-item"><span class="label">Call or text</span><a class="value" href="tel:+18572441258">(857)&nbsp;244&#8209;1258</a>
+              <div class="row"><a class="small-btn" href="sms:+18572441258">Text</a><a class="small-btn" href="tel:+18572441258">Call</a><button class="small-btn" type="button" data-copy="(857) 244-1258">Copy</button></div></div>
+            <div class="ct-item"><span class="label">Email</span><a class="value" href="mailto:lamitechrepair@gmail.com">lamitechrepair@gmail.com</a>
+              <div class="row"><button class="small-btn" type="button" data-copy="lamitechrepair@gmail.com">Copy</button></div></div>
+            <div class="ct-item"><span class="label">Location</span><span class="value">Peabody, MA</span><span class="ct-note">North Shore and beyond. No storefront.</span></div>
+          </div>
         </div>
-        <div class="card">
-          <span class="label">Email</span>
-          <a class="value" href="mailto:lamitechrepair@gmail.com">lamitechrepair@gmail.com</a>
-          <div class="row"><a class="small-btn" href="mailto:lamitechrepair@gmail.com">Email me</a><button class="small-btn" type="button" data-copy="lamitechrepair@gmail.com">Copy</button></div>
-        </div>
-        <div class="card">
-          <span class="label">Location</span>
-          <span class="value">Peabody, MA</span>
-          <span style="color:var(--muted);font-size:14px">All of the North Shore. Public meetups.</span>
-        </div>
+        <form class="ct-form" id="ctForm" novalidate>
+          <h3>Send a message</h3>
+          <div class="ct-err-sum" id="ctErrSum" tabindex="-1" hidden></div>
+          <div class="field">
+            <label for="ctName">Name <span class="ct-opt">(optional)</span></label>
+            <input id="ctName" name="name" type="text" autocomplete="name" maxlength="80">
+          </div>
+          <fieldset class="ct-reach" aria-describedby="ctReachHint ctReachErr">
+            <legend>How should I reach you?</legend>
+            <p class="hint" id="ctReachHint">Email or phone. You only need one.</p>
+            <div class="ct-two">
+              <div class="field">
+                <label for="ctEmail">Email</label>
+                <input id="ctEmail" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" aria-describedby="ctEmailErr">
+                <p class="err" id="ctEmailErr"></p>
+              </div>
+              <div class="field">
+                <label for="ctPhone">Phone</label>
+                <input id="ctPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="ctPhoneErr">
+                <p class="err" id="ctPhoneErr"></p>
+              </div>
+            </div>
+            <p class="err" id="ctReachErr"></p>
+          </fieldset>
+          <div class="field">
+            <label for="ctMsg">Message <span class="ct-opt">(required)</span></label>
+            <textarea id="ctMsg" name="message" rows="5" maxlength="2000" aria-describedby="ctMsgHint ctMsgErr" aria-required="true"></textarea>
+            <p class="hint" id="ctMsgHint">Example: PS5 Slim, loud fan, shuts off during games.</p>
+            <p class="err" id="ctMsgErr"></p>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="ctHoney">Leave this empty</label><input id="ctHoney" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
+          <button class="btn primary ct-send" type="submit" id="ctSend">Send message</button>
+          <p class="ct-legal">By sending, you agree I can contact you about your repair. See the <a href="/privacy.html">Privacy Policy</a>.</p>
+          <div class="ct-status" id="ctStatus" role="status" aria-live="polite"></div>
+        </form>
       </div>
       <div class="social">
         <a href="https://g.page/r/Ce7PV6UOvdixEBM/review" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>Google reviews</a>
         <a href="https://www.facebook.com/profile.php?id=61596750237914" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-fb"/></svg>Facebook</a>
         <a href="https://www.yelp.com/biz/lami-tech-repair-peabody" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-star"/></svg>Yelp</a>
+        <a href="https://nextdoor.com/page/lami-tech-repair-peabody-ma" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Nextdoor</a>
         <a href="https://maps.apple.com/?q=Lami+Tech+Repair&amp;near=Peabody,MA" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Apple Maps</a>
       </div>
     </div>
@@ -1204,6 +1317,7 @@ document.addEventListener('click',function(e){
     {label:'Sell me your broken console',note:'Cash or Zelle',go:'#buying',k:['sell','selling','buy','buying','cash','trade','trade in','broken console','sell controller','sell ps5','sell xbox','for parts']},
     {label:'Service area',note:'North Shore towns',go:'#area',k:['area','service area','towns','where','location','near me','north shore','meet','meetup','pickup','pick up','drop off','dropoff','travel','delivery'].concat(TOWNS)},
     {label:'Questions and guarantee',note:'FAQ',go:'#faq',k:['faq','question','questions','guarantee','warranty','how long','time','payment','pay','zelle','venmo','refund']},
+    {label:'Send a message',note:'Contact form',go:'#ctForm',k:['message','form','contact form','send message','email me','write']},
     {label:'Contact',note:'Call, text or email',go:'#contact',k:['contact','call','text','email','phone number','number','reach','message','hours','open']},
     {label:'About Sajjad',note:'About',go:'#about',k:['about','owner','who','sajjad','arabic','english']},
     {label:'Accessibility',note:'Page',go:'/accessibility.html',k:['accessibility','accessible','screen reader','disability','ada']},
@@ -1287,6 +1401,81 @@ document.addEventListener('click',function(e){
   }
   window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
   hdr.addEventListener('touchstart',function(){ hdr.classList.remove('dim'); },{passive:true});
+})();
+</script>
+
+<script>
+/* Reviews: read more + carousel arrows */
+(function(){
+  var track=document.getElementById('rvTrack'); if(!track) return;
+  track.querySelectorAll('.rv-card').forEach(function(c){
+    var t=c.querySelector('.rv-text'), b=c.querySelector('.rv-more');
+    t.classList.add('clamp');
+    if(t.scrollHeight>t.clientHeight+2){ b.hidden=false; }
+    else { t.classList.remove('clamp'); }
+    b.addEventListener('click',function(){
+      var open=b.getAttribute('aria-expanded')==='true';
+      t.classList.toggle('clamp',open); b.setAttribute('aria-expanded',String(!open)); b.textContent=open?'Read more':'Show less';
+    });
+  });
+  var prev=document.getElementById('rvPrev'), next=document.getElementById('rvNext');
+  function step(){ var c=track.querySelector('.rv-card'); return c? c.getBoundingClientRect().width+16 : 300; }
+  function upd(){ prev.disabled=track.scrollLeft<=4; next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-4; }
+  prev.addEventListener('click',function(){ track.scrollBy({left:-step()}); });
+  next.addEventListener('click',function(){ track.scrollBy({left:step()}); });
+  track.addEventListener('scroll',function(){ window.requestAnimationFrame(upd); },{passive:true});
+  window.addEventListener('resize',upd); upd();
+})();
+/* Contact form: email or phone required, sends through FormSubmit to my inbox */
+(function(){
+  var f=document.getElementById('ctForm'); if(!f) return;
+  var name=f.querySelector('#ctName'), email=f.querySelector('#ctEmail'), phone=f.querySelector('#ctPhone'), msg=f.querySelector('#ctMsg'),
+      honey=f.querySelector('#ctHoney'), send=f.querySelector('#ctSend'), status=f.querySelector('#ctStatus'), sum=f.querySelector('#ctErrSum');
+  var E={email:f.querySelector('#ctEmailErr'),phone:f.querySelector('#ctPhoneErr'),reach:f.querySelector('#ctReachErr'),msg:f.querySelector('#ctMsgErr')};
+  var ENDPOINT='https://formsubmit.co/ajax/lamitechrepair@gmail.com';
+  function setErr(input,el,text){ el.textContent=text; if(input){ if(text) input.setAttribute('aria-invalid','true'); else input.removeAttribute('aria-invalid'); } }
+  function digits(v){ return v.replace(/\D/g,''); }
+  function validate(){
+    var errs=[], ev=email.value.trim(), pv=phone.value.trim(), mv=msg.value.trim();
+    setErr(email,E.email,''); setErr(phone,E.phone,''); setErr(null,E.reach,''); setErr(msg,E.msg,'');
+    if(!ev && !pv){ setErr(null,E.reach,'Add an email or a phone number so I can reply.'); email.setAttribute('aria-invalid','true'); phone.setAttribute('aria-invalid','true'); errs.push({el:email,t:'Add an email or a phone number.'}); }
+    if(ev && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)){ setErr(email,E.email,'Check the email. Example: name@gmail.com'); errs.push({el:email,t:'The email looks incomplete.'}); }
+    if(pv){ var d=digits(pv); if(d.length===11 && d[0]==='1') d=d.slice(1); if(d.length!==10){ setErr(phone,E.phone,'Use a 10-digit number. Example: 978-555-0123'); errs.push({el:phone,t:'The phone number needs 10 digits.'}); } }
+    if(mv.length<5){ setErr(msg,E.msg,'Tell me the device and what\'s wrong.'); errs.push({el:msg,t:'Add a short message.'}); }
+    return errs;
+  }
+  [email,phone,msg].forEach(function(i){ i.addEventListener('input',function(){ if(i.getAttribute('aria-invalid')==='true' || E.reach.textContent) validate(); }); });
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); status.textContent=''; status.className='ct-status';
+    var errs=validate();
+    if(errs.length){
+      sum.innerHTML=''; var p=document.createElement('p'); p.style.margin='0'; p.textContent='Please fix '+(errs.length===1?'1 thing':errs.length+' things')+':'; sum.appendChild(p);
+      var ul=document.createElement('ul'); ul.style.margin='6px 0 0'; ul.style.paddingLeft='20px';
+      errs.forEach(function(x){ var li=document.createElement('li'), a=document.createElement('a'); a.href='#'+x.el.id; a.textContent=x.t; a.style.color='inherit'; a.addEventListener('click',function(ev2){ ev2.preventDefault(); x.el.focus(); }); li.appendChild(a); ul.appendChild(li); });
+      sum.appendChild(ul); sum.hidden=false; sum.focus(); return;
+    }
+    sum.hidden=true;
+    if(honey.value){ status.className='ct-status ok'; status.textContent='Thanks! Your message was sent.'; f.reset(); return; }
+    var data={name:name.value.trim()||'(not given)',email:email.value.trim()||'(not given)',phone:phone.value.trim()||'(not given)',message:msg.value.trim(),
+      _subject:'New repair message from lamitechrepair.pages.dev',_template:'table',_captcha:'false'};
+    if(email.value.trim()) data._replyto=email.value.trim();
+    send.disabled=true; send.textContent='Sending...';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok,j:j}; }); })
+      .then(function(res){
+        if(res.ok && String(res.j.success)==='true'){
+          status.className='ct-status ok'; status.textContent='Thanks! Your message was sent. I\'ll get back to you soon.'; f.reset();
+          if(typeof gtag==='function') gtag('event','contact_form_sent');
+        } else { throw new Error('not sent'); }
+      })
+      .catch(function(){
+        status.className='ct-status bad'; status.innerHTML='';
+        status.appendChild(document.createTextNode('Sorry, that didn\'t go through. Please text me at '));
+        var a=document.createElement('a'); a.href='sms:+18572441258'; a.textContent='(857) 244-1258'; status.appendChild(a);
+        status.appendChild(document.createTextNode(' or email lamitechrepair@gmail.com.'));
+      })
+      .then(function(){ send.disabled=false; send.textContent='Send message'; });
+  });
 })();
 </script>
 </body>
