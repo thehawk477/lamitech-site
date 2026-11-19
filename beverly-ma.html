@@ -17,7 +17,19 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<style>@font-face{font-family:"Geist";src:url("/fonts/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}</style>
+<style>@font-face{font-family:"Geist";src:url("/fonts/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+.mbtn{display:none;align-items:center;gap:8px;background:var(--panel);color:var(--fg);border:1px solid var(--line);font:600 15px "Geist",system-ui,sans-serif;padding:8px 12px;border-radius:10px;cursor:pointer;min-height:40px}
+.mbtn .bars{width:16px;height:2px;background:currentColor;position:relative;display:inline-block}
+.mbtn .bars::before,.mbtn .bars::after{content:"";position:absolute;left:0;width:16px;height:2px;background:currentColor}
+.mbtn .bars::before{top:-5px}.mbtn .bars::after{top:5px}
+.mpanel{border-top:1px solid var(--line);background:rgba(11,20,34,.98)}
+.top .mpanel{margin:0}.top .mpanel ul{display:block;list-style:none;margin:0 auto;max-width:1180px;padding:8px max(20px,env(safe-area-inset-left,0px)) 16px}
+.top .mpanel a{display:block;border-radius:0;font-size:16px;color:var(--fg);text-decoration:none;padding:12px 4px;border-bottom:1px solid var(--line);font-weight:600}
+.top .mpanel a:hover{color:var(--accent)}
+@media (max-width:720px){.top .in>nav{display:none}.call{margin-left:auto}.mbtn{display:inline-flex}}
+.brand{white-space:nowrap}
+@media (max-width:420px){.top .in>.call{display:none}.mbtn{margin-left:auto}}
+</style>
 <style>
 :root{--bg:#0b1422;--panel:#14233b;--panel2:#0f1c30;--line:#22344f;--fg:#f1f5fa;--muted:#a7b8cc;--accent:#22d3ee;--accent-ink:#04212b;color-scheme:dark}
 *{box-sizing:border-box}
@@ -37,8 +49,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .top nav a{display:inline-block;color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;padding:8px 10px;border-radius:8px}
 .top nav a:hover,.top nav a[aria-current]{color:var(--fg)}
 .call{background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;font-size:15px;padding:9px 14px;border-radius:10px;white-space:nowrap}
-@media (max-width:720px){.top nav .opt{display:none}}
-@media (max-width:420px){.top nav{display:none}.call{margin-left:auto}}
 .page{max-width:1180px;margin:0 auto;padding:44px max(20px,env(safe-area-inset-left,0px)) 72px max(20px,env(safe-area-inset-right,0px))}
 .hero{max-width:820px;margin:0 0 36px}
 .eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
@@ -119,7 +129,24 @@ td.p{font-weight:800;color:var(--fg);white-space:nowrap}
       </ul>
     </nav>
     <a class="call" href="tel:+18572441258">Call&nbsp;or&nbsp;text</a>
+    <button class="mbtn" id="mBtn" type="button" aria-expanded="false" aria-controls="mPanel"><span class="bars" aria-hidden="true"></span>Menu</button>
   </div>
+  <nav class="mpanel" id="mPanel" aria-label="Menu" hidden>
+    <ul>
+      <li><a href="tel:+18572441258">Call or text (857)&nbsp;244&#8209;1258</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/#fix">Get a quote</a></li>
+      <li><a href="/#prices">Prices</a></li>
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/#area">Service area</a></li>
+      <li><a href="/#reviews">Reviews</a></li>
+      <li><a href="/#buying">Buy &amp; sell</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/#contact">Contact</a></li>
+      <li><a href="/which-model.html">Which model do I have?</a></li>
+      <li><a href="/legal.html">Policies (terms, privacy, accessibility)</a></li>
+    </ul>
+  </nav>
 </header>
 <main class="page townp" id="main">
   <p class="eyebrow">Beverly, MA</p>
@@ -168,5 +195,14 @@ td.p{font-weight:800;color:var(--fg);white-space:nowrap}
     </nav>
   </div>
 </footer>
+<script>
+(function(){
+  var b=document.getElementById('mBtn'), p=document.getElementById('mPanel'); if(!b||!p) return;
+  function set(o,back){ b.setAttribute('aria-expanded',o?'true':'false'); p.hidden=!o; if(o){ var f=p.querySelector('a'); if(f) f.focus(); } else if(back){ b.focus(); } }
+  b.addEventListener('click',function(){ set(p.hidden); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!p.hidden) set(false,true); });
+  p.addEventListener('click',function(e){ if(e.target.closest('a')) set(false); });
+})();
+</script>
 </body>
 </html>

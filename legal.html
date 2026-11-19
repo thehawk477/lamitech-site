@@ -17,7 +17,19 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<style>@font-face{font-family:"Geist";src:url("/fonts/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}</style>
+<style>@font-face{font-family:"Geist";src:url("/fonts/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+.mbtn{display:none;align-items:center;gap:8px;background:var(--panel);color:var(--fg);border:1px solid var(--line);font:600 15px "Geist",system-ui,sans-serif;padding:8px 12px;border-radius:10px;cursor:pointer;min-height:40px}
+.mbtn .bars{width:16px;height:2px;background:currentColor;position:relative;display:inline-block}
+.mbtn .bars::before,.mbtn .bars::after{content:"";position:absolute;left:0;width:16px;height:2px;background:currentColor}
+.mbtn .bars::before{top:-5px}.mbtn .bars::after{top:5px}
+.mpanel{border-top:1px solid var(--line);background:rgba(11,20,34,.98)}
+.top .mpanel{margin:0}.top .mpanel ul{display:block;list-style:none;margin:0 auto;max-width:1180px;padding:8px max(20px,env(safe-area-inset-left,0px)) 16px}
+.top .mpanel a{display:block;border-radius:0;font-size:16px;color:var(--fg);text-decoration:none;padding:12px 4px;border-bottom:1px solid var(--line);font-weight:600}
+.top .mpanel a:hover{color:var(--accent)}
+@media (max-width:720px){.top .in>nav{display:none}.call{margin-left:auto}.mbtn{display:inline-flex}}
+.brand{white-space:nowrap}
+@media (max-width:420px){.top .in>.call{display:none}.mbtn{margin-left:auto}}
+</style>
 <style>
 :root{--bg:#0b1422;--panel:#14233b;--panel2:#0f1c30;--line:#22344f;--fg:#f1f5fa;--muted:#a7b8cc;--accent:#22d3ee;--accent-ink:#04212b;color-scheme:dark}
 *{box-sizing:border-box}
@@ -37,8 +49,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .top nav a{display:inline-block;color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;padding:8px 10px;border-radius:8px}
 .top nav a:hover,.top nav a[aria-current]{color:var(--fg)}
 .call{background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:700;font-size:15px;padding:9px 14px;border-radius:10px;white-space:nowrap}
-@media (max-width:720px){.top nav .opt{display:none}}
-@media (max-width:420px){.top nav{display:none}.call{margin-left:auto}}
 .page{max-width:1180px;margin:0 auto;padding:44px max(20px,env(safe-area-inset-left,0px)) 72px max(20px,env(safe-area-inset-right,0px))}
 .hero{max-width:820px;margin:0 0 36px}
 .eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
@@ -120,7 +130,24 @@ article h3.glance-h{margin-top:8px}
       </ul>
     </nav>
     <a class="call" href="tel:+18572441258">Call&nbsp;or&nbsp;text</a>
+    <button class="mbtn" id="mBtn" type="button" aria-expanded="false" aria-controls="mPanel"><span class="bars" aria-hidden="true"></span>Menu</button>
   </div>
+  <nav class="mpanel" id="mPanel" aria-label="Menu" hidden>
+    <ul>
+      <li><a href="tel:+18572441258">Call or text (857)&nbsp;244&#8209;1258</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/#fix">Get a quote</a></li>
+      <li><a href="/#prices">Prices</a></li>
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/#area">Service area</a></li>
+      <li><a href="/#reviews">Reviews</a></li>
+      <li><a href="/#buying">Buy &amp; sell</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/#contact">Contact</a></li>
+      <li><a href="/which-model.html">Which model do I have?</a></li>
+      <li><a href="/legal.html">Policies (terms, privacy, accessibility)</a></li>
+    </ul>
+  </nav>
 </header>
 <main class="page" id="main">
   <div class="hero">
@@ -170,6 +197,7 @@ article h3.glance-h{margin-top:8px}
     <li>Tell me about any earlier repairs, drops or liquid spills.</li>
     <li>Some devices are already fragile, like brittle ribbon cables, worn clips or a damaged board. Opening them can make an existing problem worse. If I see a risk like that, I'll tell you before I start, and you decide.</li>
     <li>If I find signs of earlier liquid damage when I open a device, I'll stop and tell you before going further.</li>
+    <li>I take photos when I receive a device, so we both know its condition. I may share photos of my repair work, like the inside of a console, but never anything that shows your name, serial number or personal information.</li>
   </ul>
 
   <h3 id="terms-repairs-i-don-t-take">3. Repairs I don't take</h3>
@@ -182,10 +210,10 @@ article h3.glance-h{margin-top:8px}
   </ul>
 
   <h3 id="terms-if-i-can-t-fix-it">4. If I can't fix it</h3>
-  <p>You don't pay for the repair. Your device comes back as you gave it to me. I take photos when I receive a device so we both know its condition. I may share photos of my repair work, like the inside of a console, but never anything that shows your name, serial number or personal information.</p>
+  <p>You don't pay for the repair, and your device comes back as you gave it to me.</p>
 
   <h3 id="terms-payment">5. Payment</h3>
-  <p>Cash or Zelle, after the repair is done and you've seen it working. Payment is due when your device is returned to you. Zelle payments can't be reversed, so check the amount before you send it. I never pay for reviews or give discounts in exchange for them. You can leave any review you want.</p>
+  <p>You pay by cash or Zelle when your device is returned and you've seen it working. Zelle payments can't be reversed, so check the amount before you send it. I never pay for reviews or give discounts in exchange for them. You can leave any review you want.</p>
 
   <h3 id="terms-30-day-guarantee">6. 30-day guarantee</h3>
   <p>If the same problem I fixed comes back within 30 days, I'll fix it again for free. The guarantee covers the repair I did and the parts I replaced.</p>
@@ -194,12 +222,12 @@ article h3.glance-h{margin-top:8px}
   <p>The guarantee doesn't cover:</p>
   <ul>
     <li>New problems unrelated to my repair</li>
-    <li>Drops, cracks, liquid or other damage after pickup</li>
+    <li>Drops, cracks, liquid or other damage after you get your device back</li>
     <li>Devices opened or repaired by someone else after me</li>
     <li>Parts I didn't replace, like the other stick on a controller where I replaced one</li>
     <li>Other parts that were already wearing out and fail on their own, unrelated to my repair</li>
     <li>Earlier liquid damage, even if it wasn't visible when you gave me the device</li>
-    <li>Misuse, overheating from blocked vents, or changes and modifications made after my repair</li>
+    <li>Misuse, overheating from blocked vents, or changes made to the device after my repair</li>
   </ul>
   <div class="eg"><p><b>Example:</b> I fix a mushy bumper and it goes mushy again three weeks later. I fix it free. If the controller gets dropped and the shell cracks, that's not covered.</p></div>
 
@@ -212,7 +240,7 @@ article h3.glance-h{margin-top:8px}
     <li>I may reschedule or cancel a pickup or meetup if I don't feel it's safe.</li>
     <li>Please collect your device within 30 days after I tell you it's ready.</li>
   </ul>
-  <h4>If a device isn't picked up</h4>
+  <h4>If you don't collect your device</h4>
   <ul>
     <li>I'll text and email you when it's ready, and again at 30 and 60 days.</li>
     <li>I'll keep your device safe for at least 90 days.</li>
@@ -248,7 +276,7 @@ article h3.glance-h{margin-top:8px}
   </ul>
 
   <h3 id="terms-responsibility">11. Responsibility</h3>
-  <p>I take care with every device. If something goes wrong because of my work, I'll make it right by repairing it again, or refunding what you paid for that repair.</p>
+  <p>I'm careful with every device. If my work causes a problem, I'll fix it again for free, or refund what you paid for that repair.</p>
   <p>To the extent the law allows, I'm not responsible for data lost because of a failure I didn't cause, for indirect losses like missed game time, or for console bans, account problems, game licenses, or software and online services run by Sony or Microsoft. Nothing in these terms limits my responsibility for damage caused by my own carelessness, or anything else the law doesn't let me exclude. This doesn't limit any rights you have under Massachusetts consumer protection law.</p>
 
   <h3 id="terms-this-website">12. This website</h3>
@@ -257,7 +285,7 @@ article h3.glance-h{margin-top:8px}
   <h4>The self-check</h4>
   <ul>
     <li>The 1-minute self-check shares basic first steps based on PlayStation and Xbox support guides. It's general help, not a diagnosis. Only a hands-on check confirms what's wrong.</li>
-    <li>Follow the steps at your own choice and only as written. Don't open your console or controller yourself. That can void the manufacturer's warranty and cause damage.</li>
+    <li>Following the steps is your choice, and only do them as written. Don't open your console or controller yourself. That can void the manufacturer's warranty and cause damage.</li>
     <li>Links to PlayStation, Xbox and other sites go to pages I don't run. Their own terms apply there.</li>
   </ul>
   <div class="eg"><p><b>Example:</b> The self-check says your PS5 sounds like dust buildup. You vacuum the vents and it's still loud. Text me and I'll quote a cleaning. The self-check's guess doesn't set the price. My quote does.</p></div>
@@ -344,7 +372,7 @@ article h3.glance-h{margin-top:8px}
     <li><b>Pickup addresses:</b> until your device is returned and your job is finished, then deleted.</li>
     <li><b>Photos of your device's condition:</b> until the 30-day guarantee ends, then deleted.</li>
     <li><b>Receipts:</b> as long as tax law requires, like other sales records.</li>
-    <li><b>Contact form messages:</b> same as other messages below.</li>
+    <li><b>Contact form messages:</b> same as messages and contact details, below.</li>
     <li><b>Purchase records for devices I buy:</b> as long as tax law and any local rules require.</li>
     <li><b>Messages and contact details:</b> until your job is finished and questions are answered, or until you ask me to delete them.</li>
     <li><b>Sales records:</b> as long as tax law requires, generally several years.</li>
@@ -380,9 +408,9 @@ article h3.glance-h{margin-top:8px}
   <h3 id="accessibility-conformance-status">Conformance status</h3>
   <p>As of <b>November 19, 2026</b>, the pages listed below <b>conform to the Web Content Accessibility Guidelines (WCAG) 2.2, Level AA</b>, published by the W3C at <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">https://www.w3.org/TR/WCAG22/</a>.</p>
   <ul>
-    <li><b>Pages covered:</b> https://lamitechrepair.pages.dev/ (home page, including the search bar, the "What needs fixing?" tool and self-check, the reviews carousel, the pickup map and cost check, the Buy and sell section with its rules, and the contact form), /legal.html (Terms of Service, Privacy Policy and Accessibility) the Which model page (/which-model.html) and the town pages (/salem-ma.html, /danvers-ma.html, /beverly-ma.html, /lynn-ma.html, /marblehead-ma.html, /swampscott-ma.html, /lynnfield-ma.html and /saugus-ma.html)</li>
+    <li><b>Pages covered:</b> https://lamitechrepair.pages.dev/ (home page, including the search bar, the "What needs fixing?" tool and self-check, the reviews carousel, the pickup map and cost check, the Buy and sell section with its rules, and the contact form), /legal.html (Terms of Service, Privacy Policy and Accessibility), the Which model page (/which-model.html) and the town pages (/salem-ma.html, /danvers-ma.html, /beverly-ma.html, /lynn-ma.html, /marblehead-ma.html, /swampscott-ma.html, /lynnfield-ma.html and /saugus-ma.html)</li>
     <li><b>Technologies this conformance relies on:</b> HTML, CSS, JavaScript and WAI-ARIA</li>
-    <li><b>How it was checked:</b> a self-evaluation by the site owner using the axe-core automated testing engine for WCAG 2.2 A and AA, plus manual checks: keyboard-only use, visible focus, focus not hidden by the sticky menu or phone bar, target sizes, reflow at 320 pixels wide, 200% text size, increased text spacing, reduced motion and high-contrast modes, the Menu button (open, close with Esc, focus returns), the top bar that fades on scroll, the reviews carousel (arrow buttons, keyboard scrolling, Read more) the contact form (labels, required fields, error messages and an error summary) and the pickup cost check (town buttons, results read out by screen readers)</li>
+    <li><b>How it was checked:</b> a self-evaluation by the site owner using the axe-core automated testing engine for WCAG 2.2 A and AA, plus manual checks: keyboard-only use, visible focus, focus not hidden by the sticky menu or phone bar, target sizes, reflow at 320 pixels wide, 200% text size, increased text spacing, reduced motion and high-contrast modes, the Menu button (open, close with Esc, focus returns), the top bar that fades on scroll, the reviews carousel (arrow buttons, keyboard scrolling, Read more), the contact form (labels, required fields, error messages and an error summary) and the pickup cost check (town buttons, results read out by screen readers)</li>
     <li><b>Not covered:</b> websites this site links to, such as Google, Facebook, Yelp and Apple Maps, and the phone, text and email apps on your own device</li>
   </ul>
 
@@ -444,6 +472,15 @@ article h3.glance-h{margin-top:8px}
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.id; if(e.target.classList.contains('doc-title')) id=id.replace(/-title$/,''); var a=map[id]; if(!a) return; links.forEach(function(x){x.classList.remove('on');x.removeAttribute('aria-current');}); a.classList.add('on');a.setAttribute('aria-current','location');}});},{rootMargin:'-90px 0px -70% 0px'});
     document.querySelectorAll('article h3[id], .doc-title').forEach(function(h){io.observe(h);});
   }
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById('mBtn'), p=document.getElementById('mPanel'); if(!b||!p) return;
+  function set(o,back){ b.setAttribute('aria-expanded',o?'true':'false'); p.hidden=!o; if(o){ var f=p.querySelector('a'); if(f) f.focus(); } else if(back){ b.focus(); } }
+  b.addEventListener('click',function(){ set(p.hidden); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!p.hidden) set(false,true); });
+  p.addEventListener('click',function(e){ if(e.target.closest('a')) set(false); });
 })();
 </script>
 </body>
