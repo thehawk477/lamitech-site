@@ -1503,6 +1503,18 @@ document.addEventListener('click',function(e){
 })();
 </script>
 <script>
+/* Reloading always starts at the top. In-page links still jump to their section,
+   then the #section part is cleared from the address so a reload doesn't jump back. */
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  function clean(){ if(location.hash && history.replaceState) history.replaceState(null,'',location.pathname+location.search); }
+  if(location.hash){ window.addEventListener('load',function(){ setTimeout(clean,600); }); }
+  else { window.scrollTo(0,0); }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a||a.getAttribute('href').length<2) return;
+    setTimeout(clean,0);
+  });
+})();
 /* Header: mobile menu, and fade out while scrolling down (comes back on hover, keyboard focus or scrolling up) */
 (function(){
   var hdr=document.querySelector('header'), btn=document.getElementById('menuBtn'), panel=document.getElementById('menuPanel');
