@@ -118,6 +118,10 @@ header.dim:hover,header.dim:focus-within,header.open{opacity:1}
 .menu-panel ul{list-style:none;margin:0;padding:10px max(16px,env(safe-area-inset-left,0px)) 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-width:1080px;margin-inline:auto}
 .menu-panel a{display:block;padding:14px 12px;border-radius:10px;color:var(--fg);text-decoration:none;font:600 18px var(--body);letter-spacing:-.01em}
 .menu-panel a:hover,.menu-panel a:focus-visible{background:rgba(34,211,238,.12)}
+.menu-panel a{white-space:normal}
+.menu-panel li.wide{grid-column:1/-1}
+.menu-panel{max-height:calc(100dvh - 72px);overflow-y:auto;overscroll-behavior:contain}
+@media (max-width:860px){.menu-panel{max-height:calc(100dvh - 72px - 76px - env(safe-area-inset-bottom,0px))}}
 @media (max-width:980px){.menu-btn{display:inline-flex}}
 @media (max-width:400px){.brand{font-size:17px;gap:6px}.brand svg{width:28px;height:28px}.menu-btn{padding:9px 11px}.menu-btn .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}header .wrap{gap:10px}}
 @media (prefers-reduced-motion:reduce){header,.menu-btn .bars::before,.menu-btn .bars::after,.menu-btn .bars i{transition:none}}
@@ -698,7 +702,8 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <li><a href="#about">About</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="/legal.html">Policies (terms, privacy, accessibility)</a></li>
+        <li class="wide"><a href="/which-model.html">Which model do I have?</a></li>
+        <li class="wide"><a href="/legal.html">Policies (terms, privacy, accessibility)</a></li>
       </ul>
     </nav>
   </div>
