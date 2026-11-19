@@ -159,7 +159,7 @@ html.locked{overflow:hidden}
 .mail-opts{display:grid;gap:8px}
 .mail-opt{display:block;text-align:left;width:100%;box-sizing:border-box;font:600 16px var(--body, "Geist", system-ui, sans-serif);color:var(--fg);background:#0b1422;border:1px solid var(--line);border-radius:12px;padding:13px 14px;text-decoration:none;cursor:pointer}
 .mail-opt:hover,.mail-opt:focus-visible{border-color:var(--accent)}
-.mail-status{margin:10px 0 0;color:#34d399;min-height:1.2em;font-weight:600}
+.mail-status{margin:10px 0 0;color:#34d399;font-weight:600}.mail-status:empty{display:none}
 .mail-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "PS5, Xbox and controller repair in Swampscott, MA", "serviceType": "Game console and controller repair", "areaServed": {"@type": "City", "name": "Swampscott, MA"}, "provider": {"@type": "LocalBusiness", "name": "Lami Tech Repair", "url": "https://lamitechrepair.pages.dev/", "telephone": "+1-857-244-1258", "address": {"@type": "PostalAddress", "addressLocality": "Peabody", "addressRegion": "MA", "addressCountry": "US"}}}</script>
@@ -276,7 +276,7 @@ html.locked{overflow:hidden}
   <div class="mail-box">
     <div class="mail-head"><h2 id="mailTitle">Email me</h2><button class="mail-x" type="button" data-mail-close aria-label="Close">&times;</button></div>
     <p class="mail-addr">lamitechrepair@gmail.com</p>
-    <p class="mail-sub">Pick how you want to send it:</p>
+    <p class="mail-sub" id="mailSub">Pick how you want to send it:</p>
     <div class="mail-opts">
       <a class="mail-opt" id="mailApp" href="mailto:lamitechrepair@gmail.com">Your mail app</a>
       <a class="mail-opt" id="mailGmail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=lamitechrepair@gmail.com" target="_blank" rel="noopener">Gmail<span class="mail-sr"> (opens in a new tab)</span></a>
@@ -321,6 +321,9 @@ html.locked{overflow:hidden}
   function q(v){ return encodeURIComponent(v||''); }
   function open(subject,body,from){
     opener=from; st.textContent='';
+    var fb=/feedback/i.test(subject||'');
+    document.getElementById('mailTitle').textContent=fb?'Send feedback':'Email me';
+    document.getElementById('mailSub').textContent=fb?'Something broken, confusing or missing on the site? Tell me. Pick how you want to send it:':'Pick how you want to send it:';
     app.href='mailto:'+EMAIL+(subject||body?'?subject='+q(subject)+'&body='+q(body):'');
     g.href='https://mail.google.com/mail/?view=cm&fs=1&to='+EMAIL+'&su='+q(subject)+'&body='+q(body);
     o.href='https://outlook.live.com/mail/0/deeplink/compose?to='+EMAIL+'&subject='+q(subject)+'&body='+q(body);
