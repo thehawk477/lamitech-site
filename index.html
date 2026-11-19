@@ -208,6 +208,13 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 .err{color:#fca5a5;font:600 14px var(--body);margin:10px 0 0;min-height:1px}
 .err:empty{margin:0}
 .dlg-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.handoff{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.ho-title{font-weight:700;margin:0 0 10px}
+.ho-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ho-grid label{display:block;font:600 14px var(--body);margin-bottom:6px}
+.ho-grid select,.ho-grid input{width:100%;box-sizing:border-box;font:500 16px var(--body);color:var(--fg);background:var(--bg);border:1px solid #6b84a3;border-radius:10px;padding:10px 12px;min-height:44px}
+.ho-grid select:focus-visible,.ho-grid input:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+@media (max-width:560px){.ho-grid{grid-template-columns:1fr}}
 .dlg-actions .btn{font-size:15px;padding:11px 16px}
 .hint{color:var(--muted);font-size:14px;margin:12px 0 0}
 .result[hidden]{display:none!important}
@@ -270,6 +277,7 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 .hero-proof{margin:-14px 0 26px;font-size:15px;font-weight:600}
 .hero-proof a{color:var(--fg);text-decoration:none;display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(11,20,34,.55)}
 .hero-proof a:hover{border-color:var(--accent)}
+.hero-proof .chip{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(11,20,34,.55);margin:6px 0 0 4px}
 .hero-proof .hs{color:var(--star)}
 .hero-sell{margin:22px 0 0;font-size:16px}
 .hero-sell a{color:var(--fg);text-decoration:underline;text-decoration-color:rgba(34,211,238,.6);text-underline-offset:4px;display:inline-block;padding:6px 0}
@@ -654,7 +662,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <p class="eyebrow">Lami Tech Repair &middot; North Shore, MA</p>
       <h1>Broken? <span>Fixed.</span></h1>
       <p class="sub">PS5 and Xbox repair, right here in Peabody.</p>
-      <p class="hero-proof"><a href="#reviews"><span class="hs" aria-hidden="true">&#9733;</span> 4.8 on Google &middot; 5 reviews</a></p>
+      <p class="hero-proof"><a href="#reviews"><span class="hs" aria-hidden="true">&#9733;</span> 4.8 on Google &middot; 5 reviews</a> <span class="chip">English &middot; <span lang="ar">العربية</span></span></p>
       <div class="btns">
         <a class="btn primary" href="#fix">Get a quote</a>
         <a class="link-cta" href="#prices">See prices <span aria-hidden="true">&rsaquo;</span></a>
@@ -806,7 +814,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <div class="rv-ring" aria-hidden="true"><b>4.8</b><span>out of 5</span></div>
           <div>
             <div class="rv-stars big" aria-hidden="true"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
-            <p class="rv-count">5 reviews on Google</p>
+            <p class="rv-count">5 reviews on Google, as of Nov 2026</p>
           </div>
         </div>
         <div class="rv-actions">
@@ -1108,6 +1116,18 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <textarea id="otherText" maxlength="500" aria-describedby="issueErr"></textarea>
         </div>
       </fieldset>
+      <div class="handoff">
+        <p class="ho-title">Save a text back and forth <span class="ct-opt">(optional)</span></p>
+        <div class="ho-grid">
+          <div><label for="hoWay">Getting it to me</label>
+            <select id="hoWay"><option value="">Not sure yet</option><option value="pickup">Pickup</option><option value="meetup">Meetup</option><option value="dropoff">Drop-off in Peabody</option></select></div>
+          <div><label for="hoTown">Your town or ZIP</label>
+            <input id="hoTown" type="text" maxlength="40" autocomplete="address-level2"></div>
+          <div><label for="hoWhen">When</label>
+            <select id="hoWhen"><option value="">Flexible</option><option value="as soon as possible">As soon as possible</option><option value="this week">This week</option><option value="this weekend">This weekend</option></select></div>
+        </div>
+        <p class="hint">Pickup, drop-off and meetups are free within 10 miles of Peabody. I confirm the day and time by text.</p>
+      </div>
       <p class="err" id="issueErr" role="alert"></p>
       <div class="dlg-actions"><button class="btn primary" type="submit">Get my price</button></div>
     </form>
@@ -1331,9 +1351,16 @@ document.addEventListener('click',function(e){
       if(t.length<3){ err.textContent='Add a few words about what happened.'; otherText.focus(); return; }
       detail='Other: '+t;
     }
-    showMsg('Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+detail+'. I\'ll send a photo or video.');
+    showMsg('Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+detail+'.'+handoff()+' I\'ll send a photo or video.');
     track('quote_ready',{device:current.name,issue:pick.value});
   });
+  function handoff(){
+    var w=document.getElementById('hoWay').value, t=document.getElementById('hoTown').value.trim(), n=document.getElementById('hoWhen').value, out='';
+    if(w==='pickup') out+=' I\'d like a pickup.'; else if(w==='meetup') out+=' I\'d like to meet up.'; else if(w==='dropoff') out+=' I can drop it off in Peabody.';
+    if(t) out+=' I\'m in '+t+'.';
+    if(n) out+=' Timing: '+n+'.';
+    return out;
+  }
   function showMsg(msg){
     msgText.value=msg;
     sms.href='sms:'+PHONE+'?&body='+encodeURIComponent(msg);
@@ -1366,7 +1393,7 @@ document.addEventListener('click',function(e){
   document.getElementById('diagAgain').addEventListener('click',showDiagList);
   document.getElementById('diagText').addEventListener('click',function(){
     if(!diagPick) return;
-    showMsg('Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+diagPick.i+'. I already tried the basic steps from your self-check. I\'ll send a photo or video.');
+    showMsg('Hi Lami Tech Repair, I need help with my '+current.name+'. Problem: '+diagPick.i+'. I already tried the basic steps from your self-check.'+handoff()+' I\'ll send a photo or video.');
     track('diag_text',{device:current.name,issue:diagPick.i});
   });
   document.getElementById('backBtn').addEventListener('click',function(){ result.hidden=true; form.hidden=false; var c=opts.querySelector('input:checked')||opts.querySelector('input'); if(c) c.focus(); });
