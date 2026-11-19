@@ -330,6 +330,13 @@ table.prices{width:100%;border-collapse:collapse;min-width:560px;font-variant-nu
 .deal b{font:800 20px var(--display)}
 .deal span{color:var(--muted);font-size:15px}
 .fine{color:var(--muted);font-size:13px;margin:14px 0 0}
+.method{margin-top:10px;color:var(--muted);font-size:14px}
+.method summary{cursor:pointer;color:var(--fg);font-weight:600;padding:6px 0;display:inline-block}
+.method summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.method ul{margin:6px 0 0;padding-left:20px}
+.method li{margin-bottom:6px}
+.method a{color:var(--fg)}
+.method p{margin:6px 0 0}
 
 /* buying */
 .buy{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
@@ -727,7 +734,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <tbody>
             <tr><td class="svc"><b>PS5 deep clean</b><span>PS5, Slim or Pro. Fan, heatsink, vents.</span></td><td class="shop">$70 to $100</td><td class="mine">$45+</td><td class="save">Often $25+</td></tr>
             <tr><td class="svc"><b>Xbox deep clean + thermal paste</b><span>Series X or S</span></td><td class="shop">$70 to $100</td><td class="mine">$45+</td><td class="save">Often $25+</td></tr>
-            <tr><td class="svc"><b>Bumper repair</b><span>Xbox Series controller</span></td><td class="shop">$45 to $60</td><td class="mine">$20+</td><td class="save">Often $25+</td></tr>
+            <tr><td class="svc"><b>Bumper repair</b><span>Xbox Series controller</span></td><td class="shop">Varies</td><td class="mine">$20+</td><td class="save">Varies</td></tr>
             <tr><td class="svc"><b>Battery replacement</b><span>DualSense. Battery included.</span></td><td class="shop">Varies</td><td class="mine">$35+</td><td class="save">Varies</td></tr>
             <tr><td class="svc"><b>Stick drift fix</b><span>DualSense or Xbox. One or both sticks.</span></td><td class="shop">$25 to $65</td><td class="mine">$25+</td><td class="save">Often $20+</td></tr>
             <tr><td class="svc"><b>Soldering and board repair</b><span>HDMI ports, charging ports.</span></td><td class="shop">$80 to $150</td><td class="soon">Coming soon</td><td class="save">Soon</td></tr>
@@ -735,7 +742,15 @@ footer .fbase a{color:var(--muted);font-size:13px}
         </table>
       </div>
       <div class="deal"><b>20% off</b><span>for my first 5 customers.</span></div>
-      <p class="fine">Typical prices are averages from posted US repair price lists, Nov 2026. "+" means starting price: it only goes up if your device needs an extra part, like a new fan or battery, and I text you the new price first. Stick drift is one price for one stick or both. Pay by cash or Zelle when it's done.</p>
+      <p class="fine">"+" means starting price: it only goes up if your device needs an extra part, like a new fan or battery, and I text you the new price first. Stick drift is one price for one stick or both. Pay by cash or Zelle when it's done.</p>
+      <details class="method"><summary>Where the "typical" prices come from</summary>
+        <p>Prices other repair shops post online, checked November 2026. Shops change prices often, so treat these as a rough guide.</p>
+        <ul>
+          <li>PlayStation cleaning: <a href="https://www.fixstop.com/monthly-specials/playstation/" target="_blank" rel="noopener">FixStop</a> lists $200, or $120 on sale. My "typical" range of $70 to $100 is set lower than that on purpose.</li>
+          <li>Stick drift: <a href="https://controllerrepairs.pages.dev/blog/xbox-stick-drift-repair-cost" target="_blank" rel="noopener">Controller Repairs</a> lists $24.99 for a standard Xbox controller, and a <a href="https://www.ebay.com/str/omeligaming" target="_blank" rel="noopener">repair service on eBay</a> lists $35 to $50 with upgraded sticks.</li>
+          <li>Bumpers and batteries: prices vary too much between shops to give a fair average, so I don't claim a savings number.</li>
+        </ul>
+      </details>
     </div>
   </section>
 
@@ -886,7 +901,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <details><summary>Will I lose my games or saves?</summary><p>Your games and saves aren't part of the repair, and I never need your passwords. A hardware failure can still wipe data in rare cases, so back up anything important first.</p></details>
         <details><summary>What parts do you use?</summary><p>Quality replacement parts. I test every repair before it goes back to you.</p></details>
         <details><summary>Do you fix stick drift?</summary><p>Yes. From $25 per controller, one stick or both. Calibrated and tested.</p></details>
-        <details><summary>Do you fix water damage?</summary><p>No. Corrosion keeps spreading after a device dries, so those repairs rarely last.</p></details>
+        <details><summary>Do you fix water damage?</summary><p>Not right now. Liquid can cause corrosion that keeps spreading even after a device dries, so reliable repairs are hard to guarantee. A shop that specializes in liquid damage is your best bet.</p></details>
         <details><summary>How do I pay?</summary><p>Cash or Zelle, once it works. I'll never ask for your bank login, card number or Zelle password.</p></details>
         <details><summary>Will you buy my broken console?</summary><p>Probably. Text the model and a video for an offer.</p></details>
       </div>
@@ -1063,10 +1078,10 @@ footer .fbase a{color:var(--muted);font-size:13px}
 <dialog id="waterDlg" role="alertdialog" aria-labelledby="waterTitle" aria-describedby="waterText">
   <div class="dlg">
     <div class="alert-ico" aria-hidden="true">!</div>
-    <h2 id="waterTitle" style="font-size:24px;margin:0 0 8px">Water damage can't be fixed.</h2>
+    <h2 id="waterTitle" style="font-size:24px;margin:0 0 8px">Water damage repairs aren't offered right now.</h2>
     <div id="waterText">
-      <p>Liquid corrodes the board from the inside. It keeps spreading after it dries, so repairs rarely last.</p>
-      <p>I won't charge you for a fix I can't stand behind.</p>
+      <p>Liquid can cause corrosion that keeps spreading even after a device dries, so a reliable repair is hard to guarantee.</p>
+      <p>I only take jobs I can stand behind. A shop that specializes in liquid damage is your best bet.</p>
       <p class="hint">Just got wet? Unplug it. Don't turn it on. Let it dry fully.</p>
     </div>
     <div class="dlg-actions">
@@ -1310,7 +1325,7 @@ document.addEventListener('click',function(e){
     {label:'Console repairs and cleaning',note:'Consoles',go:'#consoles',k:['console','consoles','console repair','game console','gaming','clean','cleaning','dust','dusty','overheat','overheating','hot','loud','noise','noisy','fan','thermal paste','repaste','hdmi','no picture','disc drive','wont turn on','shuts off']},
     {label:'Soldering and board repair',note:'Coming soon',go:'#soldering',k:['solder','soldering','saudring','micro soldering','microsoldering','board repair','motherboard','hdmi port','hdmi','charging port','usb c port','port replacement']},
     {label:'Stick drift fix',note:'From $25, one or both sticks',go:'#repairs',k:['stick drift','drift','drifting','joystick','thumbstick','analog stick']},
-    {label:'Water damage',note:'Can\'t be repaired',water:true,k:['water','water damage','liquid','spill','spilled','wet','soda','juice','dropped in water','flood']},
+    {label:'Water damage',note:'Not offered right now',water:true,k:['water','water damage','liquid','spill','spilled','wet','soda','juice','dropped in water','flood']},
     {label:'Check the problem yourself',note:'1-minute self-check',go:'#fix',k:['diagnose','diagnosis','not sure','whats wrong','what is wrong','troubleshoot','troubleshooting','check','self check','help me figure','problem','fix it myself','safe mode','reset controller']},
     {label:'Prices',note:'Price list',go:'#prices',k:['price','prices','pricing','cost','costs','how much','quote','estimate','cheap','rate','rates']},
     {label:'Reviews',note:'What customers say',go:'#reviews',k:['review','reviews','rating','ratings','stars','testimonials','google reviews','yelp']},
