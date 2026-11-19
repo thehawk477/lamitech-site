@@ -42,7 +42,7 @@
   "email": "lamitechrepair@gmail.com",
   "address": {"@type": "PostalAddress", "addressLocality": "Peabody", "addressRegion": "MA", "addressCountry": "US"},
   "areaServed": ["Peabody","Salem","Danvers","Beverly","Lynn","Lynnfield","Saugus","Marblehead","Swampscott","Nahant","Middleton","Topsfield","Wenham","Hamilton","Ipswich","Gloucester","Rockport","Manchester-by-the-Sea","Essex","Newburyport","Wakefield","Reading","North Reading","Rowley","Newbury","Salisbury","Amesbury","Merrimac","West Newbury","Georgetown","Groveland","Boxford","Haverhill","Revere","Massachusetts"],
-  "priceRange": "$20+",
+  "priceRange": "$25+",
   "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "00:00", "closes": "23:59"}],
   "knowsLanguage": ["en","ar"],
   "sameAs": ["https://www.facebook.com/profile.php?id=61596750237914", "https://www.yelp.com/biz/lami-tech-repair-peabody", "https://nextdoor.com/page/lami-tech-repair-peabody-ma"]
@@ -248,9 +248,10 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 
 /* trust strip */
 .strip{border-block:1px solid var(--line);background:var(--band)}
-.strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-block:18px}
+.strip .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-block:18px}
 .strip div{font-size:14px;color:var(--muted)}
 .strip b{display:block;color:var(--fg);font:700 16px var(--body)}
+.strip a{color:var(--fg);display:inline-block;padding-block:3px}
 .strip .si{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block;margin-bottom:8px}
 
 /* bands */
@@ -354,6 +355,21 @@ table.prices{width:100%;border-collapse:collapse;min-width:560px;font-variant-nu
 .method p{margin:6px 0 0}
 
 /* buying */
+.shop-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:start;margin-top:8px}
+.shop-empty{background:var(--panel);border:1px dashed #6b84a3;border-radius:18px;padding:26px}
+.shop-empty h3{margin:0 0 8px;font:700 22px/1.2 var(--display)}
+.shop-empty p{color:var(--muted);margin:0 0 18px}
+.shop-points{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.shop-points li{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.shop-points b{display:block}
+.shop-points span{color:var(--muted);font-size:14px}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.rule-card{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:18px;padding:24px}
+.rule-card h3{margin:0 0 12px;font:700 22px/1.2 var(--display)}
+.rule-card ol{margin:0;padding-left:22px;display:grid;gap:10px}
+.rule-card li{color:var(--muted)}
+.rule-card li b{color:var(--fg)}
+@media (max-width:860px){.shop-grid,.rules-grid{grid-template-columns:1fr}}
 .buy{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 .buy ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
 .buy li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
@@ -408,6 +424,7 @@ ol.steps p{margin:0;color:var(--muted);font-size:15px}
 @media (max-width:860px){.pickup{grid-template-columns:minmax(0,1fr)}}
 @media (forced-colors:active){.pmap .ring{stroke:CanvasText}.pmap .d{fill:CanvasText}.pmap .d.out{fill:Canvas;stroke:CanvasText}.pmap text{fill:CanvasText}.legend .lg-free{background:CanvasText}.legend .lg-fee{border-color:CanvasText}}
 
+.town-links a{display:inline-block;padding-block:3px;color:var(--fg)}
 .base{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
 .base h3{font-size:20px;font-weight:600;margin-bottom:6px}
 .base p{margin:0 0 10px;color:var(--muted);font-size:15px}
@@ -630,6 +647,8 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <li><a href="#prices">Prices</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#buying">Sell to me</a></li>
+        <li><a href="#shop">For sale</a></li>
+        <li><a href="#rules">Rules</a></li>
         <li><a href="#area">Service area</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -677,6 +696,8 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><b>No fix, no fee.</b>Can't fix it? You don't pay.</div>
       <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><b>30-day guarantee.</b>Breaks again? It's on me.</div>
       <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><b>Free pickup.</b>Within 10 miles of Peabody.</div>
+      <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>Quick turnaround.</b>Controllers often same day.</div>
+      <div><svg class="si" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg><b>Open 24/7 by text.</b><a href="sms:+18572441258">(857) 244&#8209;1258</a></div>
     </div>
   </div>
 
@@ -709,7 +730,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <div class="groups">
         <div class="group" id="consoles">
           <h3>Consoles</h3>
-          <p>Cleaning. Fans. Overheating. From $45.</p>
+          <p>Cleaning. Fans. Overheating. From $70.</p>
           <div class="dev-grid">
           <button class="dev-card" type="button" data-device="ps5" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/ps5.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>PS5</b><span>Disc or digital</span></button>
           <button class="dev-card" type="button" data-device="ps5-slim" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/ps5-slim.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>PS5 Slim</b><span>Disc or digital</span></button>
@@ -720,7 +741,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
         </div>
         <div class="group" id="controllers">
           <h3>Controllers</h3>
-          <p>Drift. Buttons. Batteries. From $20.</p>
+          <p>Drift. Buttons. Batteries. From $25.</p>
           <div class="dev-grid">
           <button class="dev-card" type="button" data-device="dualsense" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/dualsense.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>PS5 DualSense</b><span>Standard or Edge</span></button>
           <button class="dev-card" type="button" data-device="xbox-pad" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/xbox-pad.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>Xbox controller</b><span>Series X|S or One</span></button>
@@ -746,21 +767,21 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <span class="dev">PS5, PS5 Slim, PS5 Pro &amp; Xbox Series X|S</span>
           <h3>Console cleaning</h3>
           <p>Loud, hot or shutting off? Opened, dusted, cooled down.</p>
-          <div class="price">$45+<small>starting price</small></div>
+          <div class="price">$70+<small>starting price</small></div>
         </article>
         <article class="repair">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9h10a4 4 0 0 1 3.9 4.9l-.8 3.4a2 2 0 0 1-3.5.8L15 16H9l-1.6 2.1a2 2 0 0 1-3.5-.8l-.8-3.4A4 4 0 0 1 7 9z"/><path d="M5.5 6.5 8 5M18.5 6.5 16 5"/><path d="M8 12v2M7 13h2M16 12.5h.01M17.5 14h.01"/></svg></div>
           <span class="dev">Xbox Series controller</span>
           <h3>Bumper won't click</h3>
           <p>Mushy LB or RB. Quick swap.</p>
-          <div class="price">$20+<small>starting price</small></div>
+          <div class="price">$25+<small>starting price</small></div>
         </article>
         <article class="repair">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9 9 12.5h3.5L10 15"/></svg></div>
           <span class="dev">PS5 DualSense</span>
           <h3>Battery dies fast</h3>
           <p>Dies fast? New battery. Tested.</p>
-          <div class="price">$35+<small>battery included</small></div>
+          <div class="price">$40+<small>battery included</small></div>
         </article>
         <article class="repair">
           <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2"/></svg></div>
@@ -783,10 +804,10 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <caption class="vh">Repair prices: typical price, my starting price, and what you save</caption>
           <thead><tr><th scope="col">Repair</th><th scope="col">Typical price</th><th scope="col">My price</th><th scope="col">You save</th></tr></thead>
           <tbody>
-            <tr><td class="svc"><b>PS5 deep clean</b><span>PS5, Slim or Pro. Fan, heatsink, vents.</span></td><td class="shop">$70 to $100</td><td class="mine">$45+</td><td class="save">Often $25+</td></tr>
-            <tr><td class="svc"><b>Xbox deep clean + thermal paste</b><span>Series X or S</span></td><td class="shop">$70 to $100</td><td class="mine">$45+</td><td class="save">Often $25+</td></tr>
-            <tr><td class="svc"><b>Bumper repair</b><span>Xbox Series controller</span></td><td class="shop">Varies</td><td class="mine">$20+</td><td class="save">Varies</td></tr>
-            <tr><td class="svc"><b>Battery replacement</b><span>DualSense. Battery included.</span></td><td class="shop">Varies</td><td class="mine">$35+</td><td class="save">Varies</td></tr>
+            <tr><td class="svc"><b>PS5 deep clean</b><span>PS5, Slim or Pro. Fan, heatsink, vents.</span></td><td class="shop">$119 to $200</td><td class="mine">$70+</td><td class="save">Often $49+</td></tr>
+            <tr><td class="svc"><b>Xbox deep clean + thermal paste</b><span>Series X or S</span></td><td class="shop">About $120</td><td class="mine">$70+</td><td class="save">About $50</td></tr>
+            <tr><td class="svc"><b>Bumper repair</b><span>Xbox Series controller</span></td><td class="shop">Varies</td><td class="mine">$25+</td><td class="save">Varies</td></tr>
+            <tr><td class="svc"><b>Battery replacement</b><span>DualSense. Battery included.</span></td><td class="shop">Varies</td><td class="mine">$40+</td><td class="save">Varies</td></tr>
             <tr><td class="svc"><b>Stick drift fix</b><span>DualSense or Xbox. One or both sticks.</span></td><td class="shop">$25 to $50</td><td class="mine">$30+</td><td class="save">Up to $20</td></tr>
             <tr><td class="svc"><b>Soldering and board repair</b><span>HDMI ports, charging ports.</span></td><td class="shop">$80 to $150</td><td class="soon">Coming soon</td><td class="save">Soon</td></tr>
           </tbody>
@@ -796,7 +817,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <details class="method"><summary>Where the "typical" prices come from</summary>
         <p>Prices other repair shops post online, checked November 2026. Shops change prices often, so treat these as a rough guide.</p>
         <ul>
-          <li>PlayStation cleaning: <a href="https://www.fixstop.com/monthly-specials/playstation/" target="_blank" rel="noopener">FixStop</a> lists $200, or $120 on sale. My "typical" range of $70 to $100 is set lower than that on purpose.</li>
+          <li>Console cleaning: <a href="https://fixnrepair.org/wakefield/" target="_blank" rel="noopener">Fix 'N Repair in Wakefield</a> lists $119 for a PS5 internal cleaning and $120 for Xbox. <a href="https://www.fixstop.com/monthly-specials/playstation/" target="_blank" rel="noopener">FixStop</a> lists $200 for PlayStation, or $120 on sale.</li>
           <li>Stick drift: <a href="https://controllerrepairs.pages.dev/blog/xbox-stick-drift-repair-cost" target="_blank" rel="noopener">Controller Repairs</a> lists $24.99 for a standard Xbox controller, and a <a href="https://www.ebay.com/str/omeligaming" target="_blank" rel="noopener">repair service on eBay</a> lists $35 to $50 with upgraded sticks.</li>
           <li>Bumpers and batteries: prices vary too much between shops to give a fair average, so I don't claim a savings number.</li>
         </ul>
@@ -875,6 +896,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <h2>Got a broken one?</h2>
           <p class="lede">I'll buy it. Cash or Zelle. Send the model and a video.</p>
           <a class="btn ghost" href="sms:+18572441258">Get an offer</a>
+          <p class="fine">Read <a href="#rules">the rules for selling</a> first. Bring a photo ID. Under 18? Bring a parent or guardian.</p>
         </div>
         <ul>
           <li>PS5 consoles and DualSense controllers<span>Drift, dead buttons, bad batteries</span></li>
@@ -882,6 +904,62 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <li>Xbox Series controllers<span>Bumpers, buttons, drift</span></li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="band" id="shop">
+    <div class="wrap">
+      <p class="eyebrow">Buy from me</p>
+      <h2>For sale.</h2>
+      <p class="lede">Consoles and controllers I've repaired and tested myself.</p>
+      <div class="shop-grid">
+        <div class="shop-empty">
+          <h3>Nothing for sale right now.</h3>
+          <p>Devices show up here once they're fixed and tested. Looking for something specific? Text me and I'll keep an eye out.</p>
+          <a class="btn ghost" href="sms:+18572441258">Text me what you want</a>
+        </div>
+        <ul class="shop-points">
+          <li><b>Tested before sale</b><span>Every device, every time.</span></li>
+          <li><b>Flaws listed honestly</b><span>You know the condition before you buy.</span></li>
+          <li><b>30-day guarantee</b><span>The same one my repairs get.</span></li>
+          <li><b>Cash or Zelle</b><span>When you pick it up.</span></li>
+        </ul>
+      </div>
+      <p class="fine">Buying or selling? Read <a href="#rules">the rules</a> first.</p>
+    </div>
+  </section>
+
+  <section class="band alt" id="rules">
+    <div class="wrap">
+      <p class="eyebrow">The rules</p>
+      <h2>Rules for buying and selling.</h2>
+      <p class="lede">They keep every deal safe and fair, and they're the same for everyone.</p>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <h3>Selling a device to me</h3>
+          <ol>
+            <li><b>You must be 18 or older.</b> Under 18? A parent or guardian has to be there and make the sale.</li>
+            <li><b>Show a valid photo ID.</b> I write down your name, contact info, the device, its serial number, the price and the date. I don't keep a copy of your ID.</li>
+            <li><b>It has to be yours.</b> No stolen, borrowed or unpaid financed devices.</li>
+            <li><b>Remove your account first.</b> Sign out of PlayStation Network or Xbox. I can't buy a device that's banned or locked to an account.</li>
+            <li><b>Tell me every problem.</b> My offer is based on what you tell me. If I find something you didn't mention, I'll make a new offer before paying, and you can say no.</li>
+            <li><b>I check it, then I pay.</b> Cash or Zelle, right there.</li>
+            <li><b>I can say no to any deal.</b> I won't buy anything I think is stolen, and I may report it to the police.</li>
+          </ol>
+        </div>
+        <div class="rule-card">
+          <h3>Buying a device from me</h3>
+          <ol>
+            <li><b>Tested before sale.</b> Any flaws are listed with the price.</li>
+            <li><b>The listed price is the price.</b> Cash or Zelle when you pick it up.</li>
+            <li><b>Test it at pickup.</b> Try it in front of me before you pay.</li>
+            <li><b>30-day guarantee.</b> If it stops working because of a defect, I fix it free. If I can't fix it, I refund you.</li>
+            <li><b>Not covered:</b> drops, cracks, liquid, or a device someone else opened after the sale.</li>
+            <li><b>Reset and clean.</b> Every device is factory reset, with no one else's account or data on it.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="fine">Meetups happen in a public place. Pickup, drop-off and meetups are free within 10 miles of Peabody. The full rules are in the <a href="terms.html#selling-a-device-to-me">Terms of Service</a>.</p>
     </div>
   </section>
 
@@ -909,6 +987,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
           <h3>Home base: Peabody</h3>
           <p>Farther out, it's $0.75 per mile past the first 10, and that one fee covers both pickup and drop-off. I confirm it by text before I come. To skip the fee, meet me somewhere within 10 miles of Peabody, or drop it off with me in Peabody. Both are free.</p>
           <p>Anywhere in Massachusetts? Check your town or ZIP below. Outside Massachusetts? Text me for a travel quote.</p>
+          <p class="town-links">Town pages: <a href="salem-ma.html">Salem</a> &middot; <a href="danvers-ma.html">Danvers</a> &middot; <a href="beverly-ma.html">Beverly</a> &middot; <a href="lynn-ma.html">Lynn</a> &middot; <a href="marblehead-ma.html">Marblehead</a> &middot; <a href="swampscott-ma.html">Swampscott</a> &middot; <a href="lynnfield-ma.html">Lynnfield</a> &middot; <a href="saugus-ma.html">Saugus</a></p>
         </div>
         <div class="towns area-map" role="group" aria-label="Towns served. Pick a town to see its ZIP code and pickup cost.">
           <button type="button" class="home" data-t="Peabody">Peabody</button><button type="button" data-t="Salem">Salem</button><button type="button" data-t="Danvers">Danvers</button><button type="button" data-t="Beverly">Beverly</button><button type="button" data-t="Lynn">Lynn</button><button type="button" data-t="Lynnfield">Lynnfield</button><button type="button" data-t="Saugus">Saugus</button><button type="button" data-t="Marblehead">Marblehead</button><button type="button" data-t="Swampscott">Swampscott</button><button type="button" data-t="Nahant">Nahant</button><button type="button" data-t="Middleton">Middleton</button><button type="button" data-t="Topsfield">Topsfield</button><button type="button" data-t="Wenham">Wenham</button><button type="button" data-t="Hamilton">Hamilton</button><button type="button" data-t="Ipswich">Ipswich</button><button type="button" data-t="Essex">Essex</button><button type="button" data-t="Manchester-by-the-Sea">Manchester-by-the-Sea</button><button type="button" data-t="Gloucester">Gloucester</button><button type="button" data-t="Rockport">Rockport</button><button type="button" data-t="Newburyport">Newburyport</button><button type="button" data-t="Wakefield">Wakefield</button><button type="button" data-t="Reading">Reading</button><button type="button" data-t="North Reading">North Reading</button><button type="button" data-t="Rowley">Rowley</button><button type="button" data-t="Newbury">Newbury</button><button type="button" data-t="Salisbury">Salisbury</button><button type="button" data-t="Amesbury">Amesbury</button><button type="button" data-t="Merrimac">Merrimac</button><button type="button" data-t="West Newbury">West Newbury</button><button type="button" data-t="Georgetown">Georgetown</button><button type="button" data-t="Groveland">Groveland</button><button type="button" data-t="Boxford">Boxford</button><button type="button" data-t="Haverhill">Haverhill</button><button type="button" data-t="Revere">Revere</button>
@@ -974,7 +1053,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <details><summary>How much does a repair cost?</summary><p>Prices start at what's listed above, parts included. Text me the model and problem and you'll get your exact price before any work.</p></details>
         <details><summary>Can I figure out the problem myself first?</summary><p>Yes. Pick your device under Get a quote and tap the 1-minute check. It walks you through the first steps PlayStation and Xbox support recommend. Still broken? Text me from there.</p></details>
         <details><summary>Is there a fee to check my device?</summary><p>No. Quotes are free. If I can't fix it, you don't pay.</p></details>
-        <details><summary>How long does a repair take?</summary><p>Controllers: a few days. Cleanings: a day or two. I'll give you a time with your quote.</p></details>
+        <details><summary>How long does a repair take?</summary><p>Controllers are often done the same day, sometimes in under an hour. Consoles usually take 1 to 2 days. I'll confirm your time when I quote, and text you if anything changes.</p></details>
         <details><summary>Do you pick up?</summary><p>Yes. Pickup, drop-off and meetups are free within 10 miles of Peabody. Farther out, it's $0.75 per mile past the first 10, one fee for both pickup and drop-off. The Service area section shows the cost for your town.</p></details>
         <details><summary>When can I reach you?</summary><p>Anytime, 24/7. Text works best.</p></details>
         <details><summary>I'm not on the North Shore. Can you help?</summary><p>Yes, anyone is welcome. The Service area section has the pickup cost for any Massachusetts town. Outside the state, text me and we'll work it out.</p></details>
@@ -1077,6 +1156,8 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <li><a href="#about">About me</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#buying">Sell to me</a></li>
+        <li><a href="#shop">For sale</a></li>
+        <li><a href="#rules">Rules</a></li>
         <li><a href="#area">Service area</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
@@ -1428,6 +1509,8 @@ document.addEventListener('click',function(e){
     {label:'Check the problem yourself',note:'1-minute self-check',go:'#fix',k:['diagnose','diagnosis','not sure','whats wrong','what is wrong','troubleshoot','troubleshooting','check','self check','help me figure','problem','fix it myself','safe mode','reset controller']},
     {label:'Prices',note:'Price list',go:'#prices',k:['price','prices','pricing','cost','costs','how much','quote','estimate','cheap','rate','rates']},
     {label:'Reviews',note:'What customers say',go:'#reviews',k:['review','reviews','rating','ratings','stars','testimonials','google reviews','yelp']},
+    {label:'Devices for sale',note:'Tested, 30-day guarantee',go:'#shop',k:['for sale','buy a ps5','buy ps5','buy xbox','used ps5','used xbox','refurbished','shop','store','buy a controller']},
+    {label:'Rules for buying and selling',note:'ID, age, guarantee',go:'#rules',k:['rules','policy','id','photo id','age','18','minor','stolen','serial','guardian']},
     {label:'Sell me your broken console',note:'Cash or Zelle',go:'#buying',k:['sell','selling','buy','buying','cash','trade','trade in','broken console','sell controller','sell ps5','sell xbox','for parts']},
     {label:'Service area',note:'Pickup cost by town or ZIP',go:'#area',k:['area','service area','towns','where','location','near me','north shore','meet','meetup','pickup','pick up','drop off','dropoff','travel','delivery'].concat(TOWNS)},
     {label:'Questions and guarantee',note:'FAQ',go:'#faq',k:['faq','question','questions','guarantee','warranty','how long','time','payment','pay','zelle','venmo','refund']},
