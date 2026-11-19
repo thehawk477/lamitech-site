@@ -1207,8 +1207,11 @@ document.addEventListener('click',function(e){
   var W=0,H=0,dpr=1,pts=[],mouse={x:-9999,y:-9999,on:false},raf=0,visible=true,t0=performance.now(),manualUntil=0;
   var LINK=touch?11000:9000, R=touch?120:140;
   function size(){
-    var r=hero.getBoundingClientRect(); dpr=Math.min(window.devicePixelRatio||1,2);
-    W=r.width; H=r.height; c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    var r=hero.getBoundingClientRect(), nd=Math.min(window.devicePixelRatio||1,2);
+    if(pts.length && Math.abs(r.width-W)<1 && Math.abs(r.height-H)<1 && nd===dpr) return;
+    var oW=W, oH=H; dpr=nd; W=r.width; H=r.height; c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    /* Keep the same stars when the size changes (phone address bar showing or hiding while scrolling). Only stretch them to fit. */
+    if(pts.length && oW && oH){ var sx=W/oW, sy=H/oH; for(var j=0;j<pts.length;j++){var P=pts[j]; P.hx*=sx; P.x*=sx; P.hy*=sy; P.y*=sy;} draw(); return; }
     var n=Math.round(Math.min(110,Math.max(touch?60:40,W*H/(touch?7000:11000))));
     pts=[]; for(var i=0;i<n;i++){var x=Math.random()*W,y=Math.random()*H;
       pts.push({hx:x,hy:y,x:x,y:y,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.7+(touch?1:.8),ph:Math.random()*6.283,sp:.6+Math.random()*1.8,big:Math.random()<.12});}
