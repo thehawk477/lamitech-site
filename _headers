@@ -1,0 +1,13 @@
+# Pages: always check for the newest version, so updates show right away
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/sitemap.xml
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fonts and images rarely change, so they can be cached for a week
+/fonts/*
+  Cache-Control: public, max-age=604800
+/img/*
+  Cache-Control: public, max-age=604800
