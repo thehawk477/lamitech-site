@@ -107,7 +107,8 @@ header.dim:hover,header.dim:focus-within,header.open{opacity:1}
 .menu-btn[aria-expanded="true"] .bars::before{transform:translateY(5px) rotate(45deg)}
 .menu-btn[aria-expanded="true"] .bars i{opacity:0}
 .menu-btn[aria-expanded="true"] .bars::after{transform:translateY(-5px) rotate(-45deg)}
-.menu-panel{border-top:1px solid var(--line);background:rgba(11,20,34,.98)}
+.menu-panel{border-top:1px solid var(--line);background:#0b1422;position:absolute;left:0;right:0;top:100%;box-shadow:0 24px 40px -20px rgba(0,0,0,.6)}
+header{overflow-anchor:none}
 .menu-panel ul{list-style:none;margin:0;padding:10px max(16px,env(safe-area-inset-left,0px)) 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-width:1080px;margin-inline:auto}
 .menu-panel a{display:block;padding:14px 12px;border-radius:10px;color:var(--fg);text-decoration:none;font:600 18px var(--body);letter-spacing:-.01em}
 .menu-panel a:hover,.menu-panel a:focus-visible{background:rgba(34,211,238,.12)}
@@ -138,6 +139,8 @@ header .wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-
 @media (max-width:480px){.nav-call{display:none}}
 @media (max-width:980px){header > .wrap > nav{display:none}}
 @media (forced-colors:active){.callbar a{border:2px solid ButtonText}}
+html.locked{overflow:hidden}
+.menu-panel,dialog,.dlg{overscroll-behavior:contain}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "PS5, Xbox and controller repair in Lynnfield, MA", "serviceType": "Game console and controller repair", "areaServed": {"@type": "City", "name": "Lynnfield, MA"}, "provider": {"@type": "LocalBusiness", "name": "Lami Tech Repair", "url": "https://lamitechrepair.pages.dev/", "telephone": "+1-857-244-1258", "address": {"@type": "PostalAddress", "addressLocality": "Peabody", "addressRegion": "MA", "addressCountry": "US"}}}</script>
 </head>
@@ -254,7 +257,7 @@ header .wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-
   if(!hdr||!btn||!panel) return;
   function setOpen(o,focusBack){
     btn.setAttribute('aria-expanded',o?'true':'false'); panel.hidden=!o; hdr.classList.toggle('open',o);
-    if(o){ hdr.classList.remove('dim'); var f=panel.querySelector('a'); if(f) f.focus(); } else if(focusBack){ btn.focus(); }
+    if(o){ hdr.classList.remove('dim'); var f=panel.querySelector('a'); if(f) f.focus({preventScroll:true}); } else if(focusBack){ btn.focus({preventScroll:true}); }
   }
   btn.addEventListener('click',function(){ setOpen(panel.hidden); });
   panel.addEventListener('click',function(e){ if(e.target.closest('a')) setOpen(false); });
@@ -271,6 +274,17 @@ header .wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-
   }
   window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
   hdr.addEventListener('touchstart',function(){ hdr.classList.remove('dim'); },{passive:true});
+})();
+</script>
+<script>
+/* While the menu or a pop-up is open, the page behind it doesn't scroll */
+(function(){
+  var html=document.documentElement, locks=0;
+  function lock(){ if(locks++===0) html.classList.add('locked'); }
+  function unlock(){ if(locks>0 && --locks===0) html.classList.remove('locked'); }
+  function watch(el,isOpen){ var st=isOpen(el); if(st) lock(); new MutationObserver(function(){ var o=isOpen(el); if(o!==st){ st=o; if(o) lock(); else unlock(); } }).observe(el,{attributes:true,attributeFilter:['open','hidden']}); }
+  document.querySelectorAll('dialog').forEach(function(d){ watch(d,function(e){ return e.open; }); });
+  var mp=document.getElementById('menuPanel'); if(mp) watch(mp,function(e){ return !e.hidden; });
 })();
 </script>
 </body>

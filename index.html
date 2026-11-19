@@ -114,7 +114,8 @@ header.dim:hover,header.dim:focus-within,header.open{opacity:1}
 .menu-btn[aria-expanded="true"] .bars::before{transform:translateY(5px) rotate(45deg)}
 .menu-btn[aria-expanded="true"] .bars i{opacity:0}
 .menu-btn[aria-expanded="true"] .bars::after{transform:translateY(-5px) rotate(-45deg)}
-.menu-panel{border-top:1px solid var(--line);background:rgba(11,20,34,.98)}
+.menu-panel{border-top:1px solid var(--line);background:#0b1422;position:absolute;left:0;right:0;top:100%;box-shadow:0 24px 40px -20px rgba(0,0,0,.6)}
+header{overflow-anchor:none}
 .menu-panel ul{list-style:none;margin:0;padding:10px max(16px,env(safe-area-inset-left,0px)) 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-width:1080px;margin-inline:auto}
 .menu-panel a{display:block;padding:14px 12px;border-radius:10px;color:var(--fg);text-decoration:none;font:600 18px var(--body);letter-spacing:-.01em}
 .menu-panel a:hover,.menu-panel a:focus-visible{background:rgba(34,211,238,.12)}
@@ -173,6 +174,14 @@ nav a:hover{color:var(--fg);background:var(--panel)}
 .dev-small .dev-pic svg{height:30px;width:30px;fill:none;stroke:var(--accent);stroke-width:1.7;stroke-linejoin:round}
 .dev-txt{display:flex;flex-direction:column;gap:2px;min-width:0}
 .dev-other{border-style:dashed}
+@media (min-width:861px){
+  .dev-layout{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .dev-layout>.dev-grid{display:contents}
+  .dev-layout .dev-other{grid-column:3;grid-row:1;flex-direction:column;justify-content:center;text-align:center;align-items:center}
+  .dev-layout .dev-other .dev-txt{align-items:center}
+  .dev-layout .dev-other .dev-pic{width:auto;height:90px}.dev-layout .dev-other .dev-pic svg{height:44px;width:44px}
+  .dev-layout .dev-small .dev-card:not(.dev-other){align-self:start}
+}
 .models{display:flex;flex-wrap:wrap;gap:8px}
 .model-other{margin-top:10px}.model-other label{display:block;font:600 14px var(--body);margin-bottom:6px}
 .model-other input{width:100%;box-sizing:border-box;font:500 16px var(--body);color:var(--fg);background:var(--bg);border:1px solid #6b84a3;border-radius:10px;padding:10px 12px;min-height:44px}
@@ -233,11 +242,14 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 .dlg-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .handoff{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
 .ho-title{font-weight:700;margin:0 0 10px}
-.ho-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ho-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ho-grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ho-when{margin:12px 0 0;min-width:0;border:0;padding:0}.ho-grid>div{min-width:0}.ho-when legend{font:600 14px var(--body);margin-bottom:6px;padding:0}
+.ho-grid input[type=date],.ho-grid input[type=time]{color-scheme:dark;min-width:0}
 .ho-grid label{display:block;font:600 14px var(--body);margin-bottom:6px}
 .ho-grid select,.ho-grid input{width:100%;box-sizing:border-box;font:500 16px var(--body);color:var(--fg);background:var(--bg);border:1px solid #6b84a3;border-radius:10px;padding:10px 12px;min-height:44px}
 .ho-grid select:focus-visible,.ho-grid input:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
-@media (max-width:560px){.ho-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.ho-grid{grid-template-columns:1fr}.ho-grid3{grid-template-columns:1fr 1fr}.ho-grid3>div:last-child{grid-column:1/-1}}
 .dlg-actions .btn{font-size:15px;padding:11px 16px}
 .hint{color:var(--muted);font-size:14px;margin:12px 0 0}
 .result[hidden]{display:none!important}
@@ -639,6 +651,8 @@ footer .fbase a{color:var(--muted);font-size:13px}
 @media (max-width:480px){.nav-call{display:none}}
 @media (max-width:980px){header > .wrap > nav{display:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html.locked{overflow:hidden}
+.menu-panel,dialog,.dlg{overscroll-behavior:contain}
 </style>
 </head>
 <body style="margin:0">
@@ -758,14 +772,16 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <div class="groups">
         <div class="group" id="consoles">
           <h3>Consoles + controllers</h3>
+          <div class="dev-layout">
           <div class="dev-grid dev-main">
           <button class="dev-card" type="button" data-device="ps5" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/ps5.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>PlayStation</b><span>PS5, Slim, Pro or other</span></button>
           <button class="dev-card" type="button" data-device="xbox" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/xbox-x.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><b>Xbox</b><span>Series X, Series S or other</span></button>
           </div>
-          <div class="dev-grid dev-small" id="controllers">
-          <button class="dev-card" type="button" data-device="dualsense" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/dualsense.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><span class="dev-txt"><b>PlayStation controller</b><span>DualSense, Edge or other</span></span></button>
+          <div class="dev-grid dev-small">
+          <button class="dev-card" id="controllers" type="button" data-device="dualsense" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/dualsense.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><span class="dev-txt"><b>PlayStation controller</b><span>DualSense, Edge or other</span></span></button>
           <button class="dev-card" type="button" data-device="xbox-pad" aria-haspopup="dialog"><span class="dev-pic photo"><img src="/img/xbox-pad.webp" alt="" width="180" height="180" loading="lazy" decoding="async"></span><span class="dev-txt"><b>Xbox controller</b><span>Series X|S, One, Elite or other</span></span></button>
           <button class="dev-card dev-other" type="button" data-device="other" aria-haspopup="dialog"><span class="dev-pic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><span class="dev-txt"><b>Something else</b><span>Not listed? Ask me.</span></span></button>
+          </div>
           </div>
         </div>
         <div class="soon-row" id="phones">
@@ -1164,9 +1180,15 @@ footer .fbase a{color:var(--muted);font-size:13px}
             <select id="hoWay"><option value="">Not sure yet</option><option value="pickup">Pickup</option><option value="meetup">Meetup</option><option value="dropoff">Drop-off in Peabody</option></select></div>
           <div><label for="hoTown">Your town or ZIP</label>
             <input id="hoTown" type="text" maxlength="40" autocomplete="address-level2"></div>
-          <div><label for="hoWhen">When</label>
-            <select id="hoWhen"><option value="">Flexible</option><option value="as soon as possible">As soon as possible</option><option value="this week">This week</option><option value="this weekend">This weekend</option></select></div>
         </div>
+        <fieldset class="ho-when">
+          <legend>When works for you?</legend>
+          <div class="ho-grid ho-grid3">
+            <div><label for="hoDate">Day</label><input id="hoDate" type="date"></div>
+            <div><label for="hoTime">Time</label><input id="hoTime" type="time" step="900"></div>
+            <div><label for="hoNote">Or type it</label><input id="hoNote" type="text" maxlength="60" placeholder="Example: flexible"></div>
+          </div>
+        </fieldset>
         <p class="hint">Pickup, drop-off and meetups are free within 10 miles of Peabody. I confirm the day and time by text.</p>
       </div>
       <p class="err" id="issueErr" role="alert"></p>
@@ -1407,7 +1429,7 @@ document.addEventListener('click',function(e){
       lab.appendChild(r); lab.appendChild(document.createTextNode(t)); opts.appendChild(lab);
     });
     otherBox.hidden=!d.other; otherText.value=''; err.textContent=''; result.hidden=true; diagList.hidden=true; diagRes.hidden=true; form.hidden=false;
-    dlg.showModal(); var first=d.other?otherText:(modelOpts.querySelector('input:checked')||modelOpts.querySelector('input')||opts.querySelector('input')); if(first) first.focus();
+    dlg.showModal(); var first=d.other?otherText:(modelOpts.querySelector('input:checked')||modelOpts.querySelector('input')||opts.querySelector('input')); if(first) first.focus({preventScroll:true});
     track('quote_open',{device:d.name});
   }
   modelOpts.addEventListener('change',function(){ var m=modelOpts.querySelector('input:checked'); modelOtherBox.hidden=!(m&&m.value==='other'); if(!modelOtherBox.hidden) modelOther.focus(); });
@@ -1442,8 +1464,15 @@ document.addEventListener('click',function(e){
     estimate(pick.value); showMsg('Hi Lami Tech Repair, I need help with my '+devName()+'. Problem: '+detail+'.'+handoff()+' I\'ll send a photo or video.');
     track('quote_ready',{device:current.name,issue:pick.value});
   });
+  function whenText(){
+    var d=document.getElementById('hoDate').value, tm=document.getElementById('hoTime').value, note=document.getElementById('hoNote').value.trim(), parts=[];
+    if(d){ var p=d.split('-'), dt=new Date(+p[0],+p[1]-1,+p[2]); parts.push(dt.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})); }
+    if(tm){ var h=+tm.split(':')[0], m=tm.split(':')[1]; parts.push((d?'around ':'around ')+((h%12)||12)+':'+m+(h<12?' AM':' PM')); }
+    var w=parts.join(' '); if(note) w=w?w+' ('+note+')':note; return w;
+  }
+  (function(){ var di=document.getElementById('hoDate'); if(di){ var n=new Date(), z=function(x){return (x<10?'0':'')+x;}; di.min=n.getFullYear()+'-'+z(n.getMonth()+1)+'-'+z(n.getDate()); } })();
   function handoff(){
-    var w=document.getElementById('hoWay').value, t=document.getElementById('hoTown').value.trim(), n=document.getElementById('hoWhen').value, out='';
+    var w=document.getElementById('hoWay').value, t=document.getElementById('hoTown').value.trim(), out='', n=whenText();
     if(w==='pickup') out+=' I\'d like a pickup.'; else if(w==='meetup') out+=' I\'d like to meet up.'; else if(w==='dropoff') out+=' I can drop it off in Peabody.';
     if(t) out+=' I\'m in '+t+'.';
     if(n) out+=' Timing: '+n+'.';
@@ -1614,7 +1643,7 @@ document.addEventListener('click',function(e){
   if(!hdr||!btn||!panel) return;
   function setOpen(o,focusBack){
     btn.setAttribute('aria-expanded',o?'true':'false'); panel.hidden=!o; hdr.classList.toggle('open',o);
-    if(o){ hdr.classList.remove('dim'); var f=panel.querySelector('a'); if(f) f.focus(); } else if(focusBack){ btn.focus(); }
+    if(o){ hdr.classList.remove('dim'); var f=panel.querySelector('a'); if(f) f.focus({preventScroll:true}); } else if(focusBack){ btn.focus({preventScroll:true}); }
   }
   btn.addEventListener('click',function(){ setOpen(panel.hidden); });
   panel.addEventListener('click',function(e){ if(e.target.closest('a')) setOpen(false); });
@@ -1757,6 +1786,17 @@ document.addEventListener('click',function(e){
   }
   document.querySelectorAll('.towns button[data-t]').forEach(function(btn){ btn.setAttribute('aria-pressed','false'); btn.addEventListener('click',function(){ pick(btn.getAttribute('data-t')); }); });
   var svg=document.querySelector('.pmap'); if(svg) svg.addEventListener('click',function(e){ var t=e.target.closest('[data-t]'); if(t) pick(t.getAttribute('data-t')); });
+})();
+</script>
+<script>
+/* While the menu or a pop-up is open, the page behind it doesn't scroll */
+(function(){
+  var html=document.documentElement, locks=0;
+  function lock(){ if(locks++===0) html.classList.add('locked'); }
+  function unlock(){ if(locks>0 && --locks===0) html.classList.remove('locked'); }
+  function watch(el,isOpen){ var st=isOpen(el); if(st) lock(); new MutationObserver(function(){ var o=isOpen(el); if(o!==st){ st=o; if(o) lock(); else unlock(); } }).observe(el,{attributes:true,attributeFilter:['open','hidden']}); }
+  document.querySelectorAll('dialog').forEach(function(d){ watch(d,function(e){ return e.open; }); });
+  var mp=document.getElementById('menuPanel'); if(mp) watch(mp,function(e){ return !e.hidden; });
 })();
 </script>
 </body>
