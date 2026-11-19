@@ -965,7 +965,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
           </ol>
         </div>
       </div>
-      <p class="fine">Meetups happen in a public place. Pickup, drop-off and meetups are free within 10 miles of Peabody. The full rules are in the <a href="terms.html#selling-a-device-to-me">Terms of Service</a>.</p>
+      <p class="fine">Meetups happen in a public place. Pickup, drop-off and meetups are free within 10 miles of Peabody. The full rules are in the <a href="/legal.html#terms-selling-a-device-to-me">Terms of Service</a>.</p>
     </div>
   </section>
 
@@ -1126,7 +1126,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
           </div>
           <div class="hp" aria-hidden="true"><label for="ctHoney">Leave this empty</label><input id="ctHoney" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
           <button class="btn primary ct-send" type="submit" id="ctSend">Send message</button>
-          <p class="ct-legal">By sending, you agree I can contact you about your repair. See the <a href="/privacy.html">Privacy Policy</a>.</p>
+          <p class="ct-legal">By sending, you agree I can contact you about your repair. See the <a href="/legal.html#privacy">Privacy Policy</a>.</p>
           <div class="ct-status" id="ctStatus" role="status" aria-live="polite"></div>
         </form>
       </div>
@@ -1183,7 +1183,7 @@ footer .fbase a{color:var(--muted);font-size:13px}
   </div>
   <div class="wrap fbase">
     <span>&copy; 2026 Lami Tech Repair &middot; Peabody, MA</span>
-    <nav aria-label="Legal"><ul><li><a href="#top">Back to top</a></li><li><a href="mailto:lamitechrepair@gmail.com?subject=Website%20feedback">Send feedback</a></li><li><a href="/terms.html">Terms</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/accessibility.html">Accessibility</a></li></ul></nav>
+    <nav aria-label="Legal"><ul><li><a href="#top">Back to top</a></li><li><a href="mailto:lamitechrepair@gmail.com?subject=Website%20feedback">Send feedback</a></li><li><a href="/legal.html#terms">Terms</a></li><li><a href="/legal.html#privacy">Privacy</a></li><li><a href="/legal.html#accessibility">Accessibility</a></li></ul></nav>
     <span>PlayStation, PS5 and DualSense are trademarks of Sony Interactive Entertainment. Xbox is a trademark of Microsoft. iPhone is a trademark of Apple. Product photos &copy; Sony Interactive Entertainment and Microsoft. Not affiliated with Sony or Microsoft.</span>
   </div>
 </footer>
@@ -1525,9 +1525,9 @@ document.addEventListener('click',function(e){
     {label:'Send a message',note:'Contact form',go:'#ctForm',k:['message','form','contact form','send message','email me','write']},
     {label:'Contact',note:'Call, text or email',go:'#contact',k:['contact','call','text','email','phone number','number','reach','message','hours','open']},
     {label:'About Sajjad',note:'About',go:'#about',k:['about','owner','who','sajjad','arabic','english']},
-    {label:'Accessibility',note:'Page',go:'/accessibility.html',k:['accessibility','accessible','screen reader','disability','ada']},
-    {label:'Privacy policy',note:'Page',go:'/privacy.html',k:['privacy','data','cookies','policy']},
-    {label:'Terms of Service',note:'Page',go:'/terms.html',k:['terms','terms of service','tos','conditions','rules','liability','pickup']}
+    {label:'Accessibility',note:'Page',go:'/legal.html#accessibility',k:['accessibility','accessible','screen reader','disability','ada']},
+    {label:'Privacy policy',note:'Page',go:'/legal.html#privacy',k:['privacy','data','cookies','policy']},
+    {label:'Terms of Service',note:'Page',go:'/legal.html#terms',k:['terms','terms of service','tos','conditions','rules','liability','pickup']}
   ];
   var FILL=/\b(my|the|a|an|i|im|need|want|to|for|please|get|got|is|it|some|can|you|do)\b/g, STOP={repair:1,repairs:1,fix:1,fixing:1,fixed:1,screen:1,broken:1,service:1,help:1};
   function norm(t){ return (' '+t.toLowerCase().replace(FILL,' ').replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').replace(/\bps\s5\b/g,'ps5').replace(/\bx\s?box\b/g,'xbox').replace(/\bi\s?phone\b/g,'iphone').replace(/\bplay\s?station\b/g,'playstation').replace(/\s+/g,' ')+' '); }
