@@ -33,3 +33,4 @@ Record of accessibility checks on lamitechrepair.pages.dev. Add a new entry afte
 | 2026-11-19 | index | Device tile photos (decorative, alt empty, link text unchanged), hero stars stay on resize, axe-core, html-validate, full functional suite | None | Pass |
 | 2026-11-19 | index, privacy | Quote tool optional handoff fields (labels, 44px targets, keyboard), language chip with lang=ar, axe-core, html-validate, full suite | None | Pass |
 | 2026-11-19 | index, terms, privacy, accessibility, 404, 8 town pages | New prices, turnaround, strip items, For sale and Rules sections (ordered lists, headings), town pages (table caption and headers, JSON-LD), axe-core WCAG 2.2 AA, html-validate, full suite, 375px reflow | None | Pass |
+| 2026-11-19 | index, terms, privacy | Map roads (aria-hidden, described in map text), label halos, legend, new Terms clauses, axe-core, html-validate, full suite | None | Pass |
