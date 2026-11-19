@@ -278,6 +278,9 @@ legend{font:700 16px var(--body);margin-bottom:10px;padding:0}
 .sellbar h3{font:700 24px/1.2 var(--display);letter-spacing:-.02em;margin:0}
 .sellbar p{margin:4px 0 0;color:var(--muted)}
 .cat .go{font:600 17px var(--body);color:var(--accent);margin-top:14px}
+.cat .pic{display:block;width:100%;height:auto;margin-top:18px;border-radius:16px;background:#fff;transition:transform .25s ease}
+.cat:hover .pic{transform:scale(1.02)}
+@media (prefers-reduced-motion:reduce){.cat .pic,.cat:hover .pic{transition:none;transform:none}}
 .cat .art{display:flex;align-items:flex-end;justify-content:center;gap:10px;height:150px;margin-top:18px}
 .cat .art svg{height:140px;width:auto;max-width:48%;filter:drop-shadow(0 16px 24px rgba(0,0,0,.45))}
 .cat.soon{background:linear-gradient(160deg,rgba(26,36,56,.9),rgba(14,22,38,.9))}
@@ -676,11 +679,11 @@ footer .fbase a{color:var(--muted);font-size:13px}
       <div class="cats">
         <a class="cat" href="#consoles">
           <div><h3>Consoles</h3><p>PS5. Xbox Series X|S.</p><div class="go">Fix my console <span aria-hidden="true">&rsaquo;</span></div></div>
-          <div class="art" aria-hidden="true"><svg viewBox="0 0 60 100"><use href="#ill-tower"/></svg><svg viewBox="0 0 70 100"><use href="#ill-box"/></svg></div>
+          <img class="pic" src="img/pick-consoles.webp" width="760" height="440" alt="" loading="lazy" decoding="async">
         </a>
         <a class="cat" href="#controllers">
           <div><h3>Controllers</h3><p>DualSense. Xbox.</p><div class="go">Fix my controller <span aria-hidden="true">&rsaquo;</span></div></div>
-          <div class="art" aria-hidden="true"><svg viewBox="0 0 120 80"><use href="#ill-pad"/></svg></div>
+          <img class="pic" src="img/pick-controllers.webp" width="760" height="440" alt="" loading="lazy" decoding="async">
         </a>
       </div>
       <div class="sellbar">
