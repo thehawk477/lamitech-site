@@ -377,6 +377,15 @@ table.prices{width:100%;border-collapse:collapse;min-width:560px;font-variant-nu
 .group-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:14px}
 .group-pic{width:220px;height:auto;border-radius:14px;background:#fff;flex:none}
 @media (max-width:560px){.dev-main{gap:10px}}
+.rules-dd{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:12px;background:rgba(11,20,34,.5);padding:4px 14px;margin:4px 0 6px}
+.rules-dd summary{cursor:pointer;font-weight:700;padding:10px 0;color:var(--fg)}
+.rules-dd ol{margin:0 0 12px;padding-left:20px;display:grid;gap:8px}
+.rules-dd li{color:var(--muted);font-size:15px}
+.rules-dd li b{color:var(--fg)}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--fg);cursor:pointer;padding:6px 0;min-height:24px}
+.agree input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent);flex:none}
+.agree-err{color:#fca5a5;font-size:14px;margin:0 0 6px}
+.agree-err:empty{display:none}
 .bs-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
 .bs-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
 .bs-card h3{margin:0;font:700 22px/1.2 var(--display)}
@@ -933,20 +942,9 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <div class="bs-card">
           <h3>Sell me your broken one</h3>
           <p>PS5, Xbox Series X|S and their controllers. Drift, dead buttons, overheating, won't power on. Send the model and a video for an offer. Cash or Zelle.</p>
-          <a class="btn ghost" href="sms:+18572441258">Get an offer</a>
-        </div>
-        <div class="bs-card" id="shop">
-          <h3>For sale</h3>
-          <p>Nothing for sale right now. When I have fixed devices to sell, they'll be listed here with their condition and price. Every one is tested and comes with a 30-day guarantee. Looking for something specific? Text me.</p>
-          <a class="btn ghost" href="sms:+18572441258">Text me what you want</a>
-        </div>
-      </div>
-      <h3 class="rules-h" id="rules">The rules</h3>
-      <p class="rules-sub">They keep every deal safe and fair, and they're the same for everyone.</p>
-      <div class="rules-grid">
-        <div class="rule-card">
-          <h3>Selling a device to me</h3>
-          <ol>
+          <details class="rules-dd" id="rules">
+            <summary>Rules for selling to me</summary>
+            <ol>
             <li><b>You must be 18 or older.</b> Under 18? A parent or guardian has to be there and make the sale.</li>
             <li><b>Show a valid photo ID.</b> I write down your name, contact info, the device, its serial number, the price and the date. I don't keep a copy of your ID.</li>
             <li><b>It has to be yours.</b> No stolen, borrowed or unpaid financed devices.</li>
@@ -955,10 +953,17 @@ footer .fbase a{color:var(--muted);font-size:13px}
             <li><b>I check it, then I pay.</b> Cash or Zelle, right there.</li>
             <li><b>I can say no to any deal.</b> I won't buy anything I think is stolen, and I may report it to the police.</li>
           </ol>
+          </details>
+          <label class="agree"><input type="checkbox" class="agree-box"> I've read and agree to the rules for selling.</label>
+          <p class="agree-err" role="alert"></p>
+          <a class="btn ghost needs-agree" href="sms:+18572441258">Get an offer</a>
         </div>
-        <div class="rule-card">
-          <h3>Buying a device from me</h3>
-          <ol>
+        <div class="bs-card" id="shop">
+          <h3>For sale</h3>
+          <p>Nothing for sale right now. When I have fixed devices to sell, they'll be listed here with their condition and price. Every one is tested and comes with a 30-day guarantee. Looking for something specific? Text me.</p>
+          <details class="rules-dd" id="buy-rules">
+            <summary>Rules for buying from me</summary>
+            <ol>
             <li><b>Tested before sale.</b> Any flaws are listed with the price.</li>
             <li><b>The listed price is the price.</b> Cash or Zelle when you pick it up.</li>
             <li><b>Test it at pickup.</b> Try it in front of me before you pay.</li>
@@ -966,6 +971,10 @@ footer .fbase a{color:var(--muted);font-size:13px}
             <li><b>Not covered:</b> drops, cracks, liquid, or a device someone else opened after the sale.</li>
             <li><b>Reset and clean.</b> Every device is factory reset, with no one else's account or data on it.</li>
           </ol>
+          </details>
+          <label class="agree"><input type="checkbox" class="agree-box"> I've read and agree to the rules for buying.</label>
+          <p class="agree-err" role="alert"></p>
+          <a class="btn ghost needs-agree" href="sms:+18572441258">Text me what you want</a>
         </div>
       </div>
       <p class="fine">Meetups happen in a public place. Pickup, drop-off and meetups are free within 10 miles of Peabody. The full rules are in the <a href="/legal.html#terms-selling-a-device-to-me">Terms of Service</a>.</p>
@@ -979,8 +988,8 @@ footer .fbase a{color:var(--muted);font-size:13px}
         <div>
           <p class="eyebrow">About</p>
           <h2>Local. Honest. Hands-on.</h2>
-          <p>I'm Sajjad. I started Lami Tech Repair to give good gear a second life.</p>
-          <p>When you text, you talk to me, the person who fixes your device. I test every repair before it goes back to you. I speak English and Arabic.</p>
+          <p>I'm Sajjad, I'm 22, and I've lived in Peabody for about 4 years. Lami Tech Repair started after I kept fixing consoles, controllers and laptops for friends. I wanted to give good gear a second life instead of seeing it thrown out.</p>
+          <p>When you text, you're talking to me directly, not a call center. I test every repair before it goes back to you, and I speak English and Arabic.</p>
         </div>
       </div>
       <div class="stats">
@@ -1568,6 +1577,20 @@ document.addEventListener('click',function(e){
 })();
 </script>
 <script>
+/* Buy & sell: the rules must be agreed to before texting */
+(function(){
+  document.querySelectorAll('.needs-agree').forEach(function(btn){
+    var card=btn.closest('.bs-card'), box=card.querySelector('.agree-box'), err=card.querySelector('.agree-err'), dd=card.querySelector('.rules-dd');
+    btn.addEventListener('click',function(e){
+      if(box.checked){ err.textContent=''; return; }
+      e.preventDefault(); dd.open=true; err.textContent='Please read the rules above and check the box first.'; box.focus();
+    });
+    box.addEventListener('change',function(){ if(box.checked) err.textContent=''; });
+  });
+  function openRules(){ if(location.hash==='#rules'||location.hash==='#buy-rules'){ var d=document.querySelector(location.hash); if(d) d.open=true; } }
+  openRules(); window.addEventListener('hashchange',openRules);
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#rules"]'); if(a){ var d=document.getElementById('rules'); if(d) d.open=true; } });
+})();
 /* Reloading always starts at the top. In-page links still jump to their section,
    then the #section part is cleared from the address so a reload doesn't jump back. */
 (function(){

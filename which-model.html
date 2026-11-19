@@ -103,11 +103,26 @@ td.p{font-weight:800;color:var(--fg);white-space:nowrap}
 .near a{display:inline-block;padding:7px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--fg);background:var(--panel)}
 .near a:hover{border-color:var(--accent)}
 
-.mcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:12px 0}
 .mcard h3{margin:0 0 4px}
 .mcard p{margin:0}
 .code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--panel2);padding:2px 6px;border-radius:6px;color:var(--fg)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.tabs ul{list-style:none;margin:20px 0 8px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tabs a{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--fg);text-decoration:none;font-weight:600}
+.tabs a:hover{border-color:var(--accent)}
+.tabs a[aria-current="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.js .mpane{display:none}.js .mpane.on{display:block}
+.mpane{scroll-margin-top:84px}
+html{scroll-behavior:auto!important}
+.mcard{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.mcard h3{margin:0 0 4px}.mcard p{margin:0}
+.mpic{background:#fff;border-radius:12px;height:130px;display:grid;place-items:center;overflow:hidden}
+.mpic img{max-height:118px;width:auto;max-width:100%;object-fit:contain}
+.mpic.none{background:var(--panel2);border:1px dashed #6b84a3}.mpic.none span{color:var(--muted);font-size:13px;text-align:center;padding:8px}
+.credit{font-size:13px;color:var(--muted);margin-top:6px!important}
+.credit a{display:inline-block;padding-block:3px}
+@media (max-width:520px){.mcard{grid-template-columns:96px minmax(0,1fr);gap:12px}.mpic{height:96px}.mpic img{max-height:88px}}
 </style>
 </head>
 <body>
@@ -129,30 +144,37 @@ td.p{font-weight:800;color:var(--fg);white-space:nowrap}
 <main class="page townp" id="main">
   <p class="eyebrow">Help</p>
   <h1>Which model do I have?</h1>
-  <p class="lede">Not sure which console or controller you have? Here's how to tell. You can also just pick "Other" or skip the model, and I'll figure it out from a photo.</p>
-  <nav aria-label="Jump to a device"><ul class="near"><li><a href="#ps5">PlayStation</a></li><li><a href="#xbox">Xbox</a></li><li><a href="#ps-controller">PlayStation controller</a></li><li><a href="#xbox-controller">Xbox controller</a></li></ul></nav>
+  <p class="lede">Pick your device to see how to tell the models apart. You can also pick "Other" or skip the model, and I'll figure it out from a photo.</p>
+  <nav class="tabs" aria-label="Pick your device"><ul>
+    <li><a href="#ps5">PlayStation</a></li><li><a href="#xbox">Xbox</a></li><li><a href="#ps-controller">PlayStation controller</a></li><li><a href="#xbox-controller">Xbox controller</a></li>
+  </ul></nav>
 
-  <h2 id="ps5">PlayStation</h2>
-  <div class="mcard"><h3>PS5 (original)</h3><p>The biggest one. White side panels that curve out like wings, with a black middle. Model number starts with <span class="code">CFI-10</span>, <span class="code">CFI-11</span> or <span class="code">CFI-12</span>.</p></div>
-  <div class="mcard"><h3>PS5 Slim</h3><p>Smaller. Each white side is split into a top panel and a bottom panel. Model number starts with <span class="code">CFI-20</span>.</p></div>
-  <div class="mcard"><h3>PS5 Pro</h3><p>Three black stripes run across the middle of the white side panels. Model number starts with <span class="code">CFI-70</span>.</p></div>
-  <p>The model number is on the bottom of the console when it's standing upright (<a href="https://www.playstation.com/en-hr/support/hardware/ps5-find-serial-model-numbers/" target="_blank" rel="noopener">PlayStation Support<span class="sr"> (opens in a new tab)</span></a>). PS4 or older? Pick "Other" and type it in.</p>
-
-  <h2 id="xbox">Xbox</h2>
-  <div class="mcard"><h3>Xbox Series X</h3><p>A tall black tower, with green-tinted vents on top and a disc drive on the front.</p></div>
-  <div class="mcard"><h3>Xbox Series S</h3><p>Much smaller, usually white (some are black), with one big round black vent on the side. No disc drive.</p></div>
-  <p>Sizes for both are on <a href="https://xbox.com/consoles/compare" target="_blank" rel="noopener">Xbox's compare page<span class="sr"> (opens in a new tab)</span></a>. Xbox One, One S, One X or 360? Pick "Other" and type it in.</p>
-
-  <h2 id="ps-controller">PlayStation controller</h2>
-  <div class="mcard"><h3>DualSense</h3><p>The standard PS5 controller, with a touchpad in the middle.</p></div>
-  <div class="mcard"><h3>DualSense Edge</h3><p>Has two buttons on the back, stick caps that pop off, and small extra buttons under the sticks.</p></div>
-  <p>A PS4 controller has a light bar on the top edge and a smaller touchpad. For that one, pick "Other."</p>
-
-  <h2 id="xbox-controller">Xbox controller</h2>
-  <div class="mcard"><h3>Series X|S controller</h3><p>Has a small Share button in the middle, below the Xbox button, and a USB-C port on top.</p></div>
-  <div class="mcard"><h3>Xbox One controller</h3><p>Looks almost the same, but has no Share button.</p></div>
-  <div class="mcard"><h3>Elite controller</h3><p>Rubber grips and paddles on the back.</p></div>
-  <p>Xbox 360 or something else? Pick "Other."</p>
+  <section class="mpane" id="ps5" aria-labelledby="ps5-h">
+    <h2 id="ps5-h">PlayStation</h2>
+    <div class="mcard"><div class="mpic"><img src="/img/ps5.webp" alt="PS5 (original)" width="180" height="180" loading="lazy" decoding="async"></div><div><h3>PS5 (original)</h3><p>The biggest one. White side panels that curve out like wings, with a black middle. Model number starts with <span class="code">CFI-10</span>, <span class="code">CFI-11</span> or <span class="code">CFI-12</span>.</p><p class="credit">Photo: Sony Interactive Entertainment. <a href="https://www.playstation.com/en-us/ps5/" target="_blank" rel="noopener">See it on playstation.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <div class="mcard"><div class="mpic"><img src="/img/ps5-slim.webp" alt="PS5 Slim" width="180" height="180" loading="lazy" decoding="async"></div><div><h3>PS5 Slim</h3><p>Smaller. Each white side is split into a top panel and a bottom panel. Model number starts with <span class="code">CFI-20</span>.</p><p class="credit">Photo: Sony Interactive Entertainment. <a href="https://www.playstation.com/en-us/ps5/" target="_blank" rel="noopener">See it on playstation.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <div class="mcard"><div class="mpic" style="background:rgb(193,192,190)"><img src="/img/ps5-pro.webp" alt="PS5 Pro" width="180" height="180" loading="lazy" decoding="async"></div><div><h3>PS5 Pro</h3><p>Three black stripes run across the middle of the white side panels. Model number starts with <span class="code">CFI-70</span>.</p><p class="credit">Photo: Sony Interactive Entertainment. <a href="https://www.playstation.com/en-us/ps5/" target="_blank" rel="noopener">See it on playstation.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <p>The model number is on the bottom of the console when it's standing upright (<a href="https://www.playstation.com/en-hr/support/hardware/ps5-find-serial-model-numbers/" target="_blank" rel="noopener">PlayStation Support<span class="sr"> (opens in a new tab)</span></a>). PS4 or older? Pick "Other" and type it in.</p>
+  </section>
+  <section class="mpane" id="xbox" aria-labelledby="xbox-h">
+    <h2 id="xbox-h">Xbox</h2>
+    <div class="mcard"><div class="mpic"><img src="/img/xbox-x.webp" alt="Xbox Series X" width="180" height="180" loading="lazy" decoding="async"></div><div><h3>Xbox Series X</h3><p>A tall black tower, with green-tinted vents on top and a disc drive on the front.</p><p class="credit">Photo: Microsoft. <a href="https://www.xbox.com/en-US/consoles/xbox-series-x" target="_blank" rel="noopener">See it on xbox.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <div class="mcard"><div class="mpic"><img src="/img/xbox-s.webp" alt="Xbox Series S" width="180" height="180" loading="lazy" decoding="async"></div><div><h3>Xbox Series S</h3><p>Much smaller, usually white (some are black), with one big round black vent on the side. No disc drive.</p><p class="credit">Photo: Microsoft. <a href="https://www.xbox.com/en-US/consoles/xbox-series-s" target="_blank" rel="noopener">See it on xbox.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <p>Sizes for both are on <a href="https://xbox.com/consoles/compare" target="_blank" rel="noopener">Xbox's compare page<span class="sr"> (opens in a new tab)</span></a>. Xbox One, One S, One X or 360? Pick "Other" and type it in.</p>
+  </section>
+  <section class="mpane" id="ps-controller" aria-labelledby="psc-h">
+    <h2 id="psc-h">PlayStation controller</h2>
+    <div class="mcard"><div class="mpic"><img src="/img/dualsense.webp" alt="DualSense" width="180" height="180" loading="lazy" decoding="async"></div><div><h3>DualSense</h3><p>The standard PS5 controller, with a touchpad in the middle.</p><p class="credit">Photo: Sony Interactive Entertainment. <a href="https://www.playstation.com/en-us/accessories/dualsense-wireless-controller/" target="_blank" rel="noopener">See it on playstation.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <div class="mcard"><div class="mpic none" aria-hidden="true"><span>Photo coming soon</span></div><div><h3>DualSense Edge</h3><p>Has two buttons on the back, stick caps that pop off, and small extra buttons under the sticks.</p><p class="credit"><a href="https://www.playstation.com/en-us/accessories/dualsense-edge-wireless-controller/" target="_blank" rel="noopener">See it on playstation.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <p>A PS4 controller has a light bar on the top edge and a smaller touchpad. For that one, pick "Other."</p>
+  </section>
+  <section class="mpane" id="xbox-controller" aria-labelledby="xc-h">
+    <h2 id="xc-h">Xbox controller</h2>
+    <div class="mcard"><div class="mpic"><img src="/img/xbox-pad.webp" alt="Series X|S controller" width="180" height="180" loading="lazy" decoding="async"></div><div><h3>Series X|S controller</h3><p>Has a small Share button in the middle, below the Xbox button, and a USB-C port on top.</p><p class="credit">Photo: Microsoft. <a href="https://www.xbox.com/en-US/accessories/controllers/xbox-wireless-controller" target="_blank" rel="noopener">See it on xbox.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <div class="mcard"><div class="mpic none" aria-hidden="true"><span>Photo coming soon</span></div><div><h3>Xbox One controller</h3><p>Looks almost the same, but has no Share button.</p></div></div>
+    <div class="mcard"><div class="mpic none" aria-hidden="true"><span>Photo coming soon</span></div><div><h3>Elite controller</h3><p>Rubber grips and paddles on the back.</p><p class="credit"><a href="https://www.xbox.com/en-US/accessories/controllers/elite-wireless-controller-series-2" target="_blank" rel="noopener">See it on xbox.com<span class="sr"> (opens in a new tab)</span></a></p></div></div>
+    <p>Xbox 360 or something else? Pick "Other."</p>
+  </section>
 
   <h2>Still not sure?</h2>
   <p>Send me a photo and I'll tell you.</p>
@@ -171,5 +193,20 @@ td.p{font-weight:800;color:var(--fg);white-space:nowrap}
     </nav>
   </div>
 </footer>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var ids=['ps5','xbox','ps-controller','xbox-controller'], links=[].slice.call(document.querySelectorAll('.tabs a'));
+  function show(){
+    var h=location.hash.slice(1); if(ids.indexOf(h)<0) h='ps5';
+    ids.forEach(function(i){ document.getElementById(i).classList.toggle('on',i===h); });
+    links.forEach(function(a){ if(a.getAttribute('href')==='#'+h) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); });
+  }
+  function top(){ window.scrollTo({top:0,left:0,behavior:'instant'}); }
+  show(); if(location.hash){ top(); window.addEventListener('load',function(){ setTimeout(top,0); setTimeout(top,120); }); }
+  window.addEventListener('hashchange',function(){ show(); top(); setTimeout(top,0); });
+  links.forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); var h=a.getAttribute('href'); if(location.hash===h){ top(); } else { location.hash=h; } }); });
+})();
+</script>
 </body>
 </html>
