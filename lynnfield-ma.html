@@ -141,6 +141,26 @@ header .wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-
 @media (forced-colors:active){.callbar a{border:2px solid ButtonText}}
 html.locked{overflow:hidden}
 .menu-panel,dialog,.dlg{overscroll-behavior:contain}
+
+/* Email chooser: works with or without a mail app set up */
+.callbar.three{grid-template-columns:1fr 1fr 1fr}
+.callbar a.mail{color:var(--accent)}
+.nav-mail{color:var(--fg);text-decoration:none;font:700 14px var(--body);padding:8px 13px;border-radius:8px;border:1px solid var(--line);background:var(--panel);white-space:nowrap}
+.nav-mail:hover{border-color:var(--accent)}
+@media (max-width:860px){.nav-mail{display:none}}
+.mail-dlg{border:0;padding:0;background:transparent;max-width:420px;width:calc(100% - 32px);color:var(--fg)}
+.mail-dlg::backdrop{background:rgba(3,8,16,.72)}
+.mail-box{background:#14233b;border:1px solid var(--line);border-radius:18px;padding:20px}
+.mail-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mail-head h2{margin:0;font:800 24px/1.2 var(--display, "Geist", system-ui, sans-serif)}
+.mail-x{background:transparent;border:1px solid var(--line);color:var(--fg);border-radius:10px;width:40px;height:40px;font-size:22px;cursor:pointer}
+.mail-addr{margin:12px 0 4px;font-weight:700;font-size:18px;word-break:break-all;color:var(--accent)}
+.mail-sub{margin:0 0 12px;color:var(--muted)}
+.mail-opts{display:grid;gap:8px}
+.mail-opt{display:block;text-align:left;width:100%;box-sizing:border-box;font:600 16px var(--body, "Geist", system-ui, sans-serif);color:var(--fg);background:#0b1422;border:1px solid var(--line);border-radius:12px;padding:13px 14px;text-decoration:none;cursor:pointer}
+.mail-opt:hover,.mail-opt:focus-visible{border-color:var(--accent)}
+.mail-status{margin:10px 0 0;color:#34d399;min-height:1.2em;font-weight:600}
+.mail-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "PS5, Xbox and controller repair in Lynnfield, MA", "serviceType": "Game console and controller repair", "areaServed": {"@type": "City", "name": "Lynnfield, MA"}, "provider": {"@type": "LocalBusiness", "name": "Lami Tech Repair", "url": "https://lamitechrepair.pages.dev/", "telephone": "+1-857-244-1258", "address": {"@type": "PostalAddress", "addressLocality": "Peabody", "addressRegion": "MA", "addressCountry": "US"}}}</script>
 </head>
@@ -176,6 +196,7 @@ html.locked{overflow:hidden}
         <li><a href="/#contact">Contact</a></li>
       </ul>
     </nav>
+    <a class="nav-mail" href="mailto:lamitechrepair@gmail.com">Email</a>
     <a class="nav-call" href="tel:+18572441258">(857)&nbsp;244&#8209;1258</a>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><span class="bars" aria-hidden="true"><i></i></span><span class="lbl">Menu</span></button>
   </div>
@@ -246,10 +267,26 @@ html.locked{overflow:hidden}
     </nav>
   </div>
 </footer>
-<div class="callbar" role="group" aria-label="Quick contact">
+<div class="callbar three" role="group" aria-label="Quick contact">
   <a class="call" href="tel:+18572441258">Call</a>
   <a class="text" href="sms:+18572441258">Text</a>
+  <a class="text mail" href="mailto:lamitechrepair@gmail.com">Email</a>
 </div>
+<dialog id="mailDlg" class="mail-dlg" aria-labelledby="mailTitle">
+  <div class="mail-box">
+    <div class="mail-head"><h2 id="mailTitle">Email me</h2><button class="mail-x" type="button" data-mail-close aria-label="Close">&times;</button></div>
+    <p class="mail-addr">lamitechrepair@gmail.com</p>
+    <p class="mail-sub">Pick how you want to send it:</p>
+    <div class="mail-opts">
+      <a class="mail-opt" id="mailApp" href="mailto:lamitechrepair@gmail.com">Your mail app</a>
+      <a class="mail-opt" id="mailGmail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=lamitechrepair@gmail.com" target="_blank" rel="noopener">Gmail<span class="mail-sr"> (opens in a new tab)</span></a>
+      <a class="mail-opt" id="mailOutlook" href="https://outlook.live.com/mail/0/deeplink/compose?to=lamitechrepair@gmail.com" target="_blank" rel="noopener">Outlook<span class="mail-sr"> (opens in a new tab)</span></a>
+      <a class="mail-opt" id="mailYahoo" href="https://compose.mail.yahoo.com/?to=lamitechrepair@gmail.com" target="_blank" rel="noopener">Yahoo Mail<span class="mail-sr"> (opens in a new tab)</span></a>
+      <button class="mail-opt" type="button" id="mailCopy">Copy email address</button>
+    </div>
+    <p class="mail-status" id="mailStatus" role="status"></p>
+  </div>
+</dialog>
 <script>
 /* Header: mobile menu, and fade out while scrolling down (comes back on hover, keyboard focus or scrolling up) */
 (function(){
@@ -274,6 +311,35 @@ html.locked{overflow:hidden}
   }
   window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
   hdr.addEventListener('touchstart',function(){ hdr.classList.remove('dim'); },{passive:true});
+})();
+</script>
+<script>
+/* Email chooser: every email link opens a small menu (mail app, Gmail, Outlook, Yahoo or copy) */
+(function(){
+  var EMAIL='lamitechrepair@gmail.com', d=document.getElementById('mailDlg'); if(!d||typeof d.showModal!=='function') return;
+  var app=document.getElementById('mailApp'), g=document.getElementById('mailGmail'), o=document.getElementById('mailOutlook'), y=document.getElementById('mailYahoo'), cp=document.getElementById('mailCopy'), st=document.getElementById('mailStatus'), opener=null;
+  function q(v){ return encodeURIComponent(v||''); }
+  function open(subject,body,from){
+    opener=from; st.textContent='';
+    app.href='mailto:'+EMAIL+(subject||body?'?subject='+q(subject)+'&body='+q(body):'');
+    g.href='https://mail.google.com/mail/?view=cm&fs=1&to='+EMAIL+'&su='+q(subject)+'&body='+q(body);
+    o.href='https://outlook.live.com/mail/0/deeplink/compose?to='+EMAIL+'&subject='+q(subject)+'&body='+q(body);
+    y.href='https://compose.mail.yahoo.com/?to='+EMAIL+'&subject='+q(subject)+'&body='+q(body);
+    d.showModal(); app.focus({preventScroll:true});
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="mailto:'+EMAIL+'"]'); if(!a||d.contains(a)) return;
+    e.preventDefault(); var u; try{ u=new URL(a.href); }catch(x){ u=null; }
+    open(u?u.searchParams.get('subject'):'',u?u.searchParams.get('body'):'',a);
+  });
+  d.querySelectorAll('[data-mail-close]').forEach(function(b){ b.addEventListener('click',function(){ d.close(); }); });
+  d.addEventListener('click',function(e){ if(e.target===d) d.close(); });
+  d.querySelectorAll('a.mail-opt').forEach(function(a){ a.addEventListener('click',function(){ setTimeout(function(){ d.close(); },300); }); });
+  d.addEventListener('close',function(){ if(opener&&opener.focus) opener.focus({preventScroll:true}); });
+  cp.addEventListener('click',function(){
+    function done(ok){ st.textContent=ok?'Copied: '+EMAIL:'Copy this: '+EMAIL; }
+    try{ navigator.clipboard.writeText(EMAIL).then(function(){done(true);},function(){done(false);}); }catch(x){ done(false); }
+  });
 })();
 </script>
 <script>
