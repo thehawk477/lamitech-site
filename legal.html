@@ -52,7 +52,7 @@ h1{font:800 clamp(40px,7vw,68px)/1.02 "Geist",system-ui,sans-serif;letter-spacin
 .toc[open] summary::after{content:"\2212"}
 .toc ol{list-style:none;margin:0;padding:0 0 0 12px;border-left:1px solid var(--line)}
 .toc li{margin:0}
-.toc a{display:block;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;line-height:1.35}
+.toc a{display:block;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;line-height:1.35;white-space:normal}
 .toc a:hover{color:var(--fg)}
 .toc a.on{color:var(--accent);font-weight:600}
 @media (min-width:1000px){.toc summary{pointer-events:none}.toc summary::after{display:none}}
@@ -533,10 +533,21 @@ html.locked{overflow:hidden}
   if(d&&mq.matches)d.open=false;
   if(d)d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){if(mq.matches)d.open=false;});});
   var links=[].slice.call(document.querySelectorAll('.toc a'));
-  if('IntersectionObserver' in window&&links.length){
+  if(links.length){
     var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.id; if(e.target.classList.contains('doc-title')) id=id.replace(/-title$/,''); var a=map[id]; if(!a) return; links.forEach(function(x){x.classList.remove('on');x.removeAttribute('aria-current');}); a.classList.add('on');a.setAttribute('aria-current','location');}});},{rootMargin:'-90px 0px -70% 0px'});
-    document.querySelectorAll('article h3[id], .doc-title').forEach(function(h){io.observe(h);});
+    var heads=[].slice.call(document.querySelectorAll('article h3[id], .doc-title')).filter(function(h){var id=h.id; if(h.classList.contains('doc-title')) id=id.replace(/-title$/,''); return map[id];});
+    function idOf(h){return h.classList.contains('doc-title')?h.id.replace(/-title$/,''):h.id;}
+    function setOn(a){links.forEach(function(x){if(x!==a){x.classList.remove('on');x.removeAttribute('aria-current');}}); if(a){a.classList.add('on');a.setAttribute('aria-current','location');}}
+    var locked=false, tick=false;
+    function spy(){tick=false; if(locked) return; var cur=heads[0];
+      for(var i=0;i<heads.length;i++){ if(heads[i].getBoundingClientRect().top<=140) cur=heads[i]; else break; }
+      setOn(map[idOf(cur)]);}
+    window.addEventListener('scroll',function(){ if(!tick){tick=true; requestAnimationFrame(spy);} },{passive:true});
+    /* A clicked link stays blue, even when its section can't scroll to the top of the screen. It stays until you scroll yourself. */
+    function unlock(){ locked=false; }
+    ['wheel','touchstart','keydown','mousedown'].forEach(function(ev){ window.addEventListener(ev,function(e){ if(e.type==='mousedown'&&e.target.closest&&e.target.closest('.toc a')) return; if(locked) unlock(); },{passive:true}); });
+    links.forEach(function(a){a.addEventListener('click',function(){ setOn(a); locked=true; });});
+    var h=location.hash.slice(1); if(h&&map[h]){ setOn(map[h]); locked=true; } else spy();
   }
 })();
 </script>
