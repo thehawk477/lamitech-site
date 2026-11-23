@@ -747,8 +747,8 @@ html.locked{overflow:hidden}
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="mailto:lamitechrepair@gmail.com">Email me</a></li>
-        <li class="wide"><a href="/which-model.html">Which model do I have?</a></li>
-        <li class="wide"><a href="/legal.html">Policies (terms, privacy, accessibility)</a></li>
+        <li class="wide"><a href="/which-model">Which model do I have?</a></li>
+        <li class="wide"><a href="/legal">Policies (terms, privacy, accessibility)</a></li>
       </ul>
     </nav>
   </div>
@@ -878,7 +878,7 @@ html.locked{overflow:hidden}
           <h3>Home base: Peabody</h3>
           <p>Farther out, it's $0.75 per mile past the first 5, for each trip. Pickup only is one trip. Pickup and drop-off are two trips, so the fee is doubled. I confirm it by text before I come. To skip the fee, meet me somewhere within 5 miles of Peabody, or drop it off to me in Peabody. Both are free.</p>
           <p>Anywhere in Massachusetts? Check your town or ZIP below. Outside Massachusetts? Text me for a travel quote.</p>
-          <p class="town-links">Town pages: <a href="salem-ma.html">Salem</a> &middot; <a href="danvers-ma.html">Danvers</a> &middot; <a href="beverly-ma.html">Beverly</a> &middot; <a href="lynn-ma.html">Lynn</a> &middot; <a href="marblehead-ma.html">Marblehead</a> &middot; <a href="swampscott-ma.html">Swampscott</a> &middot; <a href="lynnfield-ma.html">Lynnfield</a> &middot; <a href="saugus-ma.html">Saugus</a></p>
+          <p class="town-links">Town pages: <a href="/salem-ma">Salem</a> &middot; <a href="/danvers-ma">Danvers</a> &middot; <a href="/beverly-ma">Beverly</a> &middot; <a href="/lynn-ma">Lynn</a> &middot; <a href="/marblehead-ma">Marblehead</a> &middot; <a href="/swampscott-ma">Swampscott</a> &middot; <a href="/lynnfield-ma">Lynnfield</a> &middot; <a href="/saugus-ma">Saugus</a></p>
         </div>
         <details class="towns-box">
           <summary>All 100 towns and their pickup cost</summary>
@@ -1037,7 +1037,7 @@ html.locked{overflow:hidden}
           <a class="btn ghost needs-agree" href="sms:+18572441258?&amp;body=Hi%20Lami%20Tech%20Repair%2C%20I%27m%20looking%20to%20buy%3A%20___%20I%20read%20and%20agree%20to%20your%20buying%20rules.">Text me what you want</a>
         </div>
       </div>
-      <p class="fine">Meetups happen in a public place. Pickup, drop-off and meetups are free within 5 miles of Peabody. The full rules are in the <a href="/legal.html#terms-selling-a-device-to-me">Terms of Service</a>.</p>
+      <p class="fine">Meetups happen in a public place. Pickup, drop-off and meetups are free within 5 miles of Peabody. The full rules are in the <a href="/legal#terms-selling-a-device-to-me">Terms of Service</a>.</p>
     </div>
   </section>
 
@@ -1127,7 +1127,7 @@ html.locked{overflow:hidden}
           </div>
           <div class="hp" aria-hidden="true"><label for="ctHoney">Leave this empty</label><input id="ctHoney" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
           <button class="btn primary ct-send" type="submit" id="ctSend">Send message</button>
-          <p class="ct-legal">By sending, you agree I can contact you about your repair. See the <a href="/legal.html#privacy">Privacy Policy</a>.</p>
+          <p class="ct-legal">By sending, you agree I can contact you about your repair. See the <a href="/legal#privacy">Privacy Policy</a>.</p>
           <div class="ct-status" id="ctStatus" role="status" aria-live="polite"></div>
         </form>
       </div>
@@ -1186,7 +1186,7 @@ html.locked{overflow:hidden}
   </div>
   <div class="wrap fbase">
     <span>&copy; 2026 Lami Tech Repair &middot; Peabody, MA</span>
-    <nav aria-label="Legal"><ul><li><a href="#top">Back to top</a></li><li><a href="mailto:lamitechrepair@gmail.com?subject=Website%20feedback">Send feedback</a></li><li><a href="/legal.html#terms">Terms</a></li><li><a href="/legal.html#privacy">Privacy</a></li><li><a href="/legal.html#accessibility">Accessibility</a></li></ul></nav>
+    <nav aria-label="Legal"><ul><li><a href="#top">Back to top</a></li><li><a href="mailto:lamitechrepair@gmail.com?subject=Website%20feedback">Send feedback</a></li><li><a href="/legal#terms">Terms</a></li><li><a href="/legal#privacy">Privacy</a></li><li><a href="/legal#accessibility">Accessibility</a></li></ul></nav>
     <span>PlayStation, PS5 and DualSense are trademarks of Sony Interactive Entertainment. Xbox is a trademark of Microsoft. iPhone is a trademark of Apple. Product photos &copy; Sony Interactive Entertainment and Microsoft. Not affiliated with Sony or Microsoft.</span>
   </div>
 </footer>
@@ -1205,7 +1205,7 @@ html.locked{overflow:hidden}
         <legend>Which model?</legend>
         <div class="models" id="modelOpts"></div>
         <div class="model-other" id="modelOtherBox" hidden><label for="modelOther">Which one?</label><input id="modelOther" type="text" maxlength="60" placeholder="Example: PS4 Pro"></div>
-        <p class="hint"><a id="modelHelp" href="which-model.html" target="_blank" rel="noopener">Not sure which one? See how to tell <span class="sr">(opens in a new tab)</span></a></p>
+        <p class="hint"><a id="modelHelp" href="/which-model" target="_blank" rel="noopener">Not sure which one? See how to tell <span class="sr">(opens in a new tab)</span></a></p>
       </fieldset>
       <fieldset id="issueSet">
         <legend id="issueLegend">Pick the closest match.</legend>
@@ -1489,7 +1489,7 @@ document.addEventListener('click',function(e){
         lab.appendChild(r); lab.appendChild(document.createTextNode(m[0])); modelOpts.appendChild(lab);
       });
     }
-    modelBox.hidden=!d.models; modelOtherBox.hidden=true; modelOther.value=''; if(d.help) modelHelp.href='which-model.html#'+d.help; issueSet.querySelector('legend').hidden=!!d.other; if(diagCta) diagCta.hidden=!!d.other;
+    modelBox.hidden=!d.models; modelOtherBox.hidden=true; modelOther.value=''; if(d.help) modelHelp.href='/which-model#'+d.help; issueSet.querySelector('legend').hidden=!!d.other; if(diagCta) diagCta.hidden=!!d.other;
     otherLabel.textContent=d.other?'What device is it, and what\'s wrong?':'What happened?';
     otherText.placeholder=d.other?'Example: Nintendo Switch with joycon drift, an Oculus Quest 2 that won\'t charge, or a gaming laptop that overheats':'Example: makes a clicking noise, or the X button doesn\'t work';
     modelOther.placeholder=d.ph||'Example: an older model';
