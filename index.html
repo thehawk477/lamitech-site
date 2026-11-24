@@ -425,6 +425,11 @@ table.prices{width:100%;border-collapse:collapse;min-width:560px;font-variant-nu
 .agree input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent);flex:none}
 .agree-err{color:#fca5a5;font-size:14px;margin:0 0 6px}
 .agree-err:empty{display:none}
+.sms-fb{width:100%;margin-top:10px;padding:14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)}
+.sms-fb p{margin:0 0 8px;color:var(--muted);font-size:14px}
+.sms-fb textarea{width:100%;box-sizing:border-box;background:transparent;color:inherit;border:1px solid var(--line);border-radius:8px;padding:8px;font:14px/1.4 var(--body);resize:vertical}
+.sms-fb-row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px}
+.sms-fb .fb-st:empty{display:none}
 .bs-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
 .bs-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
 .bs-card h3{margin:0;font:700 22px/1.2 var(--display)}
@@ -1750,11 +1755,28 @@ document.addEventListener('click',function(e){
   document.querySelectorAll('.needs-agree').forEach(function(btn){
     var card=btn.closest('.bs-card'), box=card.querySelector('.agree-box'), err=card.querySelector('.agree-err'), dd=card.querySelector('.rules-dd');
     btn.addEventListener('click',function(e){
-      if(box.checked){ err.textContent=''; return; }
+      if(box.checked){ err.textContent=''; showFb(card,btn); return; }
       e.preventDefault(); dd.open=true; err.textContent='Please read the rules above and check the box first.'; box.focus();
     });
     box.addEventListener('change',function(){ if(box.checked) err.textContent=''; });
   });
+  /* On a computer, sms: links often do nothing. Show the message with Copy and Email so they can still reach me. */
+  function showFb(card,btn){
+    if(!(window.matchMedia&&matchMedia('(hover: hover)').matches)) return;
+    var fb=card.querySelector('.sms-fb'), body=decodeURIComponent((btn.getAttribute('href').split('body=')[1]||''));
+    if(!fb){
+      fb=document.createElement('div'); fb.className='sms-fb';
+      fb.innerHTML='<p><b>On a computer?</b> Text this to (857) 244-1258 from your phone, or email it.</p><textarea readonly rows="3"></textarea><div class="sms-fb-row"><button type="button" class="small-btn fb-copy">Copy message</button><a class="small-btn fb-mail" href="#">Email instead</a></div><p class="fb-st" role="status"></p>';
+      btn.insertAdjacentElement('afterend',fb);
+      fb.querySelector('.fb-copy').addEventListener('click',function(){
+        var t=fb.querySelector('textarea'), st=fb.querySelector('.fb-st');
+        function done(ok){ st.textContent=ok?'Copied. Paste it in a text to (857) 244-1258.':'Select the message and copy it.'; if(!ok){t.focus();t.select();} }
+        try{ navigator.clipboard.writeText(t.value).then(function(){done(true)},function(){done(false)}); }catch(x){ done(false); }
+      });
+    }
+    fb.querySelector('textarea').value=body;
+    fb.querySelector('.fb-mail').href='mailto:lamitechrepair@gmail.com?subject='+encodeURIComponent(card.id==='shop'?'Looking to buy':'Selling a device')+'&body='+encodeURIComponent(body);
+  }
   function openRules(){ if(location.hash==='#rules'||location.hash==='#buy-rules'){ var d=document.querySelector(location.hash); if(d) d.open=true; } }
   openRules(); window.addEventListener('hashchange',openRules);
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#rules"]'); if(a){ var d=document.getElementById('rules'); if(d) d.open=true; } });
