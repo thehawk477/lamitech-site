@@ -924,7 +924,7 @@ html.locked{overflow:hidden}
           <div class="rv-ring" aria-hidden="true"><b>4.9</b><span>out of 5</span></div>
           <div>
             <div class="rv-stars big" aria-hidden="true"><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg></div>
-            <p class="rv-count">9 reviews on Google, as of Nov 2026</p>
+            <p class="rv-count">9 ratings on Google as of Nov 2026. The written ones are below.</p>
           </div>
         </div>
         <div class="rv-actions">
@@ -1714,7 +1714,7 @@ document.addEventListener('click',function(e){
   var input=document.getElementById('q'), list=document.getElementById('sugg'), msg=document.getElementById('searchMsg'), sform=document.getElementById('siteSearch');
   function goTo(e){
     list.hidden=true;
-    track('site_search',{search_term:input.value,result:e.label});
+    track('site_search',{search_term:input.value.replace(/\S+@\S+/g,'[email]').replace(/\d[\d\s().-]{3,}\d/g,'[number]'),result:e.label});
     if(e.water){ water.showModal(); document.getElementById('waterBack').textContent='OK'; document.getElementById('waterBack').focus(); return; }
     if(e.dev){ var card=document.querySelector('.dev-card[data-device="'+e.dev+'"]'); if(card){ card.scrollIntoView({block:'center'}); openDevice(e.dev,card,e.model); } return; }
     if(e.go.charAt(0)==='/'){ location.href=e.go; return; }
@@ -1856,7 +1856,7 @@ document.addEventListener('click',function(e){
     if(!ev && !pv){ setErr(null,E.reach,'Add an email or a phone number so I can reply.'); email.setAttribute('aria-invalid','true'); phone.setAttribute('aria-invalid','true'); errs.push({el:email,t:'Add an email or a phone number.'}); }
     if(ev && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)){ setErr(email,E.email,'Check the email. Example: name@gmail.com'); errs.push({el:email,t:'The email looks incomplete.'}); }
     if(pv){ var d=digits(pv); if(d.length===11 && d[0]==='1') d=d.slice(1); if(d.length!==10){ setErr(phone,E.phone,'Use a 10-digit number. Example: 978-555-0123'); errs.push({el:phone,t:'The phone number needs 10 digits.'}); } }
-    if(mv.length<5){ setErr(msg,E.msg,'Tell me the device and what\'s wrong.'); errs.push({el:msg,t:'Add a short message.'}); }
+    if(mv.length<5){ setErr(msg,E.msg,'Tell me the device and what\'s wrong.'); errs.push({el:msg,t:mv.length?'Add a bit more to your message.':'Add a short message.'}); }
     return errs;
   }
   [email,phone,msg].forEach(function(i){ i.addEventListener('input',function(){ if(i.getAttribute('aria-invalid')==='true' || E.reach.textContent) validate(); }); });
