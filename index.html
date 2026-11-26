@@ -264,7 +264,12 @@ input.invalid,textarea.invalid{border-color:#f87171!important;box-shadow:0 0 0 2
 .err:empty{margin:0}
 .dlg-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .handoff{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
-.ho-title{font-weight:700;margin:0 0 10px}
+.live-est{margin:12px 0 0;background:rgba(52,211,153,.08);border:1px solid var(--ok);border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.45}
+.live-est:empty{display:none}
+.ho-way{grid-template-columns:repeat(2,minmax(0,1fr))}
+#hoMix{border-left:3px solid var(--line);padding-left:12px;margin-top:4px}
+.ho-more{margin-top:12px}.ho-more summary{cursor:pointer;font:600 14px var(--body);min-height:44px;display:flex;align-items:center;gap:6px}
+.ho-more summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
 .ho-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .ho-grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .ho-when{margin:12px 0 0;min-width:0;border:0;padding:0}.ho-grid>div{min-width:0}.ho-when legend{font:600 14px var(--body);margin-bottom:6px;padding:0}
@@ -1219,9 +1224,19 @@ html.locked{overflow:hidden}
           <label for="otherText" id="otherLabel">What happened?</label>
           <textarea id="otherText" maxlength="500"></textarea>
         </div>
+        <p class="live-est" id="liveEst" role="status"></p>
       </fieldset>
       <div class="handoff">
-        <p class="ho-title">Getting it to me and back</p>
+        <fieldset id="hoWaySet">
+          <legend>How should it get to me and back?</legend>
+          <div class="models ho-way" id="hoWay">
+            <label class="mdl"><input type="radio" name="hoWay" id="way1" value="door">You pick it up and bring it back</label>
+            <label class="mdl"><input type="radio" name="hoWay" id="way2" value="meet">We meet up</label>
+            <label class="mdl"><input type="radio" name="hoWay" id="way3" value="self">I'll drop it off and pick it up</label>
+            <label class="mdl"><input type="radio" name="hoWay" id="way4" value="mix">Mix it up</label>
+          </div>
+        </fieldset>
+        <div id="hoMix" hidden>
         <fieldset id="hoToSet">
           <legend>Getting it to me</legend>
           <div class="models" id="hoTo">
@@ -1238,21 +1253,25 @@ html.locked{overflow:hidden}
             <label class="mdl"><input type="radio" name="hoBack" id="bk3" value="self">I'll pick it up</label>
           </div>
         </fieldset>
-        <div class="ho-town">
+        </div>
+        <div class="ho-town" id="hoTownBox" hidden>
           <label for="hoTown">Your town or ZIP <span class="ct-opt" id="hoTownReq">(for pickup or drop-off)</span></label>
           <input id="hoTown" type="text" maxlength="40" autocomplete="address-level2">
         </div>
         <p class="ho-fee" id="hoFee" role="status"></p>
+        <details class="ho-more" id="hoMore">
+        <summary>Pick a day and time <span class="ct-opt">(optional)</span></summary>
         <fieldset class="ho-when" id="hoWhenSet">
-          <legend>When works for you?</legend>
+          <legend class="sr">When works for you?</legend>
           <div class="ho-grid">
             <div><label for="hoDate">Day</label><input id="hoDate" type="date"><label class="ho-flex"><input type="checkbox" id="hoAnyDay"> Any day</label></div>
             <div><label for="hoTime">Time</label><input id="hoTime" type="time" step="900"><label class="ho-flex"><input type="checkbox" id="hoAnyTime"> Any time</label></div>
           </div>
         </fieldset>
-        <p class="hint">Pickup, drop-off and meetups are free within 5 miles of Peabody. I confirm the day and time by text.</p>
+        </details>
+        <p class="hint">Pickup, drop-off and meetups are free within 5 miles of Peabody. Skip the day and time if you want, and we'll set it by text.</p>
       </div>
-      <div class="dlg-actions"><button class="btn primary" type="submit">Get my price</button></div>
+      <div class="dlg-actions"><button class="btn primary" type="submit">Get my quote</button></div>
     </form>
     <div class="diag" id="diagList" hidden>
       <h3 id="diagListTitle" tabindex="-1">What do you notice?</h3>
@@ -1477,12 +1496,20 @@ document.addEventListener('click',function(e){
     'Bumper or trigger not working':{x:'about $25'},
     'Battery dies fast':{ps:'about $40, battery included'}
   };
-  function estimate(issue){
+  function estText(issue){
     var m=modelOpts.querySelector('input:checked'), kind=m?m.dataset.kind:'', e=EST[issue], v=null;
     if(m&&m.value==='other') v=null;
     else if(e){ if(e.c&&(currentKey==='ps5'||currentKey==='xbox')) v=e.c; else if(e.p&&(currentKey==='dualsense'||currentKey==='xbox-pad')&&kind!=='edge'&&kind!=='elite') v=e.p; else if(e.x&&currentKey==='xbox-pad'&&kind!=='elite') v=e.x; else if(e.ps&&currentKey==='dualsense'&&kind!=='edge') v=e.ps; }
-    if(issue==='No picture on the TV (HDMI)'){ estEl.innerHTML='<b>About the price:</b> HDMI port repair is coming soon. Text me anyway, and I\'ll tell you if it\'s something simpler I can fix.'; return; }
-    estEl.innerHTML=v?'<b>Estimated price: '+v+'.</b> It can change once I see it, and you approve the exact price before any work.':'<b>About the price:</b> I\'ll give you a price once I see it. Quotes are free.';
+    if(issue==='No picture on the TV (HDMI)') return '<b>About the price:</b> HDMI port repair is coming soon. Text me anyway, and I\'ll tell you if it\'s something simpler I can fix.';
+    return v?'<b>Estimated price: '+v+'.</b> It can change once I see it, and you approve the exact price before any work.':'<b>About the price:</b> I\'ll give you a price once I see it. Quotes are free.';
+  }
+  function estimate(issue){ estEl.innerHTML=estText(issue); }
+  /* Show the price as soon as a problem is picked, before any pickup questions */
+  function liveEst(){
+    var el=document.getElementById('liveEst'), pick=opts.querySelector('input:checked');
+    if(!current||current.other||!pick||pick.value==='Water damage'){ el.innerHTML=''; return; }
+    var m=modelOpts.querySelector('input:checked');
+    el.innerHTML=m?estText(pick.value):'<b>Pick your model</b> above to see the price.';
   }
   function openDevice(key,from,model){
     var d=DEVICES[key]; if(!d) return; current=d; currentKey=key; opener=from||document.activeElement;
@@ -1506,7 +1533,7 @@ document.addEventListener('click',function(e){
       var r=document.createElement('input'); r.type='radio'; r.name='issue'; r.id=id; r.value=t[0]; r.dataset.label=t[1];
       lab.appendChild(r); lab.appendChild(document.createTextNode(t[1])); opts.appendChild(lab);
     });
-    otherBox.hidden=!d.other; otherText.value=''; clearErrs(); result.hidden=true; diagList.hidden=true; diagRes.hidden=true; form.hidden=false;
+    otherBox.hidden=!d.other; otherText.value=''; liveEst(); clearErrs(); result.hidden=true; diagList.hidden=true; diagRes.hidden=true; form.hidden=false;
     dlg.showModal(); var first=d.other?otherText:(modelOpts.querySelector('input:checked')||modelOpts.querySelector('input')||opts.querySelector('input')); if(first) first.focus({preventScroll:true});
     track('quote_open',{device:d.name});
   }
@@ -1515,25 +1542,26 @@ document.addEventListener('click',function(e){
     box.addEventListener('pointerdown',function(e){ var l=e.target.closest('label'); var r=l?box.querySelector('#'+l.htmlFor):null; was=(r&&r.checked)?r:null; });
     box.addEventListener('click',function(e){ var l=e.target.closest('label'); if(!l||!was) return; var r=box.querySelector('#'+l.htmlFor); if(r===was){ e.preventDefault(); r.checked=false; was=null; onChange(); } });
   }
-  allowUnselect(modelOpts,function(){ modelOtherBox.hidden=true; fixed(modelOther); });
-  allowUnselect(opts,function(){ otherBox.hidden=true; fixed(otherText); });
-  modelOpts.addEventListener('change',function(){ var m=modelOpts.querySelector('input:checked'); if(m) fixed(modelBox); modelOtherBox.hidden=!(m&&m.value==='other'); if(modelOtherBox.hidden) fixed(modelOther); else modelOther.focus(); });
+  allowUnselect(modelOpts,function(){ modelOtherBox.hidden=true; fixed(modelOther); liveEst(); });
+  allowUnselect(opts,function(){ otherBox.hidden=true; fixed(otherText); liveEst(); });
+  modelOpts.addEventListener('change',function(){ liveEst(); var m=modelOpts.querySelector('input:checked'); if(m) fixed(modelBox); modelOtherBox.hidden=!(m&&m.value==='other'); if(modelOtherBox.hidden) fixed(modelOther); else modelOther.focus(); });
   opts.addEventListener('change',function(e){
-    if(e.target.name!=='issue') return; fixed(issueSet); if(e.target.value!=='Other') fixed(otherText);
+    if(e.target.name!=='issue') return; liveEst(); fixed(issueSet);
+    var le=document.getElementById('liveEst'); if(le.innerHTML&&le.scrollIntoView) le.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); if(e.target.value!=='Other') fixed(otherText);
     otherBox.hidden=e.target.value!=='Other';
     if(e.target.value==='Water damage'){ water.showModal(); document.getElementById('waterBack').focus(); track('quote_water',{device:current&&current.name}); }
   });
   function waterClosed(){
-    var w=opts.querySelector('input[value="Water damage"]'); if(w) w.checked=false;
+    var w=opts.querySelector('input[value="Water damage"]'); if(w) w.checked=false; liveEst();
     var f=opts.querySelector('input'); if(f&&dlg.open) f.focus();
   }
   document.getElementById('waterBack').addEventListener('click',function(){ water.close(); });
   water.addEventListener('close',waterClosed);
   var dlgBox=dlg.querySelector('.dlg');
-  function clearErrs(){ err.hidden=true; err.innerHTML=''; [issueSet,otherText,modelOther,modelBox,hoToSet,hoBackSet,hoTown,hoWhenSet].forEach(function(el){ el.classList.remove('invalid'); el.removeAttribute('aria-invalid'); }); }
+  function clearErrs(){ err.hidden=true; err.innerHTML=''; [issueSet,otherText,modelOther,modelBox,hoWaySet,hoToSet,hoBackSet,hoTown,hoWhenSet].forEach(function(el){ el.classList.remove('invalid'); el.removeAttribute('aria-invalid'); }); }
   function fixed(el){ el.classList.remove('invalid'); el.removeAttribute('aria-invalid'); if(!dlg.querySelector('.invalid')){ err.hidden=true; err.innerHTML=''; } }
   function showErrs(list){
-    err.innerHTML='<b>Fix '+(list.length>1?'these':'this')+' to get your price:</b><ul>'+list.map(function(x){ return '<li>'+x[0]+'</li>'; }).join('')+'</ul>';
+    err.innerHTML='<b>Fix '+(list.length>1?'these':'this')+' to get your quote:</b><ul>'+list.map(function(x){ return '<li>'+x[0]+'</li>'; }).join('')+'</ul>';
     err.hidden=false; list.forEach(function(x){ x[1].classList.add('invalid'); if(x[1].tagName!=='FIELDSET') x[1].setAttribute('aria-invalid','true'); });
     dlgBox.scrollTop=0; err.focus({preventScroll:true});
   }
@@ -1565,7 +1593,7 @@ document.addEventListener('click',function(e){
     track('quote_ready',{device:current.name,issue:pick.value});
   });
   var hoDate=document.getElementById('hoDate'), hoTime=document.getElementById('hoTime'), hoAnyDay=document.getElementById('hoAnyDay'), hoAnyTime=document.getElementById('hoAnyTime'),
-      hoTown=document.getElementById('hoTown'), hoFee=document.getElementById('hoFee'), hoToSet=document.getElementById('hoToSet'), hoBackSet=document.getElementById('hoBackSet'), hoWhenSet=document.getElementById('hoWhenSet');
+      hoTown=document.getElementById('hoTown'), hoFee=document.getElementById('hoFee'), hoToSet=document.getElementById('hoToSet'), hoBackSet=document.getElementById('hoBackSet'), hoWhenSet=document.getElementById('hoWhenSet'), hoWaySet=document.getElementById('hoWaySet'), hoMix=document.getElementById('hoMix');
   function val(name){ var r=form.querySelector('input[name="'+name+'"]:checked'); return r?r.value:''; }
   function needsTown(){ return val('hoTo')==='pickup'||val('hoBack')==='dropoff'; }
   function whenText(){
@@ -1584,7 +1612,7 @@ document.addEventListener('click',function(e){
   /* Red note when the town is outside the free 5 miles */
   function feeNote(){
     hoFee.className='ho-fee'; hoFee.textContent='';
-    var t=hoTown.value.trim(); if(!t||!window.lamiPlace) return;
+    var t=hoTown.value.trim(); if(!t||!window.lamiPlace||!needsTown()) return;
     var r=window.lamiPlace(t); if(!r) return;
     var trips=(val('hoTo')==='pickup'?1:0)+(val('hoBack')==='dropoff'?1:0), meet=val('hoTo')==='meetup'||val('hoBack')==='meetup';
     if(r.island){ hoFee.className='ho-fee warn'; hoFee.textContent=r.place+' is on an island, so pickup needs a ferry. I\'ll text you a quote.'; return; }
@@ -1596,22 +1624,33 @@ document.addEventListener('click',function(e){
     hoFee.className='ho-fee warn'; hoFee.textContent=msg;
   }
   hoTown.addEventListener('input',function(){ if(hoTown.value.trim()) fixed(hoTown); feeNote(); });
-  ['hoTo','hoBack'].forEach(function(id){ document.getElementById(id).addEventListener('change',function(){ fixed(id==='hoTo'?hoToSet:hoBackSet); document.getElementById('hoTownReq').hidden=!needsTown(); if(!needsTown()) fixed(hoTown); feeNote(); }); });
+  ['hoTo','hoBack'].forEach(function(id){ document.getElementById(id).addEventListener('change',function(){ fixed(id==='hoTo'?hoToSet:hoBackSet); document.getElementById('hoTownReq').hidden=!needsTown(); document.getElementById('hoTownBox').hidden=!needsTown(); if(!needsTown()) fixed(hoTown); feeNote(); }); });
+  var WAY={door:['to1','bk1'],meet:['to2','bk2'],self:['to3','bk3']};
+  document.getElementById('hoWay').addEventListener('change',function(){
+    var w=val('hoWay'); fixed(hoWaySet);
+    form.querySelectorAll('input[name="hoTo"],input[name="hoBack"]').forEach(function(r){ r.checked=false; });
+    if(WAY[w]){ document.getElementById(WAY[w][0]).checked=true; document.getElementById(WAY[w][1]).checked=true; }
+    hoMix.hidden=w!=='mix'; if(w!=='mix'){ fixed(hoToSet); fixed(hoBackSet); }
+    document.getElementById('hoTownReq').hidden=!needsTown(); document.getElementById('hoTownBox').hidden=!needsTown(); if(!needsTown()) fixed(hoTown); feeNote();
+  });
   function handoff(){
-    var to=val('hoTo'), back=val('hoBack'), t=hoTown.value.trim(), out='';
+    var to=val('hoTo'), back=val('hoBack'), t=needsTown()?hoTown.value.trim():'', out='';
     var TO={pickup:'please pick it up from me',meetup:'let\'s meet up',self:'I\'ll drop it off'}, BACK={dropoff:'please drop it back off',meetup:'let\'s meet up',self:'I\'ll pick it up'};
-    if(to) out+=' Getting it to you: '+TO[to]+'.';
-    if(back) out+=' Getting it back: '+BACK[back]+'.';
+    var w=val('hoWay'), BOTH={door:'please pick it up from me and drop it back off',meet:'let\'s meet up both times',self:'I\'ll drop it off and pick it up'};
+    if(BOTH[w]) out+=' Getting it to you and back: '+BOTH[w]+'.';
+    else { if(to) out+=' Getting it to you: '+TO[to]+'.'; if(back) out+=' Getting it back: '+BACK[back]+'.'; }
     if(t){ var pl=window.lamiPlace?window.lamiPlace(t):null; out+=' I\'m in '+(pl&&/^\d{5}$/.test(t)?pl.place+' ('+t+')':t)+'.'; }
-    var n=whenText(); if(n) out+=' Timing: '+n+'.';
+    var n=whenText(); out+=' Timing: '+(n||'flexible, let\'s set it by text')+'.';
     return out;
   }
   function handoffErrors(){
     var e=[];
-    if(!val('hoTo')) e.push(['Choose how your device gets to me.',hoToSet]);
-    if(!val('hoBack')) e.push(['Choose how you get it back.',hoBackSet]);
+    if(!val('hoWay')) e.push(['Choose how it gets to me and back.',hoWaySet]);
+    else if(val('hoWay')==='mix'){
+      if(!val('hoTo')) e.push(['Choose how your device gets to me.',hoToSet]);
+      if(!val('hoBack')) e.push(['Choose how you get it back.',hoBackSet]);
+    }
     if(needsTown()&&!hoTown.value.trim()) e.push(['Add your town or ZIP so I can work out pickup or drop-off.',hoTown]);
-    if(!whenOk()) e.push(['Pick a day and a time, or check "Any day" or "Any time."',hoWhenSet]);
     return e;
   }
   function showMsg(msg){
