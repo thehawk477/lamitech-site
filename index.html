@@ -1645,7 +1645,9 @@ document.addEventListener('click',function(e){
     if(r.island){ hoFee.className='ho-fee warn'; hoFee.textContent=r.place+' is on an island, so pickup needs a ferry. I\'ll text you a quote.'; return; }
     if(r.road<=5){ if(trips||meet){ hoFee.className='ho-fee ok'; hoFee.textContent=r.place+' is about '+r.road+' miles away, inside the free 5-mile range.'; } return; }
     var msg='You\'re outside the free 5-mile range. '+r.place+' is about '+r.road+' miles from Peabody.';
-    if(trips){ var fee=(r.road-5)*0.75*trips; msg+=' The travel fee is about $'+fee.toFixed(2)+(trips===2?' (pickup and drop-off)':' (one trip)')+'. I confirm the exact fee by text.'; }
+    if(trips){ var one=(r.road-5)*0.75;
+      if(trips===2) msg+=' The travel fee is about $'+(one*2).toFixed(2)+' total: $'+one.toFixed(2)+' to pick it up and $'+one.toFixed(2)+' to bring it back. I confirm the exact fee by text.';
+      else msg+=' The travel fee is about $'+one.toFixed(2)+' for '+(val('hoTo')==='pickup'?'the pickup':'the drop-off')+' (one trip). I confirm the exact fee by text.'; }
     if(meet) msg+=' Meetups are free when we meet within 5 miles of Peabody.';
     if(!trips&&!meet) return;
     hoFee.className='ho-fee warn'; hoFee.textContent=msg;
