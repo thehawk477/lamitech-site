@@ -44,7 +44,6 @@
   "areaServed": ["Peabody", "Danvers", "Salem", "Lynn", "Lynnfield", "Beverly", "Middleton", "Swampscott", "Marblehead", "Saugus", "Wakefield", "Wenham", "Melrose", "Reading", "Hamilton", "Nahant", "North Reading", "Stoneham", "Topsfield", "Malden", "Revere", "Everett", "Boxford", "Chelsea", "Manchester-by-the-Sea", "Woburn", "Essex", "Medford", "Wilmington", "Winchester", "Winthrop", "Burlington", "Ipswich", "Somerville", "Andover", "Arlington", "North Andover", "Rowley", "Boston", "Cambridge", "Georgetown", "Belmont", "Lexington", "Tewksbury", "Billerica", "Brookline", "Gloucester", "Groveland", "Lawrence", "Watertown", "Massachusetts"],
   "priceRange": "$25+",
   "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "07:00", "closes": "22:00"}],
-  "knowsLanguage": ["en","ar"],
   "sameAs": ["https://www.facebook.com/profile.php?id=61596750237914", "https://www.instagram.com/lamitechrepair/", "https://www.yelp.com/biz/lami-tech-repair-peabody", "https://nextdoor.com/page/lami-tech-repair-peabody-ma"]
 }
 </script>
@@ -320,6 +319,12 @@ input.invalid,textarea.invalid{border-color:#f87171!important;box-shadow:0 0 0 2
 /* bands */
 .band{padding-block:72px}
 .band.alt{background:var(--band);border-block:1px solid var(--line)}
+.gal{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.gal figure{margin:0;background:var(--panel,#14233b);border:1px solid var(--line);border-radius:16px;overflow:hidden;height:100%;display:flex;flex-direction:column}
+.gal img{display:block;width:100%;height:260px;object-fit:cover}
+.gal figcaption{padding:10px 12px 12px;font-size:14px;line-height:1.45;color:var(--muted)}
+@media (max-width:900px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.gal{grid-template-columns:1fr}.gal img{height:240px}}
 .band h2{font-size:clamp(38px,5.4vw,60px);font-weight:700;letter-spacing:-.035em;line-height:1.04;margin-bottom:12px}
 .lede{color:var(--muted);max-width:46ch;margin:0 0 40px;font-size:clamp(18px,1.8vw,21px);line-height:1.45;font-weight:500}
 .band > .wrap > .eyebrow,.band > .wrap > h2,.band > .wrap > .lede{text-align:center;margin-inline:auto}
@@ -749,6 +754,7 @@ html.locked{overflow:hidden}
         <li><a href="#fix">Get a quote</a></li>
         <li><a href="#prices">Prices</a></li>
         <li><a href="#how">How it works</a></li>
+        <li><a href="#work">Real work</a></li>
         <li><a href="#area">Service area</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#buying">Buy &amp; sell</a></li>
@@ -787,7 +793,7 @@ html.locked{overflow:hidden}
       <p class="eyebrow">Lami Tech Repair &middot; North Shore, MA</p>
       <h1>Broken? <span>Fixed.</span></h1>
       <p class="sub">PS5 and Xbox repair, right here in Peabody.</p>
-      <p class="hero-proof"><a href="#reviews"><span class="hs" aria-hidden="true">&#9733;</span> 4.9 on Google &middot; 9 reviews</a> <span class="chip">I speak English and Arabic (<bdi lang="ar">العربية</bdi>)</span></p>
+      <p class="hero-proof"><a href="#reviews"><span class="hs" aria-hidden="true">&#9733;</span> 4.9 on Google &middot; 9 reviews</a></p>
       <div class="btns">
         <a class="btn primary" href="#fix">Get a quote</a>
         <a class="link-cta" href="#prices">See prices <span aria-hidden="true">&rsaquo;</span></a>
@@ -876,6 +882,20 @@ html.locked{overflow:hidden}
         <li><h3>Pickup or meetup</h3><p>Free within 5 miles. Controllers are often back the same day.</p></li>
       </ol>
       <p class="fine">Farther than 5 miles? <a href="#pcForm">See what pickup costs from your town</a>.</p>
+    </div>
+  </section>
+
+  <section class="band" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <p class="eyebrow">Real work</p>
+      <h2 id="work-h">On the bench.</h2>
+      <p class="lede">Photos from my own repairs, taken on my bench in Peabody.</p>
+      <ul class="gal">
+        <li><figure><img style="object-position:top" src="/img/work-dualsense-open.webp" width="900" height="1200" loading="lazy" decoding="async" alt="A PS5 DualSense controller taken apart, with the circuit board, sticks and front shell laid out on a mat"><figcaption>DualSense taken apart for repair.</figcaption></figure></li>
+        <li><figure><img src="/img/work-dualsense-board.webp" width="900" height="1200" loading="lazy" decoding="async" alt="Close-up of a DualSense controller's inner frame showing both thumbsticks, the trigger motors and the button contacts"><figcaption>Inside a DualSense: both sticks, the triggers and the button contacts.</figcaption></figure></li>
+        <li><figure><img src="/img/work-console-strip.webp" width="1200" height="900" loading="lazy" decoding="async" alt="A PlayStation console fully stripped down, with the fan, hard drive, heatsink and copper heat pipes separated for cleaning"><figcaption>PlayStation stripped down for a deep clean: fan, heatsink and hard drive out.</figcaption></figure></li>
+        <li><figure><img src="/img/work-ps3-open.webp" width="1200" height="900" loading="lazy" decoding="async" alt="An original PS3 with the top cover removed, showing the power supply and the metal heatsink brackets"><figcaption>An original PS3 opened up for diagnosis.</figcaption></figure></li>
+      </ul>
     </div>
   </section>
 
@@ -1060,7 +1080,7 @@ html.locked{overflow:hidden}
           <p class="eyebrow">About</p>
           <h2>Local. Honest. Hands-on.</h2>
           <p>I'm Sajjad, I'm 22, and I've lived in Peabody for about 4 years. Lami Tech Repair started after I kept fixing consoles, controllers and laptops for friends. I wanted to give good gear a second life instead of seeing it thrown out.</p>
-          <p>When you text, you're talking to me directly, not a call center. I test every repair before it goes back to you, and I speak English and Arabic.</p>
+          <p>When you text, you're talking to me directly, not a call center. I test every repair before it goes back to you.</p>
         </div>
       </div>
       <div class="stats">
@@ -1737,7 +1757,7 @@ document.addEventListener('click',function(e){
     {label:'Questions and guarantee',note:'FAQ',go:'#faq',k:['faq','question','questions','guarantee','warranty','how long','time','payment','pay','zelle','venmo','refund']},
     {label:'Send a message',note:'Contact form',go:'#ctForm',k:['message','form','contact form','send message','email me','write']},
     {label:'Contact',note:'Call, text or email',go:'#contact',k:['contact','call','text','email','phone number','number','reach','message','hours','open']},
-    {label:'About Sajjad',note:'About',go:'#about',k:['about','owner','who','sajjad','arabic','english']},
+    {label:'About Sajjad',note:'About',go:'#about',k:['about','owner','who','sajjad']},
     {label:'Accessibility',note:'Page',go:'/legal.html#accessibility',k:['accessibility','accessible','screen reader','disability','ada']},
     {label:'Privacy policy',note:'Page',go:'/legal.html#privacy',k:['privacy','data','cookies','policy']},
     {label:'Terms of Service',note:'Page',go:'/legal.html#terms',k:['terms','terms of service','tos','conditions','rules','liability','pickup']}
