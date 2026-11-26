@@ -853,6 +853,7 @@ html.locked{overflow:hidden}
         </table>
       </div>
       <p class="fine">"+" means starting price: it only goes up if your device needs an extra part, like a new fan or battery, and I text you the new price first. Stick drift is one price for one stick or both. "You save" compares my starting price to the typical price, so it can be less if your device needs an extra part. Pay by cash or Zelle when it's done.</p>
+      <p class="fine">Full details for each repair: <a href="/ps5-repair">PS5</a> &middot; <a href="/xbox-repair">Xbox</a> &middot; <a href="/ps5-controller-repair">PS5 controller</a> &middot; <a href="/xbox-controller-repair">Xbox controller</a></p>
       <details class="method"><summary>Where the "typical" prices come from</summary>
         <p>Prices other repair shops post online, checked November 2026. Shops change prices often, so treat these as a rough guide.</p>
         <ul>
@@ -1164,9 +1165,10 @@ html.locked{overflow:hidden}
     <nav aria-label="Repairs">
       <h2 class="fh">Repairs</h2>
       <ul>
-        <li><a href="#consoles">Console cleaning</a></li>
-        <li><a href="#controllers">Controller repair</a></li>
-        <li><a href="#prices">Stick drift</a></li>
+        <li><a href="/ps5-repair">PS5 repair</a></li>
+        <li><a href="/xbox-repair">Xbox repair</a></li>
+        <li><a href="/ps5-controller-repair">PS5 controller repair</a></li>
+        <li><a href="/xbox-controller-repair">Xbox controller repair</a></li>
         <li><a href="#soldering">Soldering (coming soon)</a></li>
         <li><a href="#prices">Prices</a></li>
       </ul>
@@ -1537,6 +1539,9 @@ document.addEventListener('click',function(e){
     dlg.showModal(); var first=d.other?otherText:(modelOpts.querySelector('input:checked')||modelOpts.querySelector('input')||opts.querySelector('input')); if(first) first.focus({preventScroll:true});
     track('quote_open',{device:d.name});
   }
+  /* Repair pages link to /#quote-ps5 etc. to open that device's quote form */
+  (function(){ var m=location.hash.match(/^#quote-(ps5|xbox|dualsense|xbox-pad)$/); if(!m) return;
+    window.addEventListener('load',function(){ var fx=document.getElementById('fix'); if(fx) fx.scrollIntoView(); openDevice(m[1],document.querySelector('[data-device="'+m[1]+'"]')); }); })();
   function allowUnselect(box,onChange){
     var was=null;
     box.addEventListener('pointerdown',function(e){ var l=e.target.closest('label'); var r=l?box.querySelector('#'+l.htmlFor):null; was=(r&&r.checked)?r:null; });
