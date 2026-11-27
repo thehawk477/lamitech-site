@@ -27,6 +27,20 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:"Geist";src:url("/fonts/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+/* lt-print */@media print{@page{margin:14mm}
+header,nav,.callbar,dialog,.menu-panel,.menu-btn,.skip,.totop,.print,.toc,.jump,form,video,iframe{display:none!important}
+*,*::before,*::after{background:transparent!important;color:#000!important;box-shadow:none!important;text-shadow:none!important;backdrop-filter:none!important}
+html,body{background:#fff!important}
+body::before{content:"Lami Tech Repair \00B7  (857) 244-1258 \00B7  lamitechrepair@gmail.com \00B7  lamitechrepair.pages.dev";display:block;font:700 11pt/1.4 Arial,sans-serif;border-bottom:1.5px solid #000;padding-bottom:6pt;margin-bottom:14pt}
+main,.layout,.wrap{display:block!important;max-width:none!important;padding-left:0!important;padding-right:0!important}
+section,.band{padding-top:10pt!important;padding-bottom:10pt!important;min-height:0!important}
+h1,h2,h3,h4{break-after:avoid;page-break-after:avoid}
+p,li{orphans:3;widows:3}
+.glance li,.eg,figure,img,table,tr,blockquote,.card{break-inside:avoid;page-break-inside:avoid}
+img{max-width:60%!important;height:auto!important}
+a{text-decoration:underline}
+footer{border-top:1px solid #000;margin-top:14pt;padding-top:8pt}}
 </style>
 <style>
 [hidden]{display:none!important}
