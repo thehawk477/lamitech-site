@@ -720,6 +720,16 @@ html.locked{overflow:hidden}
 .mail-opt:hover,.mail-opt:focus-visible{border-color:var(--accent)}
 .mail-status{margin:10px 0 0;color:#34d399;font-weight:600}.mail-status:empty{display:none}
 .mail-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* lt-menu-groups */
+.menu-panel .mgrid{max-width:1080px;margin-inline:auto;padding:16px max(16px,env(safe-area-inset-left,0px)) 6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}
+.menu-panel .mh{font:700 12px/1.3 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;padding:0 12px}
+.menu-panel .mgrid ul{display:flex;flex-direction:column;gap:2px;padding:0;margin:0;max-width:none;list-style:none}
+.menu-panel .mgrid a{padding:10px 12px;font:600 16px/1.3 var(--body)}
+.menu-panel .mfoot{max-width:1080px;margin:6px auto 0;padding:12px max(28px,env(safe-area-inset-left,0px)) 18px;border-top:1px solid var(--line);color:var(--muted);font:500 15px var(--body)}
+.menu-panel .mfoot a{display:inline-block;padding:6px 8px;margin-left:2px;color:var(--accent);font:700 16px var(--body)}
+@media (min-width:861px){.menu-panel .mgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;padding-top:22px}.menu-panel .mfoot{padding-left:max(28px,env(safe-area-inset-left,0px))}}
+@media (max-width:340px){.menu-panel .mgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body style="margin:0">
@@ -764,22 +774,34 @@ html.locked{overflow:hidden}
   </div>
   <div class="menu-panel" id="menuPanel" hidden>
     <nav aria-label="Menu">
-      <ul>
-        <li><a href="#fix">Get a quote</a></li>
-        <li><a href="#prices">Prices</a></li>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#work">Real work</a></li>
-        <li><a href="#area">Service area</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#buying">Buy &amp; sell</a></li>
-        <li><a href="#rules">Rules</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="mailto:lamitechrepair@gmail.com">Email me</a></li>
-        <li class="wide"><a href="/which-model">Which model do I have?</a></li>
-        <li class="wide"><a href="/legal">Policies (terms, privacy, accessibility)</a></li>
-      </ul>
+      <div class="mgrid">
+        <div class="mcol"><h2 class="mh" id="mh1">Explore</h2><ul aria-labelledby="mh1">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#area">Service area</a></li>
+          <li><a href="#work">Real work</a></li>
+        </ul></div>
+        <div class="mcol"><h2 class="mh" id="mh2">Repairs</h2><ul aria-labelledby="mh2">
+          <li><a href="#fix">Get a quote</a></li>
+          <li><a href="#prices">Prices</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="/which-model">Which model do I have?</a></li>
+        </ul></div>
+        <div class="mcol"><h2 class="mh" id="mh3">Help</h2><ul aria-labelledby="mh3">
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="mailto:lamitechrepair@gmail.com">Email me</a></li>
+        </ul></div>
+        <div class="mcol"><h2 class="mh" id="mh4">More</h2><ul aria-labelledby="mh4">
+          <li><a href="#buying">Buy &amp; sell</a></li>
+          <li><a href="#rules">Repair &amp; pickup rules</a></li>
+          <li><a href="/legal#terms">Terms of Service</a></li>
+          <li><a href="/legal#privacy">Privacy Policy</a></li>
+          <li><a href="/legal#accessibility">Accessibility</a></li>
+        </ul></div>
+      </div>
+      <p class="mfoot">Questions? Call or text <a href="tel:+18572441258">(857) 244-1258</a></p>
     </nav>
   </div>
 </header>
